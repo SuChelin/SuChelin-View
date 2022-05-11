@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/listFragment">
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="mingyuk99.suchelin.ListFragment"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_voteFragment"
+            app:destination="@id/voteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="mingyuk99.suchelin.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" >
+        <action
+            android:id="@+id/action_mapFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_voteFragment"
+            app:destination="@id/voteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/voteFragment"
+        android:name="mingyuk99.suchelin.VoteFragment"
+        android:label="fragment_vote"
+        tools:layout="@layout/fragment_vote" >
+        <action
+            android:id="@+id/action_voteFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_voteFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+</navigation>

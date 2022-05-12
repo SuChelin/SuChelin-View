@@ -8,6 +8,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SuChelin">
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="cgwha9oj7j" />
         <activity
             android:name=".SpalshActivity"
             android:exported="false" />

@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/unja0/AndroidStudioProjects/SuChelin/app/src/main/res/layout/activity_main.xml" value="0.12092391304347826" />
+        <entry key="..\:/Users/unja0/AndroidStudioProjects/SuChelin/app/src/main/res/layout/activity_spalsh.xml" value="0.12092391304347826" />
+        <entry key="..\:/Users/unja0/AndroidStudioProjects/SuChelin/app/src/main/res/layout/fragment_list.xml" value="0.264" />
+        <entry key="..\:/Users/unja0/AndroidStudioProjects/SuChelin/app/src/main/res/layout/fragment_map.xml" value="0.152" />
+        <entry key="..\:/Users/unja0/AndroidStudioProjects/SuChelin/app/src/main/res/layout/fragment_vote.xml" value="0.12092391304347826" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.184375" />
         <entry key="app/src/main/res/layout/activity_spalsh.xml" value="0.20989583333333334" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.20989583333333334" />
@@ -10,10 +15,19 @@
       </map>
     </option>
   </component>
+  <component name="FindBugsConfigurable">
+    <option name="make" value="true" />
+    <option name="effort" value="default" />
+    <option name="priority" value="Medium" />
+    <option name="excludeFilter" value="" />
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="SuppressionsComponent">
+    <option name="suppComments" value="[]" />
   </component>
 </project>

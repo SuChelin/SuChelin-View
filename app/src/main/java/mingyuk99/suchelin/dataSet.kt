@@ -4,4 +4,6 @@ data class dataSet(
     val imageUrl: String = "",
     val name: String = "",
     val location: String = ""
+//detail
+//distance
 )

@@ -23,8 +23,7 @@ class ListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_list, container, false)
-//        val fragMap = view.findViewById<TextView>(R.id.fragMap)
-//        val fragVote = view.findViewById<TextView>(R.id.fragVote)
+
 
         val rv = view.findViewById<RecyclerView>(R.id.rv)
         val items = mutableListOf<dataSet>()
@@ -43,6 +42,8 @@ class ListFragment : Fragment() {
         rv.adapter = rvAdapter
         rv.layoutManager = LinearLayoutManager(context)
 
+//        val fragMap = view.findViewById<TextView>(R.id.fragMap)
+//        val fragVote = view.findViewById<TextView>(R.id.fragVote)
 //        fragMap.setOnClickListener {
 //            it.findNavController().navigate(R.id.action_listFragment_to_mapFragment)
 //        }

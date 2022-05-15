@@ -48,7 +48,6 @@ class MapsFragment : Fragment(){
             naverMap ?: return@getMapAsync
 
             MapControl().setMapUI(naverMap!!)
-
         }
     }
 

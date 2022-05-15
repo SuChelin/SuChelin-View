@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -47,4 +48,11 @@ dependencies {
 
     // 네이버 지도
     implementation 'com.naver.maps:map-sdk:3.14.0'
+
+    // Room
+    implementation "androidx.room:room-runtime:2.4.2"
+    kapt "androidx.room:room-compiler:2.4.2" // For Kotlin use kapt instead of annotationProcessor
+
+    // 코루틴 관련 라이브러리
+    implementation "androidx.room:room-ktx:2.4.2"
 }

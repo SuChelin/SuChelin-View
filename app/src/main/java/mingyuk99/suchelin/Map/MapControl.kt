@@ -1,8 +1,13 @@
 package mingyuk99.suchelin.Map
 
 import android.app.ActionBar
+import android.util.Log
 import android.view.Gravity
 import com.naver.maps.map.NaverMap
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MapControl {
 
@@ -43,4 +48,5 @@ class MapControl {
         }
 
     }
+
 }

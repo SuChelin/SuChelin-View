@@ -4,21 +4,21 @@
     <item
         android:id="@+id/menuList"
         android:enabled="true"
-        android:icon="@drawable/book3927601"
-        android:title="LIST"
+        android:icon="@drawable/book3927601fix"
+        android:title="수슐랭"
         app:showAsAction="always" />
     <item
         android:id="@+id/menuMap"
         android:enabled="true"
         android:icon="@drawable/mapmarker5074102"
-        android:title="MAP"
+        android:title="주변 식당"
 
         app:showAsAction="always" />
     <item
         android:id="@+id/menuVote"
         android:enabled="true"
         android:icon="@drawable/badge3914747"
-        android:title="VOTE"
+        android:title="투표"
         app:showAsAction="always" />
 <!--    <item-->
 <!--        android:id="@+id/menuList"-->

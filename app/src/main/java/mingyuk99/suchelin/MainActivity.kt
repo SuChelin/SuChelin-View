@@ -1,34 +1,53 @@
 package mingyuk99.suchelin
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.Menu
 import android.view.MenuItem
+import android.view.View.inflate
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import mingyuk99.suchelin.List.ListFragment
+import mingyuk99.suchelin.Map.MapsFragment
+import java.net.IDN
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //일단 첫 화면 list로 임의 결정
         //bottom_navigaion
-
         val bottom_menu = findViewById<BottomNavigationView>(R.id.bottomTabBar)
-// 첫 화면 중복의 원인이었음
-//        supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, ListFragment()).commit()
 
-        bottom_menu.setOnItemSelectedListener{
-            replaceFragment(
-                when(it.itemId){
-                    R.id.menuList -> ListFragment()
-                    R.id.menuMap -> MapFragment()
-                    else -> VoteFragment()
-                }
-            )
+// 첫 화면 중복의 원인이었음
+//        supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, mapsFragment).commit()
+
+        bottom_menu.setOnItemSelectedListener {
+            getFragment(it)
+        }
+        bottom_menu.setOnItemReselectedListener {
+            Log.d("Reselcted","true")
         }
     }
-    private fun replaceFragment(fragment: Fragment): Boolean {
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, fragment).commit()
+
+    private fun getFragment(menuItem: MenuItem): Boolean {
+
+        when(menuItem.itemId){
+            R.id.menuList -> {
+                supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, ListFragment()).commit()
+            }
+            R.id.menuMap -> {
+                supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, MapsFragment()).commit()
+            }
+            else -> {
+                supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, VoteFragment()).commit()
+            }
+        }
         return true
     }
 }

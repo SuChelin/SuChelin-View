@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:id="@+id/pageList"
     android:layout_height="match_parent"
-    tools:context=".ListFragment">
+    tools:context=".List.ListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"

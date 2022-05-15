@@ -1,4 +1,4 @@
-package mingyuk99.suchelin
+package mingyuk99.suchelin.List
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import mingyuk99.suchelin.R
+import mingyuk99.suchelin.dataSet
 
 class ListFragment : Fragment() {
 
@@ -21,7 +24,6 @@ class ListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_list, container, false)
-
 
         val rv = view.findViewById<RecyclerView>(R.id.rv)
         val items = mutableListOf<dataSet>()
@@ -42,13 +44,5 @@ class ListFragment : Fragment() {
         rv.layoutManager = LinearLayoutManager(context)
 
         return view
-//        val fragMap = view.findViewById<TextView>(R.id.fragMap)
-//        val fragVote = view.findViewById<TextView>(R.id.fragVote)
-//        fragMap.setOnClickListener {
-//            it.findNavController().navigate(R.id.action_listFragment_to_mapFragment)
-//        }
-//        fragVote.setOnClickListener {
-//            it.findNavController().navigate(R.id.action_listFragment_to_voteFragment)
-//        }
     }
 }

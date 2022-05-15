@@ -2,9 +2,11 @@ package mingyuk99.suchelin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import mingyuk99.suchelin.Map.MapsFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(
                 when(it.itemId){
                     R.id.menuList -> ListFragment()
-                    R.id.menuMap -> MapFragment()
+                    R.id.menuMap -> MapsFragment()
                     else -> VoteFragment()
                 }
             )

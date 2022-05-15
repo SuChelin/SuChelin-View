@@ -18,6 +18,8 @@ class MapControl {
         // Map type
         naverMap.mapType = NaverMap.MapType.Basic
 
+        Log.d("maps Control", "mapType : ${naverMap.mapType}")
+
         // Map layout
         naverMap.setLayerGroupEnabled(NaverMap.LAYER_GROUP_TRANSIT, true)
 
@@ -47,6 +49,12 @@ class MapControl {
             isStopGesturesEnabled = false
         }
 
+    }
+
+    fun setMaker(naverMap: NaverMap){
+        val job = CoroutineScope(Dispatchers.Default).launch {
+
+        }
     }
 
 }

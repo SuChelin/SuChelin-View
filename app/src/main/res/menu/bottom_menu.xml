@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menuList"
+        android:enabled="true"
+        android:icon="@drawable/book3927601"
+        android:title="LIST"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menuMap"
+        android:enabled="true"
+        android:icon="@drawable/mapmarker5074102"
+        android:title="MAP"
+
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menuVote"
+        android:enabled="true"
+        android:icon="@drawable/badge3914747"
+        android:title="VOTE"
+        app:showAsAction="always" />
+<!--    <item-->
+<!--        android:id="@+id/menuList"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/menulist"-->
+<!--        android:title="LIST"-->
+<!--        app:showAsAction="always" />-->
+<!--    <item-->
+<!--        android:id="@+id/menuMap"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/travelguide"-->
+<!--        android:title="MAP"-->
+<!--        app:showAsAction="always" />-->
+<!--    <item-->
+<!--        android:id="@+id/menuVote"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/votebookmark"-->
+<!--        android:title="VOTE"-->
+<!--        app:showAsAction="always" />-->
+
+
+</menu>

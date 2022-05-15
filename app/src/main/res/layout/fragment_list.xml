@@ -16,6 +16,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnGoToMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:backgroundTint="#ffffff"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/rv"
+        app:rippleColor="#659E9C9C"
+        android:background="@color/black"
+        android:outlineAmbientShadowColor="@color/black"
+        android:outlineSpotShadowColor="#E6E4E4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/map5074088"
+        tools:layout_editor_absoluteX="355dp"
+        tools:layout_editor_absoluteY="615dp" />
+
 <!--    <LinearLayout-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="80dp"-->

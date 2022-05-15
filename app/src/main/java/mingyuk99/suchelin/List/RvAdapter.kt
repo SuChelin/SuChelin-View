@@ -30,14 +30,14 @@ class RvAdapter(val context: Context?, val items: MutableList<dataSet>):Recycler
         fun bindItems(item: dataSet){
             val imageViewShop = itemView.findViewById<ImageView>(R.id.imageViewShop)
             val textViewTitle = itemView.findViewById<TextView>(R.id.textViewTitle)
-
+            val textViewDetail = itemView.findViewById<TextView>(R.id.textViewDetail)
             Glide.with(context!!)
                 .load(item.imageUrl)
                 .centerCrop()
                 .into(imageViewShop)
 
             textViewTitle.text = item.name
-
+            textViewDetail.text = item.detail
         }
     }
 

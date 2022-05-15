@@ -1,19 +1,13 @@
 package mingyuk99.suchelin
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.Menu
 import android.view.MenuItem
-import android.view.View.inflate
-import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import mingyuk99.suchelin.List.ListFragment
 import mingyuk99.suchelin.Map.MapsFragment
-import java.net.IDN
+
 
 class MainActivity : AppCompatActivity() {
 

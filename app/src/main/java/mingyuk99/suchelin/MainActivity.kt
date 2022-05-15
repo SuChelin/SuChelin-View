@@ -14,8 +14,8 @@ class MainActivity : AppCompatActivity() {
         //bottom_navigaion
 
         val bottom_menu = findViewById<BottomNavigationView>(R.id.bottomTabBar)
-
-        supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, ListFragment()).commit()
+// 첫 화면 중복의 원인이었음
+//        supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, ListFragment()).commit()
 
         bottom_menu.setOnItemSelectedListener{
             replaceFragment(

@@ -4,21 +4,40 @@
     <item
         android:id="@+id/menuList"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/book3927601"
         android:title="LIST"
         app:showAsAction="always" />
     <item
         android:id="@+id/menuMap"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/mapmarker5074102"
         android:title="MAP"
+
         app:showAsAction="always" />
     <item
         android:id="@+id/menuVote"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/badge3914747"
         android:title="VOTE"
         app:showAsAction="always" />
+<!--    <item-->
+<!--        android:id="@+id/menuList"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/menulist"-->
+<!--        android:title="LIST"-->
+<!--        app:showAsAction="always" />-->
+<!--    <item-->
+<!--        android:id="@+id/menuMap"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/travelguide"-->
+<!--        android:title="MAP"-->
+<!--        app:showAsAction="always" />-->
+<!--    <item-->
+<!--        android:id="@+id/menuVote"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/votebookmark"-->
+<!--        android:title="VOTE"-->
+<!--        app:showAsAction="always" />-->
 
 
 </menu>

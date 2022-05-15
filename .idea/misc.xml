@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/mingy/Documents/Android/SuChelin/app/src/main/res/layout/activity_main.xml" value="0.14266304347826086" />
         <entry key="..\:/Users/mingy/Documents/Android/SuChelin/app/src/main/res/layout/fragment_list.xml" value="0.23489583333333333" />
         <entry key="..\:/Users/mingy/Documents/Android/SuChelin/app/src/main/res/layout/fragment_vote.xml" value="0.20989583333333334" />
-        <entry key="..\:/Users/mingy/Documents/Android/SuChelin/app/src/main/res/layout/rv_item.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/mingy/Documents/Android/SuChelin/app/src/main/res/layout/rv_item.xml" value="0.22" />
+        <entry key="..\:/Users/mingy/Documents/Android/SuChelin/app/src/main/res/menu/bottom_menu.xml" value="0.23489583333333333" />
         <entry key="..\:/Users/unja0/AndroidStudioProjects/SuChelin/app/src/main/res/layout/activity_main.xml" value="0.12092391304347826" />
         <entry key="..\:/Users/unja0/AndroidStudioProjects/SuChelin/app/src/main/res/layout/activity_spalsh.xml" value="0.12092391304347826" />
         <entry key="..\:/Users/unja0/AndroidStudioProjects/SuChelin/app/src/main/res/layout/fragment_list.xml" value="0.264" />

@@ -27,7 +27,7 @@ class ListFragment : Fragment() {
         val items = mutableListOf<dataSet>()
 
         items.add(dataSet("https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f180_180&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210302_125%2F161464487124061agC_JPEG%2FK15utTFWXeuNEny1JMXiV57W.jpg","할리스 수원대학교점","main"))
-        items.add(dataSet("imageUrl","dummy","main"))
+        items.add(dataSet("https://mblogthumb-phinf.pstatic.net/MjAyMDAzMTdfOTAg/MDAxNTg0NDI4ODk4MTE3.Sbya0oZBVcS1uXbtrwTNdetrqjvx0Y3FHpBkdjCEELkg.olDkDm0beJhdPP3hDzesjGT4HX20mN4ILAISylHrccUg.JPEG.hyesun0305/1584428897220.jpg?type=w800","와우당","main"))
         items.add(dataSet("imageUrl","dummy","main"))
         items.add(dataSet("imageUrl","dummy","main"))
         items.add(dataSet("imageUrl","dummy","main"))

@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
-        android:name="mingyuk99.suchelin.MapFragment"
+        android:name="mingyuk99.suchelin.Map.MapsFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" >
         <action

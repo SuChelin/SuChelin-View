@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/sortStar"
+        android:enabled="true"
+        android:title="별 개수"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/sortName"
+        android:enabled="true"
+        android:title="이름"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/sortDistance"
+        android:enabled="true"
+        android:title="거리"
+        app:showAsAction="always" />
+</menu>

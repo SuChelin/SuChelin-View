@@ -11,7 +11,7 @@
         android:id="@+id/menuMap"
         android:enabled="true"
         android:icon="@drawable/mapmarker5074102"
-        android:title="주변 식당"
+        android:title="지도"
 
         app:showAsAction="always" />
     <item

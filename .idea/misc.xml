@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< HEAD
+        <entry key="..\:/Users/unja0/AndroidStudioProjects/SuChelin/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.105" />
+        <entry key="..\:/Users/unja0/AndroidStudioProjects/SuChelin/app/src/main/res/drawable/ic_marker.xml" value="0.1655" />
+=======
         <entry key="..\:/Users/mingy/Documents/Android/SuChelin/app/src/main/res/layout/activity_list_to_map.xml" value="0.14266304347826086" />
         <entry key="..\:/Users/mingy/Documents/Android/SuChelin/app/src/main/res/layout/activity_main.xml" value="0.14266304347826086" />
         <entry key="..\:/Users/mingy/Documents/Android/SuChelin/app/src/main/res/layout/activity_spalsh.xml" value="0.14266304347826086" />
@@ -13,6 +17,7 @@
         <entry key="..\:/Users/mingy/Documents/Android/SuChelin/app/src/main/res/layout/rv_item.xml" value="0.22" />
         <entry key="..\:/Users/mingy/Documents/Android/SuChelin/app/src/main/res/menu/bottom_menu.xml" value="0.23489583333333333" />
         <entry key="..\:/Users/mingy/Documents/Android/SuChelin/app/src/main/res/menu/filter_menu.xml" value="0.33" />
+>>>>>>> 6cfa48cc4777369c812b21fd61ae1da02cdbb678
         <entry key="..\:/Users/unja0/AndroidStudioProjects/SuChelin/app/src/main/res/layout/activity_main.xml" value="0.12092391304347826" />
         <entry key="..\:/Users/unja0/AndroidStudioProjects/SuChelin/app/src/main/res/layout/activity_spalsh.xml" value="0.12092391304347826" />
         <entry key="..\:/Users/unja0/AndroidStudioProjects/SuChelin/app/src/main/res/layout/fragment_list.xml" value="0.264" />

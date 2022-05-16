@@ -34,7 +34,6 @@ class MapsFragment : Fragment(){
         mapView = view.findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
 
-
         mapView.getMapAsync { map ->
             Toast.makeText(requireContext(), "NaverMap 객체 반환 성공", Toast.LENGTH_SHORT).show()
             view.findViewById<LocationButtonView>(R.id.zoomButton).map = map
@@ -43,6 +42,7 @@ class MapsFragment : Fragment(){
             naverMap ?: return@getMapAsync
 
             MapControl().setMapUI(naverMap!!)
+            MapControl().setMaker(naverMap!!, requireContext())
         }
 
     }

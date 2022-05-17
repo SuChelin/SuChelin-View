@@ -55,4 +55,7 @@ dependencies {
 
     // 코루틴 관련 라이브러리
     implementation "androidx.room:room-ktx:2.4.2"
+
+    // 지도 추적 기능
+    implementation("com.google.android.gms:play-services-location:19.0.1")
 }

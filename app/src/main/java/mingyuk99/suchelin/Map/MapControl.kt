@@ -6,6 +6,7 @@ import android.graphics.PointF
 import android.util.Log
 import android.view.Gravity
 import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraAnimation
 import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.NaverMap
@@ -18,8 +19,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import mingyuk99.suchelin.R
+import mingyuk99.suchelin.dataSet
 
 class MapControl {
+
+    companion object{
+        private const val MARKER_ICON_HEIGHT = 60
+        private const val MARKER_ICON_WEIGHT = 60
+    }
 
     // map 사용자 인터페이스 설정
     fun setMapUI(naverMap: NaverMap){
@@ -36,10 +43,10 @@ class MapControl {
 
         // Control setting
         uiSetting.apply {
-            isCompassEnabled = true
+            isCompassEnabled = false
             isScaleBarEnabled = false
             isIndoorLevelPickerEnabled = true
-            isZoomControlEnabled = true
+            isZoomControlEnabled = false
             isLocationButtonEnabled = false
         }
 
@@ -48,15 +55,6 @@ class MapControl {
         uiSetting.isLogoClickEnabled = true
         uiSetting.setLogoMargin(20,20,0,0)
 
-        // gesture setting
-        uiSetting.apply {
-            isScrollGesturesEnabled = true
-            isZoomGesturesEnabled = true
-            isTiltGesturesEnabled = false
-            isRotateGesturesEnabled = true
-            isStopGesturesEnabled = false
-        }
-
         // 카메라 설정
         naverMap.cameraPosition = CameraPosition(
             LatLng(37.214225, 126.978819),
@@ -64,20 +62,56 @@ class MapControl {
         )
     }
 
-    fun setMaker(naverMap: NaverMap, context: Context){
+    fun setMaker(naverMap: NaverMap,
+                 superDataList: ArrayList<dataSet>,
+                 fragment: MapsFragment
+    ) {
         val job = CoroutineScope(Dispatchers.Main).launch {
 
+            val markerIcon = OverlayImage.fromResource(R.drawable.ic_marker)
 
-            val marker = Marker()
-            val marker2 = Marker()
+            superDataList.forEach { data ->
+                val marker = superMarkerSetting(data, naverMap, markerIcon)
 
-            marker.position = LatLng(37.214225, 126.978819)
-            marker2.position = LatLng(37.214523, 126.978058)
+                marker.setOnClickListener {
+                    fragment.setSuper(data)
+                    true
+                }
+            }
 
-            marker.map = naverMap
-            marker2.map = naverMap
-
+            // 수원대학교  전문 표시
+            Marker().apply {
+                position = LatLng(37.214225, 126.978819)
+                icon = markerIcon
+                map = naverMap
+                height = MARKER_ICON_HEIGHT
+                width = MARKER_ICON_WEIGHT
+            }
         }
     }
 
+    private suspend fun superMarkerSetting(
+        data: dataSet,
+        naverMap: NaverMap,
+        markerIcon: OverlayImage
+    ) : Marker {
+        val marker = Marker().apply {
+            position = LatLng(data.latitude, data.longitude)
+            icon = markerIcon
+            map = naverMap
+            height = MARKER_ICON_HEIGHT
+            width = MARKER_ICON_WEIGHT
+        }
+
+        return marker
+    }
+
+    // 기본 홈(수원대학교 정문)으로 이동
+    fun goHome(naverMap: NaverMap){
+        val cameraUpdate = CameraUpdate.scrollTo(
+            LatLng(37.214225, 126.978819)
+        ).animate(CameraAnimation.Fly)
+
+        naverMap.moveCamera(cameraUpdate)
+    }
 }

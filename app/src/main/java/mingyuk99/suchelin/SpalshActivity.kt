@@ -13,6 +13,8 @@ class SpalshActivity : AppCompatActivity() {
         //deprecated method solved
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(this, MainActivity::class.java))
-        },1500)
+            finish()
+        },400)
+
     }
 }

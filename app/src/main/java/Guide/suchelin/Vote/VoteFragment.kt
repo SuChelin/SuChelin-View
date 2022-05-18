@@ -6,19 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import Guide.suchelin.R
+import Guide.suchelin.config.BaseFragment
+import Guide.suchelin.databinding.FragmentMapBinding
+import Guide.suchelin.databinding.FragmentVoteBinding
 
-class VoteFragment : Fragment() {
+class VoteFragment : BaseFragment<FragmentVoteBinding>(
+    FragmentVoteBinding::bind,
+    R.layout.fragment_vote
+) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_vote, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 }

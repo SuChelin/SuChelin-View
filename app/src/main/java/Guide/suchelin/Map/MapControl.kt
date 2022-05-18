@@ -12,7 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import Guide.suchelin.R
-import Guide.suchelin.dataSet
+import Guide.suchelin.DataSet
 
 class MapControl {
 
@@ -56,7 +56,7 @@ class MapControl {
     }
 
     fun setMaker(naverMap: NaverMap,
-                 superDataList: ArrayList<dataSet>,
+                 superDataList: ArrayList<DataSet>,
                  fragment: MapsFragment
     ) {
         val job = CoroutineScope(Dispatchers.Main).launch {
@@ -84,7 +84,7 @@ class MapControl {
     }
 
     private suspend fun superMarkerSetting(
-        data: dataSet,
+        data: DataSet,
         naverMap: NaverMap,
         markerIcon: OverlayImage
     ) : Marker {

@@ -13,25 +13,25 @@
 
 
     <ImageView
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
         android:id="@+id/mapLocationButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_margin="20dp"
         android:src="@drawable/coffee6349588" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_alignParentBottom="true"
-        android:visibility="visible"
         android:id="@+id/mapSuperParent"
         android:layout_width="match_parent"
         android:layout_height="130dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:visibility="gone">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/mapSuperCardView"
@@ -57,8 +57,8 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/leferipointspecial"
             android:textAlignment="center"
-            android:textSize="24sp"
             android:textColor="@color/black"
+            android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/mapSuperDetailTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/mapSuperCardView"
@@ -71,24 +71,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textColor="@color/black"
             android:fontFamily="@font/leferibaseregular"
-            tools:text="what is main dish"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/mapSuperTitleTextView"
             app:layout_constraintEnd_toEndOf="@+id/mapSuperTitleTextView"
-            app:layout_constraintTop_toBottomOf="@+id/mapSuperTitleTextView" />
+            app:layout_constraintStart_toStartOf="@+id/mapSuperTitleTextView"
+            app:layout_constraintTop_toBottomOf="@+id/mapSuperTitleTextView"
+            tools:text="what is main dish" />
 
         <TextView
             android:id="@+id/mapSuperDistanceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/leferibaseregular"
-            tools:text="10m"
-            android:textColor="@color/black"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/leferibaseregular"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/mapSuperCardView"
             app:layout_constraintStart_toEndOf="@+id/mapSuperCardView"
-            app:layout_constraintBottom_toBottomOf="@+id/mapSuperCardView"/>
+            tools:text="10m" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

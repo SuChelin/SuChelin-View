@@ -1,24 +1,20 @@
 package mingyuk99.suchelin.Map
 
+import android.content.Context.LOCATION_SERVICE
+import android.content.Intent
+import android.location.LocationManager
+import android.os.Build
 import android.os.Bundle
-import android.view.Gravity
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
-import com.naver.maps.geometry.LatLng
-import com.naver.maps.map.*
+import com.naver.maps.map.LocationTrackingMode
+import com.naver.maps.map.MapView
+import com.naver.maps.map.NaverMap
 import com.naver.maps.map.util.FusedLocationSource
-import com.naver.maps.map.widget.LocationButtonView
-import com.naver.maps.map.widget.ScaleBarView
-import com.naver.maps.map.widget.ZoomControlView
 import mingyuk99.suchelin.R
+import mingyuk99.suchelin.SuperDetail.SuperDetailActivity
 import mingyuk99.suchelin.config.BaseFragment
 import mingyuk99.suchelin.dataSet
 import mingyuk99.suchelin.databinding.FragmentMapBinding
@@ -26,37 +22,51 @@ import mingyuk99.suchelin.databinding.FragmentMapBinding
 class MapsFragment : BaseFragment<FragmentMapBinding>(
     FragmentMapBinding::bind,
     R.layout.fragment_map
-){
-
-    companion object{
+) {
+    companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 10002
     }
+
     private lateinit var mapView: MapView
     private lateinit var locationSource: FusedLocationSource
-    private var naverMap : NaverMap? = null
+    private var naverMap: NaverMap? = null
     private var mapControl = MapControl()
 
     // 현재 위치 버튼 사용하기
     private var locationFlag = false
-    private lateinit var mapLocationButton : ImageView
+    private lateinit var locationManager: LocationManager
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mapView = view.findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
 
         val mapDataList = arrayListOf(
-            dataSet("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAGJ28R7vVAaVouy37LhbNlptqTJQwl208Vg&usqp=CAU","던킨도너츠 수원대점","바바리안 도넛",37.214523,126.978058),
-            dataSet("https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f180_180&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210302_125%2F161464487124061agC_JPEG%2FK15utTFWXeuNEny1JMXiV57W.jpg","할리스 수원대학교점","토피넛 라떼",37.214367, 126.978968),
+            dataSet(
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAGJ28R7vVAaVouy37LhbNlptqTJQwl208Vg&usqp=CAU",
+                "던킨도너츠 수원대점",
+                "바바리안 도넛",
+                37.214523,
+                126.978058
+            ),
+            dataSet(
+                "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f180_180&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210302_125%2F161464487124061agC_JPEG%2FK15utTFWXeuNEny1JMXiV57W.jpg",
+                "할리스 수원대학교점",
+                "토피넛 라떼",
+                37.214367,
+                126.978968
+            ),
         )
-
-        // 뷰 설정
-        mapLocationButton = view.findViewById(R.id.mapLocationButton)
 
         // 권한 설정하기
         locationSource =
             FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
 
+        // 위치 권한 설정하기
+        locationManager = requireActivity().getSystemService(LOCATION_SERVICE) as LocationManager
+
+        // 지도 가져오기
         mapView.getMapAsync { map ->
             naverMap = map
             naverMap ?: return@getMapAsync
@@ -71,16 +81,21 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
             // 지도 클릭 이벤트
             naverMap?.setOnMapClickListener { pointF, latLng ->
 
-                if(binding.mapSuperParent.visibility == View.VISIBLE){
+                if (binding.mapSuperParent.visibility == View.VISIBLE) {
                     binding.mapSuperParent.visibility = View.GONE
                 }
             }
 
             // 위치 추적 설정
-            mapLocationButton.setOnClickListener{
+            binding.mapLocationButton.setOnClickListener {
                 naverMap ?: return@setOnClickListener
 
-                locationFlag = if(!locationFlag){
+                // 현재 위치 기능 활성화 상태 확인
+                if (!locationManager.isLocationEnabled) {
+                    Toast.makeText(requireContext(), "현재 위치 기능을 활성화해주세요.", Toast.LENGTH_SHORT)
+                        .show()
+                }
+                locationFlag = if (!locationFlag) {
                     naverMap?.locationTrackingMode = LocationTrackingMode.Follow
                     true
                 } else {
@@ -92,9 +107,18 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
             }
         }
 
+        // 미리보기 설정하면 superDetailActivity 로 넘어가기
+        binding.mapSuperParent.setOnClickListener {
+            val intent = Intent(requireContext(), SuperDetailActivity::class.java).apply {
+                putExtra("SuperName", binding.mapSuperParent.tag as String)
+            }
+            startActivity(intent)
+        }
     }
 
-    fun setSuper(data: dataSet){
+    // 미리보기 설정
+    fun setSuper(data: dataSet) {
+        binding.mapSuperParent.tag = data.name
         binding.mapSuperParent.visibility = View.VISIBLE
         Glide.with(binding.mapSuperParent)
             .load(data.imageUrl)
@@ -105,11 +129,16 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
         binding.mapSuperDetailTextView
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<String>,
-                                            grantResults: IntArray) {
-        if (locationSource.onRequestPermissionsResult(requestCode, permissions,
-                grantResults)) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        if (locationSource.onRequestPermissionsResult(
+                requestCode, permissions,
+                grantResults
+            )
+        ) {
             if (!locationSource.isActivated) { // 권한 거부됨
                 naverMap?.locationTrackingMode = LocationTrackingMode.None
             }

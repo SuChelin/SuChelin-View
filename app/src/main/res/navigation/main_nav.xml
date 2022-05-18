@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/voteFragment"
-        android:name="mingyuk99.suchelin.VoteFragment"
+        android:name="mingyuk99.suchelin.Vote.VoteFragment"
         android:label="fragment_vote"
         tools:layout="@layout/fragment_vote" >
         <action

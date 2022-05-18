@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/pageList"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".List.ListFragment">
 
@@ -20,15 +20,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        app:fabSize="mini"
         android:backgroundTint="#ffffff"
         android:clickable="true"
-        app:rippleColor="#659E9C9C"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/black"
         android:outlineAmbientShadowColor="@color/black"
         android:outlineSpotShadowColor="#E6E4E4"
+        app:fabSize="mini"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rippleColor="#659E9C9C"
         app:srcCompat="@drawable/filter3914366"
         tools:layout_editor_absoluteX="355dp"
         tools:layout_editor_absoluteY="615dp" />

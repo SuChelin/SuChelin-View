@@ -15,13 +15,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
         //일단 첫 화면 list로 임의 결정
         //bottom_navigaion
         val bottom_menu = findViewById<BottomNavigationView>(R.id.bottomTabBar)
-
-// 첫 화면 중복의 원인이었음
-//        supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, mapsFragment).commit()
 
         bottom_menu.setOnItemSelectedListener {
             getFragment(it)

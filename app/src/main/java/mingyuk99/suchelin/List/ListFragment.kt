@@ -6,29 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import mingyuk99.suchelin.R
+import mingyuk99.suchelin.config.BaseFragment
 import mingyuk99.suchelin.dataSet
 import mingyuk99.suchelin.databinding.FragmentListBinding
 
-class ListFragment : Fragment() {
-
-    private var _binding: FragmentListBinding? = null
-    private val binding get() = _binding!!
+class ListFragment : BaseFragment<FragmentListBinding>(
+    FragmentListBinding::bind,
+    R.layout.fragment_list
+) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        //ViewBinding
-        _binding = FragmentListBinding.inflate(inflater,container,false)
-        val view = binding.root
-//        val view = inflater.inflate(R.layout.fragment_list, container, false)
-//        val rv = view.findViewById<RecyclerView>(R.id.rv)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         val items = mutableListOf<dataSet>()
 
         val dummyDB = mutableListOf<dataSet>()
@@ -50,12 +45,5 @@ class ListFragment : Fragment() {
 
         binding.rv.adapter = rvAdapter
         binding.rv.layoutManager = LinearLayoutManager(context)
-
-        return view
-    }
-    //Fragment LifeCycle Caution
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

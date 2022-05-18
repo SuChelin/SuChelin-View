@@ -1,4 +1,4 @@
-package mingyuk99.suchelin.Map
+package Guide.suchelin.Map
 
 import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
@@ -13,11 +13,11 @@ import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.util.FusedLocationSource
-import mingyuk99.suchelin.R
-import mingyuk99.suchelin.SuperDetail.SuperDetailActivity
-import mingyuk99.suchelin.config.BaseFragment
-import mingyuk99.suchelin.dataSet
-import mingyuk99.suchelin.databinding.FragmentMapBinding
+import Guide.suchelin.R
+import Guide.suchelin.SuperDetail.SuperDetailActivity
+import Guide.suchelin.config.BaseFragment
+import Guide.suchelin.dataSet
+import Guide.suchelin.databinding.FragmentMapBinding
 
 class MapsFragment : BaseFragment<FragmentMapBinding>(
     FragmentMapBinding::bind,

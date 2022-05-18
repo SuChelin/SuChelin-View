@@ -1,15 +1,12 @@
-package mingyuk99.suchelin.List
+package Guide.suchelin.List
 
+import Guide.suchelin.R
+import Guide.suchelin.databinding.FragmentListBinding
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import mingyuk99.suchelin.R
-import mingyuk99.suchelin.config.BaseFragment
-import mingyuk99.suchelin.dataSet
-import mingyuk99.suchelin.databinding.FragmentListBinding
+import Guide.suchelin.config.BaseFragment
+import Guide.suchelin.dataSet
 
 class ListFragment : BaseFragment<FragmentListBinding>(
     FragmentListBinding::bind,

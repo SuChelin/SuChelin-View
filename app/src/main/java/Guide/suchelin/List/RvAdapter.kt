@@ -1,4 +1,4 @@
-package mingyuk99.suchelin.List
+package Guide.suchelin.List
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,8 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import mingyuk99.suchelin.R
-import mingyuk99.suchelin.dataSet
+import Guide.suchelin.R
+import Guide.suchelin.dataSet
 
 class RvAdapter(val context: Context?, val items: MutableList<dataSet>):RecyclerView.Adapter<RvAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -1,4 +1,4 @@
-package mingyuk99.suchelin.config
+package Guide.suchelin.config
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,6 +16,5 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
         super.onCreate(savedInstanceState)
         binding = inflate(layoutInflater)
         setContentView(binding.root)
-
     }
 }

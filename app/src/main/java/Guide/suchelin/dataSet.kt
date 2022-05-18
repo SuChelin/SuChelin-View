@@ -1,4 +1,4 @@
-package mingyuk99.suchelin
+package Guide.suchelin
 
 data class dataSet(
     val imageUrl: String = "",

@@ -1,4 +1,4 @@
-package mingyuk99.suchelin
+package Guide.suchelin
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

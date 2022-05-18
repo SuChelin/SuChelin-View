@@ -1,4 +1,4 @@
-package mingyuk99.suchelin
+package Guide.suchelin
 
 import android.os.Bundle
 import android.os.Handler
@@ -7,11 +7,11 @@ import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import mingyuk99.suchelin.List.ListFragment
-import mingyuk99.suchelin.Map.MapsFragment
-import mingyuk99.suchelin.Vote.VoteFragment
-import mingyuk99.suchelin.config.BaseActivity
-import mingyuk99.suchelin.databinding.ActivityMainBinding
+import Guide.suchelin.List.ListFragment
+import Guide.suchelin.Map.MapsFragment
+import Guide.suchelin.Vote.VoteFragment
+import Guide.suchelin.config.BaseActivity
+import Guide.suchelin.databinding.ActivityMainBinding
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
@@ -21,13 +21,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
         //일단 첫 화면 list로 임의 결정
         //bottom_navigaion
-        val bottom_menu = findViewById<BottomNavigationView>(R.id.bottomTabBar)
+        val bottomMenu = findViewById<BottomNavigationView>(R.id.bottomTabBar)
 
-        bottom_menu.setOnItemSelectedListener {
+        bottomMenu.setOnItemSelectedListener {
             getFragment(it)
         }
-        bottom_menu.setOnItemReselectedListener {
-            Log.d("Reselcted","true")
+        bottomMenu.setOnItemReselectedListener {
+            Log.d("Main","Menu Reselected")
         }
     }
 
@@ -49,14 +49,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     private var doubleClicked = false
 
     override fun onBackPressed() {
-        Log.d("Main", "Back pressed")
+        Log.d("Main", "BackPressed")
         if (doubleClicked == true){
             finish()
         }
         doubleClicked = true
         Toast.makeText(this, "한 번 더 뒤로가면 종료됩니다",Toast.LENGTH_SHORT).show()
 
-        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+        Handler(Looper.getMainLooper()).postDelayed({
             doubleClicked = false
         }, 1500)
     }

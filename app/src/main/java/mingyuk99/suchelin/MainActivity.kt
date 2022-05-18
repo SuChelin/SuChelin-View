@@ -7,9 +7,11 @@ import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import mingyuk99.suchelin.List.ListFragment
 import mingyuk99.suchelin.Map.MapsFragment
+import mingyuk99.suchelin.config.BaseActivity
+import mingyuk99.suchelin.databinding.ActivityMainBinding
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

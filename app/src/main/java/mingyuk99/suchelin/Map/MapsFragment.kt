@@ -19,15 +19,18 @@ import com.naver.maps.map.widget.LocationButtonView
 import com.naver.maps.map.widget.ScaleBarView
 import com.naver.maps.map.widget.ZoomControlView
 import mingyuk99.suchelin.R
+import mingyuk99.suchelin.config.BaseFragment
 import mingyuk99.suchelin.dataSet
+import mingyuk99.suchelin.databinding.FragmentMapBinding
 
-class MapsFragment : Fragment(){
+class MapsFragment : BaseFragment<FragmentMapBinding>(
+    FragmentMapBinding::bind,
+    R.layout.fragment_map
+){
 
     companion object{
         private const val LOCATION_PERMISSION_REQUEST_CODE = 10002
     }
-
-    private lateinit var binding : View
     private lateinit var mapView: MapView
     private lateinit var locationSource: FusedLocationSource
     private var naverMap : NaverMap? = null
@@ -48,8 +51,6 @@ class MapsFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         mapView = view.findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
-
-        binding = view
 
         val mapDataList = arrayListOf(
             dataSet("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAGJ28R7vVAaVouy37LhbNlptqTJQwl208Vg&usqp=CAU","던킨도너츠 수원대점","바바리안 도넛",37.214523,126.978058),
@@ -76,9 +77,9 @@ class MapsFragment : Fragment(){
 
             // 지도 클릭 이벤트
             naverMap?.setOnMapClickListener { pointF, latLng ->
-                val parent = binding.findViewById<ConstraintLayout>(R.id.mapSuperParent)
-                if(parent.visibility == View.VISIBLE){
-                    parent.visibility = View.GONE
+
+                if(binding.mapSuperParent.visibility == View.VISIBLE){
+                    binding.mapSuperParent.visibility = View.GONE
                 }
             }
 
@@ -101,19 +102,14 @@ class MapsFragment : Fragment(){
     }
 
     fun setSuper(data: dataSet){
-        val parent = binding.findViewById<ConstraintLayout>(R.id.mapSuperParent)
-        val image = binding.findViewById<ImageView>(R.id.mapSuperImageView)
-        val distance = binding.findViewById<TextView>(R.id.mapSuperDistanceTextView)
-        val title = binding.findViewById<TextView>(R.id.mapSuperTitleTextView)
-        val detail = binding.findViewById<TextView>(R.id.mapSuperDetailTextView)
-
-        parent.visibility = View.VISIBLE
-        Glide.with(parent)
+        binding.mapSuperParent.visibility = View.VISIBLE
+        Glide.with(binding.mapSuperParent)
             .load(data.imageUrl)
             .centerCrop()
-            .into(image)
-        title.text = data.name
-        detail.text = data.detail
+            .into(binding.mapSuperImageView)
+        binding.mapSuperTitleTextView.text = data.name
+        binding.mapSuperDetailTextView.text = data.detail
+        binding.mapSuperDetailTextView
     }
 
     override fun onRequestPermissionsResult(requestCode: Int,

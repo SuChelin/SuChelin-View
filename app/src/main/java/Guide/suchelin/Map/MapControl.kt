@@ -13,6 +13,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import Guide.suchelin.R
 import Guide.suchelin.DataSet
+import android.graphics.Color
+import androidx.core.graphics.toColor
 
 class MapControl {
 
@@ -50,7 +52,7 @@ class MapControl {
 
         // 카메라 설정
         naverMap.cameraPosition = CameraPosition(
-            LatLng(37.214225, 126.978819),
+            LatLng(37.214200, 126.978750),
             17.0
         )
     }
@@ -60,9 +62,9 @@ class MapControl {
                  fragment: MapsFragment
     ) {
         val job = CoroutineScope(Dispatchers.Main).launch {
-
-            val markerIcon = OverlayImage.fromResource(R.drawable.ic_marker)
-
+            val resource = R.drawable.premiumiconlocation1
+            val markerIconStart = OverlayImage.fromResource(R.drawable.home)
+            val markerIcon = OverlayImage.fromResource(resource)
             superDataList.forEach { data ->
                 val marker = superMarkerSetting(data, naverMap, markerIcon)
 
@@ -74,8 +76,8 @@ class MapControl {
 
             // 수원대학교  전문 표시
             Marker().apply {
-                position = LatLng(37.214225, 126.978819)
-                icon = markerIcon
+                position = LatLng(37.214185, 126.978792)
+                icon = markerIconStart
                 map = naverMap
                 height = MARKER_ICON_HEIGHT
                 width = MARKER_ICON_WEIGHT

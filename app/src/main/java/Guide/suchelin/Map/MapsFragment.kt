@@ -54,8 +54,8 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
                 "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f180_180&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210302_125%2F161464487124061agC_JPEG%2FK15utTFWXeuNEny1JMXiV57W.jpg",
                 "할리스 수원대학교점",
                 "토피넛 라떼",
-                37.214367,
-                126.978968
+                37.21432161749152 ,
+                126.97904208612626
             ),
         )
 

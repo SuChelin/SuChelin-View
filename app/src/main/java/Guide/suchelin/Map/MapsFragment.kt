@@ -14,7 +14,7 @@ import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.util.FusedLocationSource
 import Guide.suchelin.R
-import Guide.suchelin.SuperDetail.SuperDetailActivity
+import Guide.suchelin.StoreDetail.StoreDetailActivity
 import Guide.suchelin.config.BaseFragment
 import Guide.suchelin.DataSet
 import Guide.suchelin.databinding.FragmentMapBinding
@@ -109,8 +109,8 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
 
         // 미리보기 설정하면 superDetailActivity 로 넘어가기
         binding.mapSuperParent.setOnClickListener {
-            val intent = Intent(requireContext(), SuperDetailActivity::class.java).apply {
-                putExtra("SuperName", binding.mapSuperParent.tag as String)
+            val intent = Intent(requireContext(), StoreDetailActivity::class.java).apply {
+                putExtra("StoreName", binding.mapSuperParent.tag as String)
             }
             startActivity(intent)
         }

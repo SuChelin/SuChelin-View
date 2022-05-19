@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuChelin">
         <activity
-            android:name="Guide.suchelin.SuperDetail.SuperDetailActivity"
+            android:name="Guide.suchelin.StoreDetail.StoreDetailActivity"
             android:exported="false" />
 
         <meta-data

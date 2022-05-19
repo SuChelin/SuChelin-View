@@ -41,8 +41,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/mapSuperCardView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginStart="15dp"
                 app:cardCornerRadius="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -62,15 +62,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/leferipointspecial"
+                android:hint="text text text"
                 android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/mapSuperDetailTextView"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/mapSuperCardView"
                 app:layout_constraintStart_toEndOf="@+id/mapSuperCardView"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="text text text" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/mapSuperDetailTextView"

@@ -25,7 +25,7 @@
         android:layout_height="60dp"
         android:forceDarkAllowed="true"
         android:animateLayoutChanges="false"
-        app:itemBackground="@color/white"
+        app:itemRippleColor="@android:color/transparent"
         app:itemIconTint="@drawable/item_selector"
         app:itemTextColor="#000000"
         app:labelVisibilityMode="selected"

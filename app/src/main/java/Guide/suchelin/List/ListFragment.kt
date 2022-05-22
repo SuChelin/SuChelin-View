@@ -7,6 +7,8 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import Guide.suchelin.config.BaseFragment
 import Guide.suchelin.DataSet
+import Guide.suchelin.StoreDetail.StoreDetailActivity
+import android.content.Intent
 
 class ListFragment : BaseFragment<FragmentListBinding>(
     FragmentListBinding::bind,
@@ -17,6 +19,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
         super.onCreate(savedInstanceState)
 
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,6 +41,19 @@ class ListFragment : BaseFragment<FragmentListBinding>(
 
         val rvAdapter = RvAdapter(context, items)
 
+        rvAdapter.itemClick = object : RvAdapter.ItemClick{
+            override fun onClick(view: View, position: Int){
+                val intent = Intent(context, StoreDetailActivity::class.java)
+
+                intent.putExtra("name", items[position].name)
+                intent.putExtra("imageUrl", items[position].imageUrl)
+                intent.putExtra("detail", items[position].detail)
+                intent.putExtra("score", items[position].score)
+                //latitude, longitude는 store detail표시에 필요없음. 지도에만 필요
+                startActivity(intent)
+            }
+        }
+
         binding.rv.apply{
             adapter = rvAdapter
             layoutManager = LinearLayoutManager(context)
@@ -50,6 +66,20 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                 it.name
             }
             val rvAdapterName = RvAdapter(context, items)
+
+            rvAdapterName.itemClick = object : RvAdapter.ItemClick{
+                override fun onClick(view: View, position: Int){
+                    val intent = Intent(context, StoreDetailActivity::class.java)
+
+                    intent.putExtra("name", items[position].name)
+                    intent.putExtra("imageUrl", items[position].imageUrl)
+                    intent.putExtra("detail", items[position].detail)
+                    intent.putExtra("score", items[position].score)
+                    //latitude, longitude는 store detail표시에 필요없음. 지도에만 필요
+                    startActivity(intent)
+                }
+            }
+
             binding.rv.adapter = rvAdapterName
             binding.rv.layoutManager = LinearLayoutManager(context)
         }
@@ -64,9 +94,23 @@ class ListFragment : BaseFragment<FragmentListBinding>(
 
             val rvAdapterScore = RvAdapter(context, items)
 
+            rvAdapterScore.itemClick = object : RvAdapter.ItemClick{
+                override fun onClick(view: View, position: Int){
+                    val intent = Intent(context, StoreDetailActivity::class.java)
+
+                    intent.putExtra("name", items[position].name)
+                    intent.putExtra("imageUrl", items[position].imageUrl)
+                    intent.putExtra("detail", items[position].detail)
+                    intent.putExtra("score", items[position].score)
+                    //latitude, longitude는 store detail표시에 필요없음. 지도에만 필요
+                    startActivity(intent)
+                }
+            }
+
             binding.rv.adapter = rvAdapterScore
             binding.rv.layoutManager = LinearLayoutManager(context)
         }
+
     }
 
 

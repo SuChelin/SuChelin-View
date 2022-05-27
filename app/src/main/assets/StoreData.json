@@ -22,6 +22,14 @@
     "detail": "바게트 샌드위치",
     "latitude": 37.2140056,
     "longitude": 126.979763
+  },
+  {
+    "id": 4,
+    "imageUrl": "",
+    "name": "",
+    "detail": "",
+    "latitude": 0.0,
+    "longitude": 0.0
   }
 ]
 

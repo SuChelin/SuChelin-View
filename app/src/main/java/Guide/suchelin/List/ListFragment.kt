@@ -28,8 +28,6 @@ class ListFragment : BaseFragment<FragmentListBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
 //json 적용 블럭
         val items = mutableListOf<StoreDataClass>()
         val jsonString = requireActivity().assets.open("StoreData.json").reader().readText()
@@ -37,9 +35,10 @@ class ListFragment : BaseFragment<FragmentListBinding>(
 
         //tmpScore가 파이어베이스로 구성될 예정
         val tmpScore = mutableListOf<StoreScore>()
-        tmpScore.add(StoreScore(1,2))
+        tmpScore.add(StoreScore(1,1))
         tmpScore.add(StoreScore(2,2))
         tmpScore.add(StoreScore(3,3))
+        tmpScore.add(StoreScore(4,5))
 
         for (i in 0 until jsonArray.length()) {
 
@@ -67,7 +66,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                 intent.putExtra("imageUrl", items[position].imageUrl)
                 intent.putExtra("detail", items[position].detail)
                 intent.putExtra("score", items[position].score)
-                //latitude, longitude는 store detail표시에 필요없음. 지도에만 필요
+
                 startActivity(intent)
             }
         }
@@ -81,9 +80,9 @@ class ListFragment : BaseFragment<FragmentListBinding>(
             items.sortBy {
                 it.name
             }
-            val rvAdapterName = RvAdapter(context, items)
 
-            rvAdapterName.itemClick = object : RvAdapter.ItemClick{
+            rvAdapter.notifyDataSetChanged()
+            rvAdapter.itemClick = object : RvAdapter.ItemClick{
                 override fun onClick(view: View, position: Int){
                     val intent = Intent(context, StoreDetailActivity::class.java)
 
@@ -91,21 +90,21 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                     intent.putExtra("imageUrl", items[position].imageUrl)
                     intent.putExtra("detail", items[position].detail)
                     intent.putExtra("score", items[position].score)
-                    //latitude, longitude는 store detail표시에 필요없음. 지도에만 필요
+
                     startActivity(intent)
                 }
             }
 
-            binding.rv.adapter = rvAdapterName
+            binding.rv.adapter = rvAdapter
             binding.rv.layoutManager = LinearLayoutManager(context)
         }
         binding.sortDistance.setOnClickListener{
             items.sortBy {
                 it.id
             }
-            val rvAdapterName = RvAdapter(context, items)
 
-            rvAdapterName.itemClick = object : RvAdapter.ItemClick{
+            rvAdapter.notifyDataSetChanged()
+            rvAdapter.itemClick = object : RvAdapter.ItemClick{
                 override fun onClick(view: View, position: Int){
                     val intent = Intent(context, StoreDetailActivity::class.java)
 
@@ -118,7 +117,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                 }
             }
 
-            binding.rv.adapter = rvAdapterName
+            binding.rv.adapter = rvAdapter
             binding.rv.layoutManager = LinearLayoutManager(context)
         }
         binding.sortScore.setOnClickListener {
@@ -127,9 +126,8 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                 reverse()
             }
 
-            val rvAdapterScore = RvAdapter(context, items)
-
-            rvAdapterScore.itemClick = object : RvAdapter.ItemClick{
+            rvAdapter.notifyDataSetChanged()
+            rvAdapter.itemClick = object : RvAdapter.ItemClick{
                 override fun onClick(view: View, position: Int){
                     val intent = Intent(context, StoreDetailActivity::class.java)
 
@@ -142,7 +140,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                 }
             }
 
-            binding.rv.adapter = rvAdapterScore
+            binding.rv.adapter = rvAdapter
             binding.rv.layoutManager = LinearLayoutManager(context)
         }
 

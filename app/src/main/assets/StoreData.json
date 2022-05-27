@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAGJ28R7vVAaVouy37LhbNlptqTJQwl208Vg&usqp=CAU",
+    "name": "던킨도너츠 수원대점",
+    "detail": "바바리안 도넛",
+    "latitude": 37.214523,
+    "longitude": 126.978058
+  },
+  {
+    "id": 2,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f180_180&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210302_125%2F161464487124061agC_JPEG%2FK15utTFWXeuNEny1JMXiV57W.jpg",
+    "name": "할리스 수원대학교점",
+    "detail": "토피넛 라떼",
+    "latitude": 37.21432161749152,
+    "longitude": 126.97904208612626
+  },
+  {
+    "id": 3,
+    "imageUrl": "https://mblogthumb-phinf.pstatic.net/MjAyMDAzMTdfOTAg/MDAxNTg0NDI4ODk4MTE3.Sbya0oZBVcS1uXbtrwTNdetrqjvx0Y3FHpBkdjCEELkg.olDkDm0beJhdPP3hDzesjGT4HX20mN4ILAISylHrccUg.JPEG.hyesun0305/1584428897220.jpg?type=w800",
+    "name": "와우당",
+    "detail": "바게트 샌드위치",
+    "latitude": 37.2140056,
+    "longitude": 126.979763
+  }
+]
+

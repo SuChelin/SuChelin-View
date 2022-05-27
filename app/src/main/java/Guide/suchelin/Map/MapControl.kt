@@ -12,9 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import Guide.suchelin.R
-import Guide.suchelin.DataSet
-import android.graphics.Color
-import androidx.core.graphics.toColor
+import Guide.suchelin.StoreDataClassMap
 
 class MapControl {
 
@@ -57,9 +55,10 @@ class MapControl {
         )
     }
 
-    fun setMaker(naverMap: NaverMap,
-                 superDataList: ArrayList<DataSet>,
-                 fragment: MapsFragment
+    fun setMaker(
+        naverMap: NaverMap,
+        superDataList: ArrayList<StoreDataClassMap>,
+        fragment: MapsFragment
     ) {
         val job = CoroutineScope(Dispatchers.Main).launch {
             val resource = R.drawable.premiumiconlocation1
@@ -86,7 +85,7 @@ class MapControl {
     }
 
     private suspend fun superMarkerSetting(
-        data: DataSet,
+        data: StoreDataClassMap,
         naverMap: NaverMap,
         markerIcon: OverlayImage
     ) : Marker {

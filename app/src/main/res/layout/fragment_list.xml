@@ -37,7 +37,7 @@
                 android:paddingBottom="4dp"
                 android:paddingEnd="8dp"
                 android:paddingStart="8dp"
-                android:text="기본 순" />
+                android:text="이름 순" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -58,7 +58,7 @@
                 android:paddingBottom="4dp"
                 android:paddingEnd="8dp"
                 android:paddingStart="8dp"
-                android:text="가까운 순" />
+                android:text="추가된 순" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView

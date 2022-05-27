@@ -14,9 +14,9 @@ import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.util.FusedLocationSource
 import Guide.suchelin.R
+import Guide.suchelin.StoreDataClassMap
 import Guide.suchelin.StoreDetail.StoreDetailActivity
 import Guide.suchelin.config.BaseFragment
-import Guide.suchelin.DataSet
 import Guide.suchelin.databinding.FragmentMapBinding
 
 class MapsFragment : BaseFragment<FragmentMapBinding>(
@@ -43,14 +43,14 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
         mapView.onCreate(savedInstanceState)
 
         val mapDataList = arrayListOf(
-            DataSet(
+            StoreDataClassMap(
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAGJ28R7vVAaVouy37LhbNlptqTJQwl208Vg&usqp=CAU",
                 "던킨도너츠 수원대점",
                 "바바리안 도넛",
                 37.214523,
                 126.978058
             ),
-            DataSet(
+            StoreDataClassMap(
                 "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f180_180&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210302_125%2F161464487124061agC_JPEG%2FK15utTFWXeuNEny1JMXiV57W.jpg",
                 "할리스 수원대학교점",
                 "토피넛 라떼",
@@ -117,7 +117,7 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
     }
 
     // 미리보기 설정
-    fun setSuper(data: DataSet) {
+    fun setSuper(data: StoreDataClassMap) {
         binding.mapSuperParent.tag = data.name
         binding.mapSuperParent.visibility = View.VISIBLE
         Glide.with(binding.mapSuperParent)

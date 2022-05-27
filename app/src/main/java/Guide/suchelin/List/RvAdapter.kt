@@ -9,9 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import Guide.suchelin.R
-import Guide.suchelin.DataSet
+import Guide.suchelin.StoreDataClass
 
-class RvAdapter(val context: Context?, val items: MutableList<DataSet>):RecyclerView.Adapter<RvAdapter.ViewHolder>() {
+class RvAdapter(val context: Context?, val items: MutableList<StoreDataClass>):RecyclerView.Adapter<RvAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.rv_item,parent,false)
 
@@ -37,7 +37,7 @@ class RvAdapter(val context: Context?, val items: MutableList<DataSet>):Recycler
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        fun bindItems(item: DataSet){
+        fun bindItems(item: StoreDataClass){
             val imageViewShop = itemView.findViewById<ImageView>(R.id.imageViewShop)
             val textViewTitle = itemView.findViewById<TextView>(R.id.textViewTitle)
             val textViewDetail = itemView.findViewById<TextView>(R.id.textViewDetail)

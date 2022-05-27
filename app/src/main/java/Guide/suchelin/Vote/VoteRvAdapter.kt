@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import Guide.suchelin.R
-import Guide.suchelin.DataSet
+import Guide.suchelin.StoreScore
 
-class VoteRvAdapter(val context: Context?, val items: MutableList<DataSet>):RecyclerView.Adapter<VoteRvAdapter.ViewHolder>() {
+class VoteRvAdapter(val context: Context?, val items: MutableList<StoreScore>):RecyclerView.Adapter<VoteRvAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.rv_item,parent,false)
 
@@ -24,7 +24,7 @@ class VoteRvAdapter(val context: Context?, val items: MutableList<DataSet>):Recy
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        fun bindItems(item: DataSet){
+        fun bindItems(item: StoreScore){
 
         }
     }

@@ -13,6 +13,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import Guide.suchelin.R
 import Guide.suchelin.StoreDataClassMap
+import Guide.suchelin.databinding.FragmentMapBinding
+import android.view.View
+import com.bumptech.glide.Glide
 
 class MapControl {
 
@@ -58,7 +61,7 @@ class MapControl {
     fun setMaker(
         naverMap: NaverMap,
         superDataList: ArrayList<StoreDataClassMap>,
-        fragment: MapsFragment
+        binding: FragmentMapBinding
     ) {
         val job = CoroutineScope(Dispatchers.Main).launch {
             val resource = R.drawable.premiumiconlocation1
@@ -67,8 +70,17 @@ class MapControl {
             superDataList.forEach { data ->
                 val marker = superMarkerSetting(data, naverMap, markerIcon)
 
+                // 미리보기 설정
                 marker.setOnClickListener {
-                    fragment.setSuper(data)
+                    binding.mapSuperParent.tag = data.name
+                    binding.mapSuperParent.visibility = View.VISIBLE
+                    Glide.with(binding.mapSuperParent)
+                        .load(data.imageUrl)
+                        .centerCrop()
+                        .into(binding.mapSuperImageView)
+                    binding.mapSuperTitleTextView.text = data.name
+                    binding.mapSuperDetailTextView.text = data.detail
+                    binding.mapSuperDetailTextView
                     true
                 }
             }

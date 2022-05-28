@@ -5,5 +5,5 @@ data class StoreDataClass(
     val imageUrl: String,
     val name: String,
     val detail: String,
-    val score: Int,
+    val score: Int
 )

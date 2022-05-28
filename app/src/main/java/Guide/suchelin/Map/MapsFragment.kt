@@ -1,5 +1,6 @@
 package Guide.suchelin.Map
 
+import Guide.suchelin.DataControl
 import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
 import android.location.LocationManager
@@ -42,22 +43,7 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
         mapView = view.findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
 
-        val mapDataList = arrayListOf(
-            StoreDataClassMap(
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAGJ28R7vVAaVouy37LhbNlptqTJQwl208Vg&usqp=CAU",
-                "던킨도너츠 수원대점",
-                "바바리안 도넛",
-                37.214523,
-                126.978058
-            ),
-            StoreDataClassMap(
-                "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f180_180&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210302_125%2F161464487124061agC_JPEG%2FK15utTFWXeuNEny1JMXiV57W.jpg",
-                "할리스 수원대학교점",
-                "토피넛 라떼",
-                37.21432161749152 ,
-                126.97904208612626
-            ),
-        )
+        val mapDataList = DataControl().getStoreDataMap(requireContext())
 
         // 권한 설정하기
         locationSource =
@@ -76,7 +62,7 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
 
             // 지도 설정
             mapControl.setMapUI(naverMap!!)
-            mapControl.setMaker(naverMap!!, mapDataList, this@MapsFragment)
+            mapControl.setMaker(naverMap!!, mapDataList, binding)
 
             // 지도 클릭 이벤트
             naverMap?.setOnMapClickListener { pointF, latLng ->
@@ -114,19 +100,6 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
             }
             startActivity(intent)
         }
-    }
-
-    // 미리보기 설정
-    fun setSuper(data: StoreDataClassMap) {
-        binding.mapSuperParent.tag = data.name
-        binding.mapSuperParent.visibility = View.VISIBLE
-        Glide.with(binding.mapSuperParent)
-            .load(data.imageUrl)
-            .centerCrop()
-            .into(binding.mapSuperImageView)
-        binding.mapSuperTitleTextView.text = data.name
-        binding.mapSuperDetailTextView.text = data.detail
-        binding.mapSuperDetailTextView
     }
 
     override fun onRequestPermissionsResult(

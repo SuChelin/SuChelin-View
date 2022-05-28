@@ -1,6 +1,7 @@
 package Guide.suchelin
 
 import android.content.Context
+import android.util.Log
 import org.json.JSONArray
 import org.json.JSONTokener
 import java.io.ByteArrayOutputStream
@@ -53,4 +54,33 @@ class DataControl {
 
         return storeDataMap
     }
+
+    fun getStoreDataList(context: Context): ArrayList<StoreDataClass>{
+
+        val tmpScore = mutableListOf<StoreScore>()
+        tmpScore.add(StoreScore(1,1))
+        tmpScore.add(StoreScore(2,2))
+        tmpScore.add(StoreScore(3,3))
+        tmpScore.add(StoreScore(4,5))
+
+        // 식당 데이터
+        val data = readFile("StoreData.json", context)
+        val storeData = ArrayList<StoreDataClass>()
+
+        val jsonArray = JSONTokener(data).nextValue() as JSONArray
+        for (i in 0 until jsonArray.length()) {
+            val id = jsonArray.getJSONObject(i).getInt("id")
+            val imageUrl = jsonArray.getJSONObject(i).getString("imageUrl")
+            val name = jsonArray.getJSONObject(i).getString("name")
+            val detail = jsonArray.getJSONObject(i).getString("detail")
+            /*
+            * id 값으로 점수 값 받아오기. key-value가 id-score로 되게
+            * */
+            val scr = tmpScore[id-1].score
+            storeData.add(StoreDataClass(id, imageUrl, name, detail, scr))
+        }
+
+        return storeData
+    }
+
 }

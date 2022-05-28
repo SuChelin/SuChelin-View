@@ -1,5 +1,6 @@
 package Guide.suchelin.List
 
+import Guide.suchelin.DataControl
 import Guide.suchelin.R
 import Guide.suchelin.StoreDataClass
 import Guide.suchelin.StoreDetail.StoreDetailActivity
@@ -28,33 +29,8 @@ class ListFragment : BaseFragment<FragmentListBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//json 적용 블럭
-        val items = mutableListOf<StoreDataClass>()
-        val jsonString = requireActivity().assets.open("StoreData.json").reader().readText()
-        val jsonArray = JSONTokener(jsonString).nextValue() as JSONArray
-
-        //tmpScore가 파이어베이스로 구성될 예정
-        val tmpScore = mutableListOf<StoreScore>()
-        tmpScore.add(StoreScore(1,1))
-        tmpScore.add(StoreScore(2,2))
-        tmpScore.add(StoreScore(3,3))
-        tmpScore.add(StoreScore(4,5))
-
-        for (i in 0 until jsonArray.length()) {
-
-            val id = jsonArray.getJSONObject(i).getInt("id")
-            val imageUrl = jsonArray.getJSONObject(i).getString("imageUrl")
-            val name = jsonArray.getJSONObject(i).getString("name")
-            val detail = jsonArray.getJSONObject(i).getString("detail")
-            /*
-            * id 값으로 점수 값 받아오기. key-value가 id-score로 되게
-            * */
-            val scr = tmpScore[id-1].score
-            Log.d("ListFragment", "$scr")
-            items.add(StoreDataClass(id, imageUrl, name, detail, scr))
-        }
+        val items = DataControl().getStoreDataList(requireContext())
         items.sortBy { it.name }
-//json 적용 블럭
 
         val rvAdapter = RvAdapter(context, items)
 

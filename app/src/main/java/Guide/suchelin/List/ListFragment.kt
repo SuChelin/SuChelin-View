@@ -2,18 +2,13 @@ package Guide.suchelin.List
 
 import Guide.suchelin.DataControl
 import Guide.suchelin.R
-import Guide.suchelin.StoreDataClass
 import Guide.suchelin.StoreDetail.StoreDetailActivity
-import Guide.suchelin.StoreScore
 import Guide.suchelin.config.BaseFragment
 import Guide.suchelin.databinding.FragmentListBinding
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import org.json.JSONArray
-import org.json.JSONTokener
 
 class ListFragment : BaseFragment<FragmentListBinding>(
     FragmentListBinding::bind,
@@ -39,10 +34,6 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                 val intent = Intent(context, StoreDetailActivity::class.java)
 
                 intent.putExtra("name", items[position].name)
-                intent.putExtra("imageUrl", items[position].imageUrl)
-                intent.putExtra("detail", items[position].detail)
-                intent.putExtra("score", items[position].score)
-
                 startActivity(intent)
             }
         }
@@ -63,10 +54,6 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                     val intent = Intent(context, StoreDetailActivity::class.java)
 
                     intent.putExtra("name", items[position].name)
-                    intent.putExtra("imageUrl", items[position].imageUrl)
-                    intent.putExtra("detail", items[position].detail)
-                    intent.putExtra("score", items[position].score)
-
                     startActivity(intent)
                 }
             }
@@ -85,10 +72,6 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                     val intent = Intent(context, StoreDetailActivity::class.java)
 
                     intent.putExtra("name", items[position].name)
-                    intent.putExtra("imageUrl", items[position].imageUrl)
-                    intent.putExtra("detail", items[position].detail)
-                    intent.putExtra("score", items[position].score)
-                    //latitude, longitude는 store detail표시에 필요없음. 지도에만 필요
                     startActivity(intent)
                 }
             }
@@ -108,10 +91,6 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                     val intent = Intent(context, StoreDetailActivity::class.java)
 
                     intent.putExtra("name", items[position].name)
-                    intent.putExtra("imageUrl", items[position].imageUrl)
-                    intent.putExtra("detail", items[position].detail)
-                    intent.putExtra("score", items[position].score)
-                    //latitude, longitude는 store detail표시에 필요없음. 지도에만 필요
                     startActivity(intent)
                 }
             }

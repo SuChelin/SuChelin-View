@@ -1,5 +1,8 @@
 package Guide.suchelin
 
+import Guide.suchelin.DataClass.StoreDataClass
+import Guide.suchelin.DataClass.StoreDataClassMap
+import Guide.suchelin.DataClass.StoreScore
 import android.content.Context
 import org.json.JSONArray
 import org.json.JSONTokener

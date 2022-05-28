@@ -1,14 +1,10 @@
 package Guide.suchelin.StoreDetail
 
 import Guide.suchelin.DataControl
-import Guide.suchelin.StoreDetailDataClass
 import android.os.Bundle
 import Guide.suchelin.config.BaseActivity
 import Guide.suchelin.databinding.ActivityStoreDetailBinding
-import android.content.Context
 import android.view.View
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 
 class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivityStoreDetailBinding::inflate) {

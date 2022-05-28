@@ -1,4 +1,4 @@
-package Guide.suchelin
+package Guide.suchelin.DataClass
 
 data class MenuDataClass(
     private val menuId: Int,

@@ -1,4 +1,4 @@
-package Guide.suchelin
+package Guide.suchelin.DataClass
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -12,7 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import Guide.suchelin.R
-import Guide.suchelin.StoreDataClassMap
+import Guide.suchelin.DataClass.StoreDataClassMap
 import Guide.suchelin.databinding.FragmentMapBinding
 import android.view.View
 import com.bumptech.glide.Glide

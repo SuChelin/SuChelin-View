@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import Guide.suchelin.R
-import Guide.suchelin.StoreDataClass
+import Guide.suchelin.DataClass.StoreDataClass
 
 class RvAdapter(val context: Context?, val items: MutableList<StoreDataClass>):RecyclerView.Adapter<RvAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

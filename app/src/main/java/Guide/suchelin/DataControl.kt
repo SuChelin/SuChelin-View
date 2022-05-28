@@ -1,7 +1,6 @@
 package Guide.suchelin
 
 import android.content.Context
-import android.util.Log
 import org.json.JSONArray
 import org.json.JSONTokener
 import java.io.ByteArrayOutputStream
@@ -82,5 +81,36 @@ class DataControl {
 
         return storeData
     }
+    fun getStoreDetail(context: Context, storeName: String): ArrayList<StoreDataClass>{
 
+        val tmpScore = mutableListOf<StoreScore>()
+        tmpScore.add(StoreScore(1,1))
+        tmpScore.add(StoreScore(2,2))
+        tmpScore.add(StoreScore(3,3))
+        tmpScore.add(StoreScore(4,5))
+
+        // 식당 데이터
+        val data = readFile("StoreData.json", context)
+        val storeData = ArrayList<StoreDataClass>()
+        var id = 0
+        var imageUrl = ""
+        var detail = ""
+
+        val jsonArray = JSONTokener(data).nextValue() as JSONArray
+        for (i in 0 until jsonArray.length()) {
+            val name = jsonArray.getJSONObject(i).getString("name")
+
+            if(name.equals(storeName)){
+                id = jsonArray.getJSONObject(i).getInt("id")
+                imageUrl = jsonArray.getJSONObject(i).getString("imageUrl")
+                detail = jsonArray.getJSONObject(i).getString("detail")
+
+                val scr = tmpScore[id-1].score
+                storeData.add(StoreDataClass(id, imageUrl, name, detail, scr))
+                break
+            }
+        }
+
+        return storeData
+    }
 }

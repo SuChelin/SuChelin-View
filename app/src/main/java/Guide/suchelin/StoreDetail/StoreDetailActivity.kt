@@ -1,36 +1,37 @@
 package Guide.suchelin.StoreDetail
 
+import Guide.suchelin.DataControl
+import Guide.suchelin.StoreDetailDataClass
 import android.os.Bundle
 import Guide.suchelin.config.BaseActivity
 import Guide.suchelin.databinding.ActivityStoreDetailBinding
+import android.content.Context
 import android.view.View
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 
 class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivityStoreDetailBinding::inflate) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//
-//        intent.putExtra("name", items[position].name)
-//        intent.putExtra("imageUrl", items[position].imageUrl)
-//        intent.putExtra("detail", items[position].detail)
-//        intent.putExtra("score", items[position].score)
-//
+
         val storeName = intent.getStringExtra("StoreName") ?: intent.getStringExtra("name")
-        val nameFromList = intent.getStringExtra("name") ?: ""
-        val imageUrlFromList = intent.getStringExtra("imageUrl") ?: ""
-        val detailFromList = intent.getStringExtra("detail") ?: ""
-        val scoreFromList = intent.getIntExtra("score", 0)
+
+        val detail = DataControl().getStoreDetail(baseContext, storeName!!)
+//        val nameFromList = intent.getStringExtra("name") ?: ""
+//        val imageUrlFromList = intent.getStringExtra("imageUrl") ?: ""
+//        val detailFromList = intent.getStringExtra("detail") ?: ""
+//        val scoreFromList = intent.getIntExtra("score", 0)
 
         Glide
             .with(this)
-            .load(imageUrlFromList)
+            .load(detail[0].imageUrl)
             .centerCrop()
             .into(binding.imgStoreInside)
 
         binding.superNameTextView.text = storeName
 
-        when(scoreFromList){
+        when(detail[0].score){
             1 -> {
                 binding.oneStarLayout.visibility = View.VISIBLE
                 binding.twoStarLayout.visibility = View.INVISIBLE

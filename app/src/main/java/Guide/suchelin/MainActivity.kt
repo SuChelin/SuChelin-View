@@ -12,14 +12,29 @@ import Guide.suchelin.Map.MapsFragment
 import Guide.suchelin.Vote.VoteFragment
 import Guide.suchelin.config.BaseActivity
 import Guide.suchelin.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        auth = Firebase.auth
 
-        //일단 첫 화면 list로 임의 결정
+        auth.signInAnonymously()
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    Log.d("MainActivity", user!!.uid)
+                    //로그인됐으면 uid값 찍힘 !!는 not null임을 명시하는 것.
+                } else {
+                    Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                }
+            }
+
         //bottom_navigaion
         val bottomMenu = findViewById<BottomNavigationView>(R.id.bottomTabBar)
 

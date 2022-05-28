@@ -18,22 +18,9 @@ import com.google.firebase.ktx.Firebase
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
-    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        auth = Firebase.auth
-
-        auth.signInAnonymously()
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    Log.d("MainActivity", user!!.uid)
-                    //로그인됐으면 uid값 찍힘 !!는 not null임을 명시하는 것.
-                } else {
-                    Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                }
-            }
 
         //bottom_navigaion
         val bottomMenu = findViewById<BottomNavigationView>(R.id.bottomTabBar)

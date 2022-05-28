@@ -13,6 +13,7 @@ import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.RatingBar
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -36,6 +37,17 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         super.onViewCreated(view, savedInstanceState)
 
         auth = Firebase.auth
+
+        auth.signInAnonymously()
+            .addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    Log.d("MainActivity", user!!.uid)
+                    //로그인됐으면 uid값 찍힘 !!는 not null임을 명시하는 것.
+                } else {
+                    Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                }
+            }
 
         val database = Firebase.database.reference
 

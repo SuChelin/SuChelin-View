@@ -59,7 +59,6 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                     ratingScore = rating.toInt()
 
                     database
-                        .child("users")
                         .child(Firebase.auth.currentUser!!.uid)
                         .child(items[position].id.toString())
                         .setValue(ratingScore)
@@ -92,7 +91,6 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                         ratingScore = rating.toInt()
 
                         database
-                            .child("users")
                             .child(Firebase.auth.currentUser!!.uid)
                             .child(items[position].id.toString())
                             .setValue(ratingScore)
@@ -123,7 +121,6 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                     ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
                         ratingScore = rating.toInt()
                         database
-                            .child("users")
                             .child(Firebase.auth.currentUser!!.uid)
                             .child(items[position].id.toString())
                             .setValue(ratingScore)
@@ -154,7 +151,6 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                     ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
                         ratingScore = rating.toInt()
                         database
-                            .child("users")
                             .child(Firebase.auth.currentUser!!.uid)
                             .child(items[position].id.toString())
                             .setValue(ratingScore)

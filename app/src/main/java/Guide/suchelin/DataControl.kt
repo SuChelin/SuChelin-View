@@ -60,10 +60,24 @@ class DataControl {
     fun getStoreDataList(context: Context): ArrayList<StoreDataClass>{
 
         val tmpScore = mutableListOf<StoreScore>()
-        tmpScore.add(StoreScore(1,1))
+        tmpScore.add(StoreScore(1,2))
         tmpScore.add(StoreScore(2,2))
         tmpScore.add(StoreScore(3,3))
         tmpScore.add(StoreScore(4,5))
+        tmpScore.add(StoreScore(5,1))
+        tmpScore.add(StoreScore(6,2))
+        tmpScore.add(StoreScore(7,3))
+        tmpScore.add(StoreScore(8,5))
+        tmpScore.add(StoreScore(9,1))
+        tmpScore.add(StoreScore(10,2))
+        tmpScore.add(StoreScore(11,0))
+        tmpScore.add(StoreScore(12,0))
+        tmpScore.add(StoreScore(13,0))
+        tmpScore.add(StoreScore(14,0))
+        tmpScore.add(StoreScore(15,0))
+        tmpScore.add(StoreScore(16,0))
+
+
 
         // 식당 데이터
         val data = readFile("StoreData.json", context)

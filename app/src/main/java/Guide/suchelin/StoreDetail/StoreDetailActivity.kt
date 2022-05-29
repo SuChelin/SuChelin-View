@@ -25,7 +25,7 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivitySto
             .centerCrop()
             .into(binding.imgStoreInside)
 
-        binding.superNameTextView.text = storeName
+        binding.superNameTextView.text = detail[0].name
 
         when(detail[0].score){
             1 -> {

@@ -67,16 +67,24 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                 val ratingBar = mAlertDialog.findViewById<RatingBar>(R.id.rating)
                 var ratingScore = 0
                 mAlertDialog.setCancelable(false);
+
+                var score = 0L;
+                database.child(items[position].id.toString()).get().addOnSuccessListener {
+                    Log.i("firebase", "Got value ${it.value}")
+                    //오류가 계속 나버려서 미리 파이어베이스 db에 다 id - 0 으로 non null 하게 만들기
+                    score = it.value as Long
+                    //기존 값 가져오기
+                }.addOnFailureListener{
+                    Log.e("firebase", "Error getting data", it)
+                }
+
                 ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
-                    ratingScore = rating.toInt()
-
+                    score += rating.toLong()
+                    //sharedpreference로 한번 투표하면 클릭못하게 바꿀예정
                     database
-                        .child(Firebase.auth.currentUser!!.uid)
                         .child(items[position].id.toString())
-                        .setValue(ratingScore)
-
+                        .setValue(score)
                     mAlertDialog.dismiss()
-//                    Log.d("Vote", "" + ratingScore)
                 }
             }
         }
@@ -99,16 +107,23 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                     val ratingBar = mAlertDialog.findViewById<RatingBar>(R.id.rating)
                     var ratingScore = 0
                     mAlertDialog.setCancelable(false);
+                    var score = 0L;
+                    database.child(items[position].id.toString()).get().addOnSuccessListener {
+                        Log.i("firebase", "Got value ${it.value}")
+                        //오류가 계속 나버려서 미리 파이어베이스 db에 다 id - 0 으로 non null 하게 만들기
+                        score = it.value as Long
+                        //기존 값 가져오기
+                    }.addOnFailureListener{
+                        Log.e("firebase", "Error getting data", it)
+                    }
+
                     ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
-                        ratingScore = rating.toInt()
-
+                        score += rating.toLong()
+                        //sharedpreference로 한번 투표하면 클릭못하게 바꿀예정
                         database
-                            .child(Firebase.auth.currentUser!!.uid)
                             .child(items[position].id.toString())
-                            .setValue(ratingScore)
-
+                            .setValue(score)
                         mAlertDialog.dismiss()
-//                    Log.d("Vote", "" + ratingScore)
                     }
                 }
             }
@@ -130,14 +145,23 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                     val ratingBar = mAlertDialog.findViewById<RatingBar>(R.id.rating)
                     var ratingScore = 0
                     mAlertDialog.setCancelable(false);
+                    var score = 0L;
+                    database.child(items[position].id.toString()).get().addOnSuccessListener {
+                        Log.i("firebase", "Got value ${it.value}")
+                        //오류가 계속 나버려서 미리 파이어베이스 db에 다 id - 0 으로 non null 하게 만들기
+                        score = it.value as Long
+                        //기존 값 가져오기
+                    }.addOnFailureListener{
+                        Log.e("firebase", "Error getting data", it)
+                    }
+
                     ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
-                        ratingScore = rating.toInt()
+                        score += rating.toLong()
+                        //sharedpreference로 한번 투표하면 클릭못하게 바꿀예정
                         database
-                            .child(Firebase.auth.currentUser!!.uid)
                             .child(items[position].id.toString())
-                            .setValue(ratingScore)
+                            .setValue(score)
                         mAlertDialog.dismiss()
-//                    Log.d("Vote", "" + ratingScore)
                     }
                 }
             }
@@ -160,14 +184,23 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                     val ratingBar = mAlertDialog.findViewById<RatingBar>(R.id.rating)
                     var ratingScore = 0
                     mAlertDialog.setCancelable(false);
+                    var score = 0L;
+                    database.child(items[position].id.toString()).get().addOnSuccessListener {
+                        Log.i("firebase", "Got value ${it.value}")
+                        //오류가 계속 나버려서 미리 파이어베이스 db에 다 id - 0 으로 non null 하게 만들기
+                        score = it.value as Long
+                        //기존 값 가져오기
+                    }.addOnFailureListener{
+                        Log.e("firebase", "Error getting data", it)
+                    }
+
                     ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
-                        ratingScore = rating.toInt()
+                        score += rating.toLong()
+                        //sharedpreference로 한번 투표하면 클릭못하게 바꿀예정
                         database
-                            .child(Firebase.auth.currentUser!!.uid)
                             .child(items[position].id.toString())
-                            .setValue(ratingScore)
+                            .setValue(score)
                         mAlertDialog.dismiss()
-//                    Log.d("Vote", "" + ratingScore)
                     }
                 }
             }

@@ -72,7 +72,7 @@ class MapControl {
 
                 // 미리보기 설정
                 marker.setOnClickListener {
-                    binding.mapSuperParent.tag = data.name
+                    binding.mapSuperParent.tag = data.id
                     binding.mapSuperParent.visibility = View.VISIBLE
                     Glide.with(binding.mapSuperParent)
                         .load(data.imageUrl)

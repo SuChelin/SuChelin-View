@@ -11,7 +11,7 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivitySto
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val storeName = intent.getStringExtra("StoreName") ?: intent.getStringExtra("name")
+        val storeName = intent.getIntExtra("StoreName", -1)
 
         val detail = DataControl().getStoreDetail(baseContext, storeName!!)
 //        val nameFromList = intent.getStringExtra("name") ?: ""

@@ -84,7 +84,7 @@ class DataControl {
 
         return storeData
     }
-    fun getStoreDetail(context: Context, storeName: String): ArrayList<StoreDataClass>{
+    fun getStoreDetail(context: Context, storeId: Int): ArrayList<StoreDataClass>{
 
         val tmpScore = mutableListOf<StoreScore>()
         tmpScore.add(StoreScore(1,1))
@@ -95,16 +95,16 @@ class DataControl {
         // 식당 데이터
         val data = readFile("StoreData.json", context)
         val storeData = ArrayList<StoreDataClass>()
-        var id = 0
+        var name = ""
         var imageUrl = ""
         var detail = ""
 
         val jsonArray = JSONTokener(data).nextValue() as JSONArray
         for (i in 0 until jsonArray.length()) {
-            val name = jsonArray.getJSONObject(i).getString("name")
+            val id = jsonArray.getJSONObject(i).getInt("id")
 
-            if(name.equals(storeName)){
-                id = jsonArray.getJSONObject(i).getInt("id")
+            if(id == storeId){
+                name = jsonArray.getJSONObject(i).getString("name")
                 imageUrl = jsonArray.getJSONObject(i).getString("imageUrl")
                 detail = jsonArray.getJSONObject(i).getString("detail")
 

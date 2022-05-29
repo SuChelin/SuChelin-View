@@ -94,7 +94,7 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
         // 미리보기 설정하면 superDetailActivity 로 넘어가기
         binding.mapSuperParent.setOnClickListener {
             val intent = Intent(requireContext(), StoreDetailActivity::class.java).apply {
-                putExtra("StoreName", binding.mapSuperParent.tag as String)
+                putExtra("StoreName", binding.mapSuperParent.tag as Int)
             }
             startActivity(intent)
         }

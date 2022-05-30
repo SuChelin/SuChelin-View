@@ -4,6 +4,7 @@ import Guide.suchelin.DataControl
 import android.os.Bundle
 import Guide.suchelin.config.BaseActivity
 import Guide.suchelin.databinding.ActivityStoreDetailBinding
+import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 
@@ -12,13 +13,14 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivitySto
         super.onCreate(savedInstanceState)
 
         val storeName = intent.getIntExtra("StoreName", -1)
+        Log.d("StoreDetail storename","${storeName}")
 
         val detail = DataControl().getStoreDetail(baseContext, storeName!!)
 //        val nameFromList = intent.getStringExtra("name") ?: ""
 //        val imageUrlFromList = intent.getStringExtra("imageUrl") ?: ""
 //        val detailFromList = intent.getStringExtra("detail") ?: ""
 //        val scoreFromList = intent.getIntExtra("score", 0)
-
+        Log.d("StoreDetail","${detail}")
         Glide
             .with(this)
             .load(detail[0].imageUrl)

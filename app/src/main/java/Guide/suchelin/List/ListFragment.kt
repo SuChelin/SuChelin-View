@@ -33,7 +33,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
             override fun onClick(view: View, position: Int){
                 val intent = Intent(context, StoreDetailActivity::class.java)
 
-                intent.putExtra("name", items[position].name)
+                intent.putExtra("StoreName", items[position].id)
                 startActivity(intent)
             }
         }
@@ -53,7 +53,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                 override fun onClick(view: View, position: Int){
                     val intent = Intent(context, StoreDetailActivity::class.java)
 
-                    intent.putExtra("name", items[position].name)
+                    intent.putExtra("StoreName", items[position].id)
                     startActivity(intent)
                 }
             }
@@ -71,7 +71,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                 override fun onClick(view: View, position: Int){
                     val intent = Intent(context, StoreDetailActivity::class.java)
 
-                    intent.putExtra("name", items[position].name)
+                    intent.putExtra("StoreName", items[position].id)
                     startActivity(intent)
                 }
             }
@@ -90,7 +90,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                 override fun onClick(view: View, position: Int){
                     val intent = Intent(context, StoreDetailActivity::class.java)
 
-                    intent.putExtra("name", items[position].name)
+                    intent.putExtra("StoreName", items[position].id)
                     startActivity(intent)
                 }
             }

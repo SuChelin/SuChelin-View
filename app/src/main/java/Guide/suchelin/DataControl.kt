@@ -4,6 +4,7 @@ import Guide.suchelin.DataClass.StoreDataClass
 import Guide.suchelin.DataClass.StoreDataClassMap
 import Guide.suchelin.DataClass.StoreScore
 import android.content.Context
+import android.util.Log
 import org.json.JSONArray
 import org.json.JSONTokener
 import java.io.ByteArrayOutputStream
@@ -60,24 +61,11 @@ class DataControl {
     fun getStoreDataList(context: Context): ArrayList<StoreDataClass>{
 
         val tmpScore = mutableListOf<StoreScore>()
-        tmpScore.add(StoreScore(1,2))
-        tmpScore.add(StoreScore(2,2))
-        tmpScore.add(StoreScore(3,3))
-        tmpScore.add(StoreScore(4,5))
-        tmpScore.add(StoreScore(5,1))
-        tmpScore.add(StoreScore(6,2))
-        tmpScore.add(StoreScore(7,3))
-        tmpScore.add(StoreScore(8,5))
-        tmpScore.add(StoreScore(9,1))
-        tmpScore.add(StoreScore(10,2))
-        tmpScore.add(StoreScore(11,0))
-        tmpScore.add(StoreScore(12,0))
-        tmpScore.add(StoreScore(13,0))
-        tmpScore.add(StoreScore(14,0))
-        tmpScore.add(StoreScore(15,0))
-        tmpScore.add(StoreScore(16,0))
 
-
+        val range = (1..3)
+        for(i in 1..16){
+            tmpScore.add(StoreScore(i,range.random()))
+        }
 
         // 식당 데이터
         val data = readFile("StoreData.json", context)
@@ -101,10 +89,11 @@ class DataControl {
     fun getStoreDetail(context: Context, storeId: Int): ArrayList<StoreDataClass>{
 
         val tmpScore = mutableListOf<StoreScore>()
-        tmpScore.add(StoreScore(1,1))
-        tmpScore.add(StoreScore(2,2))
-        tmpScore.add(StoreScore(3,3))
-        tmpScore.add(StoreScore(4,5))
+
+        val range = (1..3)
+        for(i in 1..16){
+            tmpScore.add(StoreScore(i,range.random()))
+        }
 
         // 식당 데이터
         val data = readFile("StoreData.json", context)
@@ -121,13 +110,12 @@ class DataControl {
                 name = jsonArray.getJSONObject(i).getString("name")
                 imageUrl = jsonArray.getJSONObject(i).getString("imageUrl")
                 detail = jsonArray.getJSONObject(i).getString("detail")
-
+                Log.d("StoreDetail222","${name}, ${imageUrl},${detail}")
                 val scr = tmpScore[id-1].score
                 storeData.add(StoreDataClass(id, imageUrl, name, detail, scr))
-                break
             }
         }
-
+        Log.d("StoreDetail","${storeData}")
         return storeData
     }
 }

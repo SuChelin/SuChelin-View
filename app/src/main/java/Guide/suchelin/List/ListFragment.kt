@@ -7,19 +7,15 @@ import Guide.suchelin.config.BaseFragment
 import Guide.suchelin.databinding.FragmentListBinding
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class ListFragment : BaseFragment<FragmentListBinding>(
     FragmentListBinding::bind,
     R.layout.fragment_list
 ) {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,7 +39,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
             layoutManager = LinearLayoutManager(context)
         }
 
-        binding.sortName.setOnClickListener{
+        binding.listFilterNameTextView.setOnClickListener {
             items.sortBy {
                 it.name
             }
@@ -61,7 +57,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
             binding.rv.adapter = rvAdapter
             binding.rv.layoutManager = LinearLayoutManager(context)
         }
-        binding.sortDistance.setOnClickListener{
+        binding.listFilterDistanceTextView.setOnClickListener{
             items.sortBy {
                 it.id
             }
@@ -79,7 +75,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
             binding.rv.adapter = rvAdapter
             binding.rv.layoutManager = LinearLayoutManager(context)
         }
-        binding.sortScore.setOnClickListener {
+        binding.listFilterGradeTextView.setOnClickListener {
             items.apply {
                 sortBy { it.score }
                 reverse()
@@ -99,5 +95,19 @@ class ListFragment : BaseFragment<FragmentListBinding>(
             binding.rv.layoutManager = LinearLayoutManager(context)
         }
 
+        // 그림자 효과
+        var scrolledY = 0
+        binding.rv.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                scrolledY += dy
+
+                if(scrolledY > 5 && binding.listShadowView.visibility == View.GONE){
+                    binding.listShadowView.visibility = View.VISIBLE
+                } else if(scrolledY < 5 && binding.listShadowView.visibility == View.VISIBLE){
+                    binding.listShadowView.visibility = View.GONE
+                }
+            }
+        })
     }
 }

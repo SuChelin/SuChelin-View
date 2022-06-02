@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pageList"
@@ -7,91 +7,91 @@
     android:layout_height="match_parent"
     tools:context="Guide.suchelin.List.ListFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/filterBar"
+    <!-- toolbar -->
+    <LinearLayout
+        android:id="@+id/listToolbarLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="@color/white"
+        android:elevation="2dp"
+        android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:layout_marginStart="2dp"
-            android:id="@+id/CardviewDefault"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:gravity="center"
+            android:text="@string/listToolbarTitle"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- 필터 -->
+    <LinearLayout
+        android:id="@+id/list_filter_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listToolbarLinearLayout"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/list_filter_name_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:background="@drawable/filter_check_box"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="7dp"
+            android:text="@string/filterName"
+            android:textColor="@color/textGray"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/sortName"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/leferibaseregular"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:paddingEnd="8dp"
-                android:paddingStart="8dp"
-                android:text="이름 순" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/CardviewDistance"
+        <TextView
+            android:id="@+id/list_filter_grade_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            app:cardCornerRadius="12dp"
-            app:layout_constraintStart_toEndOf="@+id/CardviewDefault"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/filter_uncheck_box"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="7dp"
+            android:text="@string/filterGrade"
+            android:textColor="@color/textGray"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/sortDistance"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/leferibaseregular"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:paddingEnd="8dp"
-                android:paddingStart="8dp"
-                android:text="추가된 순" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/CardviewStar"
+        <TextView
+            android:id="@+id/list_filter_distance_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            app:cardCornerRadius="12dp"
-            app:layout_constraintStart_toEndOf="@+id/CardviewDistance"
-            app:layout_constraintTop_toTopOf="parent">
+            android:background="@drawable/filter_uncheck_box"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="7dp"
+            android:text="@string/filterNew"
+            android:textColor="@color/textGray"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/sortScore"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/leferibaseregular"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:paddingEnd="8dp"
-                android:paddingStart="8dp"
-                android:text="별 개수 순" />
-        </androidx.cardview.widget.CardView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:id="@+id/list_shadow_view"
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_below="@+id/list_filter_parent"
+        android:background="@color/white"
+        android:elevation="2dp"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="34dp"
+        android:layout_below="@+id/list_filter_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filterBar" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -17,11 +17,11 @@ import Guide.suchelin.StoreDetail.StoreDetailActivity
 import Guide.suchelin.databinding.FragmentMapBinding
 import android.content.Intent
 import android.graphics.Rect
+import android.util.Log
 import android.view.View
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
+import com.naver.maps.map.overlay.InfoWindow
 
 class MapControl {
 
@@ -33,13 +33,15 @@ class MapControl {
     }
 
     // marker 와 viewpager2의 리스트 연결
-    private var markerNumber = -1
-    private var viewpagerNumber = -1
+    private var markerNumber = 0
+    private var viewpagerNumber = 0
     private var mSuperDataList = arrayListOf<StoreDataClassMap>(
         StoreDataClassMap(0, "", "수원대학교 정문", "", 37.214185, 126.978792)
     )
     private var mBinding : FragmentMapBinding? = null
     private var mFragment : MapsFragment? = null
+    private var mMarkerList = ArrayList<Marker>()
+    private var mInfoWindow = InfoWindow()
 
     // map 사용자 인터페이스 설정
     fun setMapUI(naverMap: NaverMap){
@@ -91,12 +93,17 @@ class MapControl {
             val markerIcon = OverlayImage.fromResource(resource)
 
             // 수원대학교 정문 표시
-            Marker().apply {
+            mMarkerList.add(Marker().apply {
                 position = LatLng(37.214185, 126.978792)
                 icon = markerIconStart
                 map = naverMap
                 height = MARKER_ICON_HEIGHT
                 width = MARKER_ICON_WEIGHT
+            })
+
+            mMarkerList[0].setOnClickListener {
+                setStoreSelect(0, true, naverMap)
+                true
             }
 
             // 나머지 마커 표시
@@ -105,65 +112,79 @@ class MapControl {
 
                 // 마커를 클릭했을 경우 marker 와 viewpager 설정
                 marker.setOnClickListener {
-                    setStoreSelect(null, index, naverMap)
+                    Log.d("marker", "마커 : data : ${data} , index : $index")
+                    setStoreSelect(data.id, true, naverMap)
                     true
                 }
 
                 mSuperDataList.add(data)
+                mMarkerList.add(marker)
             }
-        }
 
-        // Viewpager2 설정
-        binding.mapViewpager2.adapter = MapStoreAdapter(superDataList, this)
-        binding.mapViewpager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        binding.mapViewpager2.registerOnPageChangeCallback(
-            object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
-                    // 새롭게 페이지 이동했을 경우 marker 와 viewpager 설정
-                    setStoreSelect(null, position, naverMap)
+            // info 창 초기 설정
+            setInfoWindow(0, "수원대학교 정문")
+
+            // Viewpager2 설정
+            binding.mapViewpager2.adapter = MapStoreAdapter(mSuperDataList, this@MapControl)
+            binding.mapViewpager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+            binding.mapViewpager2.registerOnPageChangeCallback(
+                object : ViewPager2.OnPageChangeCallback() {
+                    override fun onPageSelected(position: Int) {
+                        super.onPageSelected(position)
+                        // 새롭게 페이지 이동했을 경우 marker 와 viewpager 설정
+                        setStoreSelect(position, false, naverMap)
+                    }
                 }
-            }
-        )
+            )
 
-        // Viewpager2 미리보기
-        binding.mapViewpager2.addItemDecoration(object: RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-                outRect.right = currentVisibleItemPx
-                outRect.left = currentVisibleItemPx
-            }
-        })
-        binding.mapViewpager2.offscreenPageLimit = 1
+            // Viewpager2 미리보기
+            binding.mapViewpager2.addItemDecoration(object: RecyclerView.ItemDecoration() {
+                override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+                    outRect.right = currentVisibleItemPx
+                    outRect.left = currentVisibleItemPx
+                }
+            })
+            binding.mapViewpager2.offscreenPageLimit = 1
 
-        binding.mapViewpager2.setPageTransformer { page, position ->
-            page.translationX = -pageTranslationX * ( position)
+            binding.mapViewpager2.setPageTransformer { page, position ->
+                page.translationX = -pageTranslationX * ( position)
+            }
         }
+
+
     }
 
     // 가게 선택했을 경우
     // 1. viewpager2 의 scroll 을 이용했을 경우
     // 2. 지도에 있는 marker 를 클릭했을 경우
-    fun setStoreSelect(marker: Int?, list: Int?, naverMap: NaverMap){
-        mSuperDataList ?: return
-        if(marker == null && list != null && list != viewpagerNumber){
-            // 1. viewpager2 의 scroll 을 이용했을 경우
-            // viewpager2 의 조정은 필요 없고 marker 와 지도를 움직여야 한다.
-            markerNumber = list
-            viewpagerNumber = list
+    fun setStoreSelect(number: Int, viewpagerFlag: Boolean, naverMap: NaverMap){
+        if(viewpagerNumber == number) return
 
-            moveMap(naverMap, LatLng(mSuperDataList!![list].latitude, mSuperDataList!![list].longitude))
-        }
-        if(list == null && marker != null && marker != markerNumber){
-            // 2. 지도에 있는 marker 를 클랙했을 경우
-            // viewpager2 의 조정과 marker 와 지도를 움직여야 한다.
-            markerNumber = marker
-            viewpagerNumber = marker
-
-            moveMap(naverMap, LatLng(mSuperDataList!![marker].latitude, mSuperDataList!![marker].longitude))
-
+        if(viewpagerFlag){
+            // 지도에 있는 marker 를 클랙했을 경우
             // viewpager2 움직이기
-            mBinding?.mapViewpager2?.setCurrentItem(marker, true)
+            mBinding?.mapViewpager2?.setCurrentItem(number, true)
         }
+
+        markerNumber = number
+        viewpagerNumber = number
+
+        moveMap(naverMap, LatLng(mSuperDataList!![markerNumber].latitude, mSuperDataList!![markerNumber].longitude))
+
+        // 마커 infoWindow 표시하기
+        setInfoWindow(markerNumber, mSuperDataList!![markerNumber].name)
+
+    }
+
+    // 마커 infoWindow 표시하기
+    private fun setInfoWindow(markerIndex: Int, infoString: String){
+        mFragment ?: return
+        mInfoWindow.adapter = object : InfoWindow.DefaultTextAdapter(mFragment!!.requireContext()) {
+            override fun getText(infoWindow: InfoWindow): CharSequence {
+                return infoString
+            }
+        }
+        mInfoWindow.open(mMarkerList[markerIndex])
     }
 
     // 지도 움직이기

@@ -16,7 +16,11 @@ class ListFragment : BaseFragment<FragmentListBinding>(
     FragmentListBinding::bind,
     R.layout.fragment_list
 ) {
-
+    companion object {
+        private const val FILTER_NAME = 1
+        private const val FILTER_GRADE = 2
+        private const val FILTER_NEW = 3
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -40,6 +44,9 @@ class ListFragment : BaseFragment<FragmentListBinding>(
         }
 
         binding.listFilterNameTextView.setOnClickListener {
+            // 필터 바꾸기
+            changeFilter(FILTER_NAME)
+
             items.sortBy {
                 it.name
             }
@@ -58,6 +65,9 @@ class ListFragment : BaseFragment<FragmentListBinding>(
             binding.rv.layoutManager = LinearLayoutManager(context)
         }
         binding.listFilterDistanceTextView.setOnClickListener{
+            // 필터 바꾸기
+            changeFilter(FILTER_NEW)
+
             items.sortBy {
                 it.id
             }
@@ -76,6 +86,9 @@ class ListFragment : BaseFragment<FragmentListBinding>(
             binding.rv.layoutManager = LinearLayoutManager(context)
         }
         binding.listFilterGradeTextView.setOnClickListener {
+            // 필터 바꾸기
+            changeFilter(FILTER_GRADE)
+
             items.apply {
                 sortBy { it.score }
                 reverse()
@@ -109,5 +122,25 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                 }
             }
         })
+    }
+
+    private fun changeFilter(filter: Int){
+        when(filter){
+            FILTER_NAME -> {
+                binding.listFilterGradeTextView.setBackgroundResource(R.drawable.filter_uncheck_box)
+                binding.listFilterNameTextView.setBackgroundResource(R.drawable.filter_check_box)
+                binding.listFilterDistanceTextView.setBackgroundResource(R.drawable.filter_uncheck_box)
+            }
+            FILTER_GRADE -> {
+                binding.listFilterGradeTextView.setBackgroundResource(R.drawable.filter_check_box)
+                binding.listFilterNameTextView.setBackgroundResource(R.drawable.filter_uncheck_box)
+                binding.listFilterDistanceTextView.setBackgroundResource(R.drawable.filter_uncheck_box)
+            }
+            FILTER_NEW -> {
+                binding.listFilterGradeTextView.setBackgroundResource(R.drawable.filter_uncheck_box)
+                binding.listFilterNameTextView.setBackgroundResource(R.drawable.filter_uncheck_box)
+                binding.listFilterDistanceTextView.setBackgroundResource(R.drawable.filter_check_box)
+            }
+        }
     }
 }

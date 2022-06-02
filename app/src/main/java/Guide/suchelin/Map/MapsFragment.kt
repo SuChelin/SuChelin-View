@@ -60,15 +60,7 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
 
             // 지도 설정
             mapControl.setMapUI(naverMap!!)
-            mapControl.setMaker(naverMap!!, mapDataList, binding)
-
-            // 지도 클릭 이벤트
-            naverMap?.setOnMapClickListener { pointF, latLng ->
-
-                if (binding.mapSuperParent.visibility == View.VISIBLE) {
-                    binding.mapSuperParent.visibility = View.GONE
-                }
-            }
+            mapControl.setMarkerAndViewpager(naverMap!!, mapDataList, binding, this)
 
             // 위치 추적 설정
             binding.mapLocationButton.setOnClickListener {
@@ -90,14 +82,6 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
                 }
             }
         }
-
-        // 미리보기 설정하면 superDetailActivity 로 넘어가기
-        binding.mapSuperParent.setOnClickListener {
-            val intent = Intent(requireContext(), StoreDetailActivity::class.java).apply {
-                putExtra("StoreName", binding.mapSuperParent.tag as Int)
-            }
-            startActivity(intent)
-        }
     }
 
     override fun onRequestPermissionsResult(
@@ -115,7 +99,6 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
             }
             return
         }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun onStart() {

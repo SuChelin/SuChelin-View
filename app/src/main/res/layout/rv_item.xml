@@ -1,72 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:outlineSpotShadowColor="#F3EFEF"
-    app:cardCornerRadius="4dp">
+    android:background="@color/white"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:layout_centerVertical="true"
+        android:id="@+id/rv_cardView"
+        android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginVertical="20dp"
+        android:layout_marginStart="20dp">
+
+        <ImageView
+            android:id="@+id/rv_store_imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/thumbsup3916586" />
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@+id/rv_cardView"
+        android:layout_alignBottom="@+id/rv_cardView"
+        android:layout_marginStart="15dp"
+        android:layout_toStartOf="@+id/rv_michelin_imageView"
+        android:layout_toEndOf="@+id/rv_cardView"
+        android:gravity="center"
         android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/CardviewImage"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
-            android:outlineSpotShadowColor="#F3EFEF"
-            app:cardCornerRadius="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/imageViewShop"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/thumbsup3916586" />
-        </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/rv_store_title_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:gravity="start"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="와우당" />
 
         <TextView
-            android:id="@+id/textViewTitle"
-            android:layout_width="wrap_content"
+            android:id="@+id/rv_store_detail_textView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/leferipointspecial"
-            android:hint="text text text"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/CardviewImage"
-            app:layout_constraintStart_toEndOf="@+id/CardviewImage"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="5dp"
+            android:ellipsize="marquee"
+            android:gravity="start"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            tools:text="와우당" />
 
-        <TextView
-            android:id="@+id/textViewDetail"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/leferibaseregular"
-            android:text="what is main dish"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/CardviewImage"
-            app:layout_constraintTop_toBottomOf="@id/textViewTitle" />
+    </LinearLayout>
 
-        <TextView
-            android:id="@+id/textViewDistance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:fontFamily="@font/leferibaseregular"
-            android:text="10m"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/CardviewImage" />
+    <ImageView
+        android:id="@+id/rv_michelin_imageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="15dp"
+        android:src="@drawable/ic_michelin_one"
+        android:contentDescription="suchelinStar" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+    <ImageView
+        android:id="@+id/rv_rank_imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/rv_cardView"
+        android:contentDescription="rank"
+        android:src="@drawable/ic_three_rank" />
+
+    <View
+        android:layout_below="@+id/rv_cardView"
+        android:background="@color/lineGray"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+</RelativeLayout>

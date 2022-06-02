@@ -25,7 +25,7 @@ class RvAdapter(val context: Context?, val items: MutableList<StoreDataClass>):R
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if(itemClick != null){
-            holder?.itemView.setOnClickListener{v->
+            holder.itemView.setOnClickListener{v->
                 itemClick!!.onClick(v, position)
             }
         }
@@ -38,9 +38,12 @@ class RvAdapter(val context: Context?, val items: MutableList<StoreDataClass>):R
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         fun bindItems(item: StoreDataClass){
-            val imageViewShop = itemView.findViewById<ImageView>(R.id.imageViewShop)
-            val textViewTitle = itemView.findViewById<TextView>(R.id.textViewTitle)
-            val textViewDetail = itemView.findViewById<TextView>(R.id.textViewDetail)
+            val imageViewShop = itemView.findViewById<ImageView>(R.id.rv_store_imageView)
+            val textViewTitle = itemView.findViewById<TextView>(R.id.rv_store_title_textView)
+            val textViewDetail = itemView.findViewById<TextView>(R.id.rv_store_detail_textView)
+            val storeRank = itemView.findViewById<ImageView>(R.id.rv_rank_imageView)
+            val storeMichelin = itemView.findViewById<ImageView>(R.id.rv_michelin_imageView)
+
             Glide.with(context!!)
                 .load(item.imageUrl)
                 .centerCrop()
@@ -48,6 +51,22 @@ class RvAdapter(val context: Context?, val items: MutableList<StoreDataClass>):R
 
             textViewTitle.text = item.name
             textViewDetail.text = item.detail
+
+            // 미슐랭 스타 아이콘 설정
+            storeMichelin.visibility =
+                if(item.michelin == null) View.GONE
+                else {
+                    storeMichelin.setImageResource(item.getMichelinImage()!!)
+                    View.VISIBLE
+                }
+
+            // 랭크 아이콘 설정
+            storeRank.visibility =
+                if(item.rank == null) View.GONE
+                else {
+                    storeRank.setImageResource(item.getRankImage()!!)
+                    View.VISIBLE
+                }
         }
     }
 

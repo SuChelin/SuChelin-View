@@ -21,6 +21,9 @@ class ListFragment : BaseFragment<FragmentListBinding>(
         private const val FILTER_GRADE = 2
         private const val FILTER_NEW = 3
     }
+    // 그림자 효과
+    private var scrolledY = 0
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -108,8 +111,6 @@ class ListFragment : BaseFragment<FragmentListBinding>(
             binding.rv.layoutManager = LinearLayoutManager(context)
         }
 
-        // 그림자 효과
-        var scrolledY = 0
         binding.rv.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -142,5 +143,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                 binding.listFilterDistanceTextView.setBackgroundResource(R.drawable.filter_check_box)
             }
         }
+
+        scrolledY = 0
     }
 }

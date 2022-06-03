@@ -4,53 +4,42 @@ import Guide.suchelin.DataControl
 import android.os.Bundle
 import Guide.suchelin.config.BaseActivity
 import Guide.suchelin.databinding.ActivityStoreDetailBinding
-import android.util.Log
-import android.view.View
+import android.provider.ContactsContract
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 
 class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivityStoreDetailBinding::inflate) {
+    private var storeId: Int = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val storeName = intent.getIntExtra("StoreName", -1)
-        Log.d("StoreDetail storename","${storeName}")
+        storeId = intent.getIntExtra("StoreName", -1)
 
-        val detail = DataControl().getStoreDetail(baseContext, storeName!!)
-//        val nameFromList = intent.getStringExtra("name") ?: ""
-//        val imageUrlFromList = intent.getStringExtra("imageUrl") ?: ""
-//        val detailFromList = intent.getStringExtra("detail") ?: ""
-//        val scoreFromList = intent.getIntExtra("score", 0)
-        Log.d("StoreDetail","${detail}")
-        Glide
-            .with(this)
-            .load(detail[0].imageUrl)
-            .centerCrop()
-            .into(binding.imgStoreInside)
+        init()
 
-        binding.superNameTextView.text = detail[0].name
+        binding.storeDetailBack.setOnClickListener {
+            finish()
+        }
+    }
 
-        when(detail[0].score){
-            1 -> {
-                binding.oneStarLayout.visibility = View.VISIBLE
-                binding.twoStarLayout.visibility = View.INVISIBLE
-                binding.threeStarLayout.visibility = View.INVISIBLE
-            }
-            2 -> {
-                binding.oneStarLayout.visibility = View.INVISIBLE
-                binding.twoStarLayout.visibility = View.VISIBLE
-                binding.threeStarLayout.visibility = View.INVISIBLE
-            }
-            3 -> {
-                binding.oneStarLayout.visibility = View.INVISIBLE
-                binding.twoStarLayout.visibility = View.INVISIBLE
-                binding.threeStarLayout.visibility = View.VISIBLE
-            }
+    private fun init(){
+        val data = DataControl().getStoreDetail(baseContext, storeId)
+        if(data == null) {
+            Toast.makeText(this, "데이터를 불러올 수 없습니다.", Toast.LENGTH_SHORT).show()
+            return
         }
 
-        //즐겨찾기 기능이 필요한지? 익명인증을 이용해서 고유 UUID로 북마크를 이용 -> 파이어베이스 부하 좀 걸릴수도
+        binding.storeDetailTitleTextView.text = data.name
+        Glide.with(this)
+            .load(data.imageUrl)
+            .circleCrop()
+            .into(binding.storeDetailImageView)
 
+        // 메뉴 리사이클러뷰 설정
+        val menuData = DataControl().getStoreMenu(this, storeId)
 
-
-
+        binding.storeDetailMenuRecyclerView.adapter = MenuAdapter(menuData)
+        binding.storeDetailMenuRecyclerView.layoutManager = LinearLayoutManager(this)
     }
 }

@@ -7,4 +7,8 @@
     <string name="filterName">이름</string>
     <string name="filterGrade">등급</string>
     <string name="filterNew">신규</string>
+    <string name="address">주소</string>
+    <string name="menu">메뉴판</string>
+    <string name="back">뒤로가기</string>
+    <string name="storeImage">가게 사진</string>
 </resources>

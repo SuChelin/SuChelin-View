@@ -1,0 +1,13 @@
+[{
+  "id": 1,
+  "menu": [
+    {
+      "menuName": "메뉴 이름",
+      "menuPrice": "13,000원"
+    },
+    {
+      "menuName": "메뉴 이름2",
+      "menuPrice": "13,000원"
+    }
+  ]
+}]

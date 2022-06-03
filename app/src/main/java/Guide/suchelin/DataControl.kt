@@ -2,6 +2,7 @@ package Guide.suchelin
 
 import Guide.suchelin.DataClass.StoreDataClass
 import Guide.suchelin.DataClass.StoreDataClassMap
+import Guide.suchelin.DataClass.StoreMenuClass
 import Guide.suchelin.DataClass.StoreScore
 import android.content.Context
 import android.util.Log
@@ -86,8 +87,7 @@ class DataControl {
 
         return storeData
     }
-    fun getStoreDetail(context: Context, storeId: Int): ArrayList<StoreDataClass>{
-
+    fun getStoreDetail(context: Context, storeId: Int): StoreDataClass?{
         val tmpScore = mutableListOf<StoreScore>()
 
         val range = (1..3)
@@ -97,25 +97,51 @@ class DataControl {
 
         // 식당 데이터
         val data = readFile("StoreData.json", context)
-        val storeData = ArrayList<StoreDataClass>()
-        var name = ""
-        var imageUrl = ""
-        var detail = ""
 
         val jsonArray = JSONTokener(data).nextValue() as JSONArray
         for (i in 0 until jsonArray.length()) {
             val id = jsonArray.getJSONObject(i).getInt("id")
 
             if(id == storeId){
-                name = jsonArray.getJSONObject(i).getString("name")
-                imageUrl = jsonArray.getJSONObject(i).getString("imageUrl")
-                detail = jsonArray.getJSONObject(i).getString("detail")
-                Log.d("StoreDetail222","${name}, ${imageUrl},${detail}")
                 val scr = tmpScore[id-1].score
-                storeData.add(StoreDataClass(id, imageUrl, name, detail, scr))
+                return StoreDataClass(
+                    id,
+                    jsonArray.getJSONObject(i).getString("imageUrl"),
+                    jsonArray.getJSONObject(i).getString("name"),
+                    jsonArray.getJSONObject(i).getString("detail"),
+                    scr
+                )
             }
         }
-        Log.d("StoreDetail","${storeData}")
-        return storeData
+
+        return null
+    }
+
+    fun getStoreMenu(context: Context, storeId: Int): ArrayList<StoreMenuClass>{
+        val storeMenuList = ArrayList<StoreMenuClass>()
+
+        // 메뉴 데이터 가져오기
+        val data = readFile("StoreMenu.json", context)
+
+        val jsonArray = JSONTokener(data).nextValue() as JSONArray
+        for (i in 0 until jsonArray.length()) {
+            val id = jsonArray.getJSONObject(i).getInt("id")
+
+            if(id == storeId){
+                val menu = JSONTokener(jsonArray.getJSONObject(i).getString("menu")).nextValue() as JSONArray
+
+                for (k in 0 until menu.length()) {
+                    storeMenuList.add(
+                        StoreMenuClass(
+                            menu.getJSONObject(k).getString("menuName"),
+                            menu.getJSONObject(k).getString("menuPrice")
+                    ))
+                }
+
+                break
+            }
+        }
+        // Log.d("menuData", "menu : $storeMenuList")
+        return storeMenuList
     }
 }

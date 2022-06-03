@@ -19,6 +19,14 @@ data class StoreDataClass(
             else -> null
         }
 
+    fun getMichelinBackgroundImage(): Int? =
+        when(michelin){
+            1 -> R.drawable.ic_michelin_one_background
+            2 -> R.drawable.ic_michelin_two_background
+            3 -> R.drawable.ic_michelin_three_background
+            else -> null
+        }
+
     fun getRankImage(): Int? =
         when(rank){
             1 -> R.drawable.ic_one_rank

@@ -64,7 +64,7 @@ class DataControl {
         val tmpScore = mutableListOf<StoreScore>()
 
         val range = (1..3)
-        for(i in 1..16){
+        for(i in 1..30){
             tmpScore.add(StoreScore(i,range.random()))
         }
 
@@ -82,7 +82,7 @@ class DataControl {
             * id 값으로 점수 값 받아오기. key-value가 id-score로 되게
             * */
             val scr = tmpScore[id-1].score
-            storeData.add(StoreDataClass(id, imageUrl, name, detail, scr))
+            storeData.add(StoreDataClass(id, imageUrl, name, detail, scr , scr))
         }
 
         return storeData
@@ -91,7 +91,7 @@ class DataControl {
         val tmpScore = mutableListOf<StoreScore>()
 
         val range = (1..3)
-        for(i in 1..16){
+        for(i in 1..30){
             tmpScore.add(StoreScore(i,range.random()))
         }
 

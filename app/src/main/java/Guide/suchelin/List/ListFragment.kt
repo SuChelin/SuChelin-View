@@ -70,9 +70,12 @@ class ListFragment : BaseFragment<FragmentListBinding>(
         binding.listFilterDistanceTextView.setOnClickListener{
             // 필터 바꾸기
             changeFilter(FILTER_NEW)
-
-            items.sortBy {
-                it.id
+            //신규니까 id가 큰게 나중에 추가된 가게
+            items.apply{
+                sortBy {
+                    it.id
+                }
+                reverse()
             }
 
             rvAdapter.notifyDataSetChanged()

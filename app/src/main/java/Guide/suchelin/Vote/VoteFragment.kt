@@ -15,7 +15,9 @@ import android.content.SharedPreferences
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.RatingBar
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -80,10 +82,9 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                     val ratingBar = mAlertDialog.findViewById<RatingBar>(R.id.rating)
                     var ratingScore = 0
                     mAlertDialog.setCancelable(false);
-
+                    val explain = mAlertDialog.findViewById<TextView>(R.id.explain)
+                    explain.visibility = View.VISIBLE
                     var score = 0L;
-
-
 
                     database.child(itemId).get().addOnSuccessListener {
                         Log.i("firebase", "Got value ${it.value}")
@@ -100,15 +101,56 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                         database
                             .child(itemId)
                             .setValue(score)
-                        VoteSharedPreference().putVoteStatement(itemId, rating.toInt(), requireActivity())
+                        VoteSharedPreference().putVoteStatement(
+                            itemId,
+                            rating.toInt(),
+                            requireActivity()
+                        )
                         mAlertDialog.dismiss()
                     }
                 } else {
-                    Toast.makeText(context, "이미 투표한 가게입니다", Toast.LENGTH_SHORT).show()
+                    Log.d("VoteStatement", "이미 투표한 가게입니다")
+
+                    val mDialogView =
+                        LayoutInflater.from(requireContext()).inflate(R.layout.vote_dialog, null)
+                    val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView)
+                    val mAlertDialog = mBuilder.show()
+                    val ratingBar = mAlertDialog.findViewById<RatingBar>(R.id.rating)
+                    //저장된 점수 가져오기
+                    var savedScore =
+                        VoteSharedPreference().getVoteStatement(itemId, requireActivity())
+                    val votedMessage = mAlertDialog.findViewById<TextView>(R.id.votedMessage)
+                    votedMessage.visibility = View.VISIBLE
+                    mAlertDialog.setCancelable(false);
+
+                    var score = 0L;
+
+                    database.child(itemId).get().addOnSuccessListener {
+                        Log.i("firebase", "Got value ${it.value}")
+                        //오류가 계속 나버려서 미리 파이어베이스 db에 다 id - 0 으로 non null 하게 만들기
+                        score = it.value as Long
+                        //기존 값 가져오기
+                    }.addOnFailureListener {
+                        Log.e("firebase", "Error getting data", it)
+                    }
+
+                    ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+                        //저장된 점수 빼고 새 점수 더하기
+                        score = score - savedScore + rating.toLong()
+                        //sharedpreference로 한번 투표하면 클릭못하게 바꿀예정
+                        database
+                            .child(itemId)
+                            .setValue(score)
+                        VoteSharedPreference().putVoteStatement(
+                            itemId,
+                            rating.toInt(),
+                            requireActivity()
+                        )
+                        mAlertDialog.dismiss()
+                    }
                 }
             }
         }
-
 
 
         binding.sortNameVote.setOnClickListener {
@@ -122,13 +164,15 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                     //sharedpreference에 값이 없으면 정상작동
                     if (VoteSharedPreference().getVoteStatement(itemId, requireActivity()) == 0) {
                         val mDialogView =
-                            LayoutInflater.from(requireContext()).inflate(R.layout.vote_dialog, null)
+                            LayoutInflater.from(requireContext())
+                                .inflate(R.layout.vote_dialog, null)
                         val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView)
                         val mAlertDialog = mBuilder.show()
                         val ratingBar = mAlertDialog.findViewById<RatingBar>(R.id.rating)
                         var ratingScore = 0
                         mAlertDialog.setCancelable(false);
-
+                        val explain = mAlertDialog.findViewById<TextView>(R.id.explain)
+                        explain.visibility = View.VISIBLE
                         var score = 0L;
 
                         database.child(itemId).get().addOnSuccessListener {
@@ -146,15 +190,57 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                             database
                                 .child(itemId)
                                 .setValue(score)
-                            VoteSharedPreference().putVoteStatement(itemId, rating.toInt(), requireActivity())
+                            VoteSharedPreference().putVoteStatement(
+                                itemId,
+                                rating.toInt(),
+                                requireActivity()
+                            )
                             mAlertDialog.dismiss()
                         }
                     } else {
-                        Toast.makeText(context, "이미 투표한 가게입니다", Toast.LENGTH_SHORT).show()
+                        Log.d("VoteStatement", "이미 투표한 가게입니다")
+
+                        val mDialogView =
+                            LayoutInflater.from(requireContext())
+                                .inflate(R.layout.vote_dialog, null)
+                        val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView)
+                        val mAlertDialog = mBuilder.show()
+                        val ratingBar = mAlertDialog.findViewById<RatingBar>(R.id.rating)
+                        //저장된 점수 가져오기
+                        var savedScore =
+                            VoteSharedPreference().getVoteStatement(itemId, requireActivity())
+                        val votedMessage = mAlertDialog.findViewById<TextView>(R.id.votedMessage)
+                        votedMessage.visibility = View.VISIBLE
+                        mAlertDialog.setCancelable(false);
+
+                        var score = 0L;
+
+                        database.child(itemId).get().addOnSuccessListener {
+                            Log.i("firebase", "Got value ${it.value}")
+                            //오류가 계속 나버려서 미리 파이어베이스 db에 다 id - 0 으로 non null 하게 만들기
+                            score = it.value as Long
+                            //기존 값 가져오기
+                        }.addOnFailureListener {
+                            Log.e("firebase", "Error getting data", it)
+                        }
+
+                        ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+                            //저장된 점수 빼고 새 점수 더하기
+                            score = score - savedScore + rating.toLong()
+                            //sharedpreference로 한번 투표하면 클릭못하게 바꿀예정
+                            database
+                                .child(itemId)
+                                .setValue(score)
+                            VoteSharedPreference().putVoteStatement(
+                                itemId,
+                                rating.toInt(),
+                                requireActivity()
+                            )
+                            mAlertDialog.dismiss()
+                        }
                     }
                 }
             }
-
             binding.rvVote.adapter = rvAdapter
             binding.rvVote.layoutManager = GridLayoutManager(context, 2)
         }
@@ -168,15 +254,22 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                 override fun onClick(view: View, position: Int) {
                     val itemId = items[position].id.toString()
                     //sharedpreference에 값이 0이면 투표를 안한 것 -> 정상작동
-                    if (VoteSharedPreference().getVoteStatement(itemId, requireActivity()) == 0) {
+                    if (VoteSharedPreference().getVoteStatement(
+                            itemId,
+                            requireActivity()
+                        ) == 0
+                    ) {
                         val mDialogView =
-                            LayoutInflater.from(requireContext()).inflate(R.layout.vote_dialog, null)
-                        val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView)
+                            LayoutInflater.from(requireContext())
+                                .inflate(R.layout.vote_dialog, null)
+                        val mBuilder =
+                            AlertDialog.Builder(requireContext()).setView(mDialogView)
                         val mAlertDialog = mBuilder.show()
                         val ratingBar = mAlertDialog.findViewById<RatingBar>(R.id.rating)
                         var ratingScore = 0
                         mAlertDialog.setCancelable(false);
-
+                        val explain = mAlertDialog.findViewById<TextView>(R.id.explain)
+                        explain.visibility = View.VISIBLE
                         var score = 0L;
 
                         database.child(itemId).get().addOnSuccessListener {
@@ -194,11 +287,56 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                             database
                                 .child(itemId)
                                 .setValue(score)
-                            VoteSharedPreference().putVoteStatement(itemId, rating.toInt(), requireActivity())
+                            VoteSharedPreference().putVoteStatement(
+                                itemId,
+                                rating.toInt(),
+                                requireActivity()
+                            )
                             mAlertDialog.dismiss()
                         }
                     } else {
-                        Toast.makeText(context, "이미 투표한 가게입니다", Toast.LENGTH_SHORT).show()
+                        Log.d("VoteStatement", "이미 투표한 가게입니다")
+
+                        val mDialogView =
+                            LayoutInflater.from(requireContext())
+                                .inflate(R.layout.vote_dialog, null)
+                        val mBuilder =
+                            AlertDialog.Builder(requireContext()).setView(mDialogView)
+                        val mAlertDialog = mBuilder.show()
+                        val ratingBar = mAlertDialog.findViewById<RatingBar>(R.id.rating)
+                        //저장된 점수 가져오기
+                        var savedScore =
+                            VoteSharedPreference().getVoteStatement(itemId, requireActivity())
+                        val votedMessage =
+                            mAlertDialog.findViewById<TextView>(R.id.votedMessage)
+                        votedMessage.visibility = View.VISIBLE
+                        mAlertDialog.setCancelable(false);
+
+                        var score = 0L;
+
+                        database.child(itemId).get().addOnSuccessListener {
+                            Log.i("firebase", "Got value ${it.value}")
+                            //오류가 계속 나버려서 미리 파이어베이스 db에 다 id - 0 으로 non null 하게 만들기
+                            score = it.value as Long
+                            //기존 값 가져오기
+                        }.addOnFailureListener {
+                            Log.e("firebase", "Error getting data", it)
+                        }
+
+                        ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+                            //저장된 점수 빼고 새 점수 더하기
+                            score = score - savedScore + rating.toLong()
+                            //sharedpreference로 한번 투표하면 클릭못하게 바꿀예정
+                            database
+                                .child(itemId)
+                                .setValue(score)
+                            VoteSharedPreference().putVoteStatement(
+                                itemId,
+                                rating.toInt(),
+                                requireActivity()
+                            )
+                            mAlertDialog.dismiss()
+                        }
                     }
                 }
             }
@@ -217,15 +355,22 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                 override fun onClick(view: View, position: Int) {
                     val itemId = items[position].id.toString()
                     //sharedpreference에 값이 없으면 정상작동
-                    if (VoteSharedPreference().getVoteStatement(itemId, requireActivity()) == 0) {
+                    if (VoteSharedPreference().getVoteStatement(
+                            itemId,
+                            requireActivity()
+                        ) == 0
+                    ) {
                         val mDialogView =
-                            LayoutInflater.from(requireContext()).inflate(R.layout.vote_dialog, null)
-                        val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView)
+                            LayoutInflater.from(requireContext())
+                                .inflate(R.layout.vote_dialog, null)
+                        val mBuilder =
+                            AlertDialog.Builder(requireContext()).setView(mDialogView)
                         val mAlertDialog = mBuilder.show()
                         val ratingBar = mAlertDialog.findViewById<RatingBar>(R.id.rating)
                         var ratingScore = 0
                         mAlertDialog.setCancelable(false);
-
+                        val explain = mAlertDialog.findViewById<TextView>(R.id.explain)
+                        explain.visibility = View.VISIBLE
                         var score = 0L;
 
                         database.child(itemId).get().addOnSuccessListener {
@@ -243,11 +388,56 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                             database
                                 .child(itemId)
                                 .setValue(score)
-                            VoteSharedPreference().putVoteStatement(itemId, rating.toInt(), requireActivity())
+                            VoteSharedPreference().putVoteStatement(
+                                itemId,
+                                rating.toInt(),
+                                requireActivity()
+                            )
                             mAlertDialog.dismiss()
                         }
                     } else {
-                        Toast.makeText(context, "이미 투표한 가게입니다", Toast.LENGTH_SHORT).show()
+                        Log.d("VoteStatement", "이미 투표한 가게입니다")
+
+                        val mDialogView =
+                            LayoutInflater.from(requireContext())
+                                .inflate(R.layout.vote_dialog, null)
+                        val mBuilder =
+                            AlertDialog.Builder(requireContext()).setView(mDialogView)
+                        val mAlertDialog = mBuilder.show()
+                        val ratingBar = mAlertDialog.findViewById<RatingBar>(R.id.rating)
+                        //저장된 점수 가져오기
+                        var savedScore =
+                            VoteSharedPreference().getVoteStatement(itemId, requireActivity())
+                        val votedMessage =
+                            mAlertDialog.findViewById<TextView>(R.id.votedMessage)
+                        votedMessage.visibility = View.VISIBLE
+                        mAlertDialog.setCancelable(false);
+
+                        var score = 0L;
+
+                        database.child(itemId).get().addOnSuccessListener {
+                            Log.i("firebase", "Got value ${it.value}")
+                            //오류가 계속 나버려서 미리 파이어베이스 db에 다 id - 0 으로 non null 하게 만들기
+                            score = it.value as Long
+                            //기존 값 가져오기
+                        }.addOnFailureListener {
+                            Log.e("firebase", "Error getting data", it)
+                        }
+
+                        ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+                            //저장된 점수 빼고 새 점수 더하기
+                            score = score - savedScore + rating.toLong()
+                            //sharedpreference로 한번 투표하면 클릭못하게 바꿀예정
+                            database
+                                .child(itemId)
+                                .setValue(score)
+                            VoteSharedPreference().putVoteStatement(
+                                itemId,
+                                rating.toInt(),
+                                requireActivity()
+                            )
+                            mAlertDialog.dismiss()
+                        }
                     }
                 }
             }

@@ -35,6 +35,7 @@
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.20989583333333334" />
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.20989583333333334" />
         <entry key="app/src/main/res/layout/rv_item.xml" value="0.18333333333333332" />
+        <entry key="app/src/main/res/layout/vote_dialog.xml" value="0.25" />
       </map>
     </option>
   </component>

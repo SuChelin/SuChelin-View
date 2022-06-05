@@ -1,23 +1,14 @@
 package Guide.suchelin.Vote
 
-import Guide.suchelin.DataClass.StoreScore
+import Guide.suchelin.DataClass.StoreDataClass
 import Guide.suchelin.DataControl
 import android.os.Bundle
 import android.view.View
 import Guide.suchelin.R
-import Guide.suchelin.StoreDetail.StoreDetailActivity
 import Guide.suchelin.config.BaseFragment
 import Guide.suchelin.databinding.FragmentVoteBinding
-import android.app.AlertDialog
-import android.content.Context
-import android.content.Intent
-import android.content.SharedPreferences
 import android.util.Log
-import android.view.LayoutInflater
-import android.widget.RatingBar
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -31,12 +22,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
 ) {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private lateinit var rvAdapter: VoteRvAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,22 +40,52 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                 }
             }
 
-        val database = Firebase.database.reference
-
+        database = Firebase.database.reference
 
         //고유 uid기반으로 데이터가 들어감
-//        val myRef = database.getReference("StoreVote").child(Firebase.auth.currentUser!!.uid)
+        // val myRef = database.getReference("StoreVote").child(Firebase.auth.currentUser!!.uid)
         val items = DataControl().getStoreDataList(requireContext())
         items.sortBy { it.name }
-//json 적용 블럭
 
-        val rvAdapter = VoteRvAdapter(context, items)
+        // rvAdatper 설정
+        rvAdapter = VoteRvAdapter(context, items)
 
-        binding.rvVote.apply {
-            adapter = rvAdapter
-            layoutManager = GridLayoutManager(context, 2)
+        // rvAdatper 설정
+        setRvAdapter(items)
+
+        // 필터에 따른 설정
+        binding.sortNameVote.setOnClickListener {
+            items.sortBy {
+                it.name
+            }
+            rvAdapter.notifyDataSetChanged()
+
+            // rvAdatper 설정
+            setRvAdapter(items)
         }
 
+        binding.sortDistanceVote.setOnClickListener {
+            items.sortBy {
+                it.id
+            }
+
+            rvAdapter.notifyDataSetChanged()
+
+            // rvAdatper 설정
+            setRvAdapter(items)
+        }
+        binding.sortScoreVote.setOnClickListener {
+            items.apply {
+                sortBy { it.score }
+                reverse()
+            }
+
+            rvAdapter.notifyDataSetChanged()
+
+            // rvAdatper 설정
+            setRvAdapter(items)
+        }
+        /*
         rvAdapter.itemClick = object : VoteRvAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
                 val itemId = items[position].id.toString()
@@ -152,12 +168,12 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
             }
         }
 
-
         binding.sortNameVote.setOnClickListener {
             items.sortBy {
                 it.name
             }
             rvAdapter.notifyDataSetChanged()
+
             rvAdapter.itemClick = object : VoteRvAdapter.ItemClick {
                 override fun onClick(view: View, position: Int) {
                     val itemId = items[position].id.toString()
@@ -444,6 +460,27 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
 
             binding.rvVote.adapter = rvAdapter
             binding.rvVote.layoutManager = GridLayoutManager(context, 2)
+        }
+
+         */
+    }
+
+    fun setRvAdapter(items: ArrayList<StoreDataClass>) {
+        binding.rvVote.adapter = rvAdapter
+        binding.rvVote.layoutManager = GridLayoutManager(context, 2)
+
+        rvAdapter.itemClick = object : VoteRvAdapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+                val storeId = items[position].id
+                val storeName = items[position].name
+                if(VoteSharedPreference().getVoteStatement(storeId.toString(), requireActivity()) == 0){
+                    // 처음 투표한 가게일 경우
+                    VoteControl(this@VoteFragment, database, storeId, storeName).showDialog()
+                } else {
+                    // 이미 투표한 가게일 경우
+                    Toast.makeText(this@VoteFragment.requireContext(), "이미 투표한 가게입니다.", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }

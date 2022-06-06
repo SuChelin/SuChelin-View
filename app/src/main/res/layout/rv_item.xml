@@ -41,8 +41,8 @@
             android:gravity="start"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
+            android:textSize="16sp"
+            android:fontFamily="@font/leferipointspecial"
             tools:text="와우당" />
 
         <TextView
@@ -53,6 +53,7 @@
             android:ellipsize="marquee"
             android:gravity="start"
             android:singleLine="true"
+            android:fontFamily="@font/leferipointwhite"
             android:textColor="@color/black"
             android:textSize="12sp"
             tools:text="와우당" />

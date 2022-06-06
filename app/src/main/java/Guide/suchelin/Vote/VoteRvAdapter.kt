@@ -11,21 +11,20 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 
-class VoteRvAdapter(val context: Context?, val items: MutableList<StoreDataClass>):RecyclerView.Adapter<VoteRvAdapter.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.vote_item,parent,false)
-
-        return ViewHolder(view)
-    }
+class VoteRvAdapter(val items: MutableList<StoreDataClass>):RecyclerView.Adapter<VoteRvAdapter.ViewHolder>() {
     interface ItemClick{
         fun onClick(view :View, position: Int)
     }
-
     var itemClick : ItemClick? = null
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.vote_item,parent,false)
+        return ViewHolder(view)
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if(itemClick != null){
-            holder?.itemView.setOnClickListener{v->
+            holder.itemView.setOnClickListener{v->
                 itemClick!!.onClick(v, position)
             }
         }
@@ -37,10 +36,12 @@ class VoteRvAdapter(val context: Context?, val items: MutableList<StoreDataClass
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        val imageViewShop = itemView.findViewById<ImageView>(R.id.vote_item_imageView)
+        val textViewTitle = itemView.findViewById<TextView>(R.id.vote_item_store_textView)
+        val michelinImage = itemView.findViewById<ImageView>(R.id.vote_item_michelin_imageView)
+
         fun bindItems(item: StoreDataClass){
-            val imageViewShop = itemView.findViewById<ImageView>(R.id.imgVote)
-            val textViewTitle = itemView.findViewById<TextView>(R.id.textVote)
-            Glide.with(context!!)
+            Glide.with(imageViewShop)
                 .load(item.imageUrl)
                 .centerCrop()
                 .into(imageViewShop)

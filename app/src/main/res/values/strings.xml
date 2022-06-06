@@ -4,9 +4,13 @@
     <string name="suwon">수원대학교 정문</string>
     <string name="mapToolbarTitle">지도로 맛집 보기</string>
     <string name="listToolbarTitle">주변 맛집 보기</string>
+    <string name="voteToolbarTitle">투표하기</string>
+    <string name="voteSearchHint">찾고 싶은 가게를 입력해보세요.</string>
+    <string name="search">검색</string>
     <string name="filterName">이름</string>
     <string name="filterGrade">등급</string>
     <string name="filterNew">신규</string>
+    <string name="filterVote">투표한 가게</string>
     <string name="address">주소</string>
     <string name="menu">메뉴판</string>
     <string name="back">뒤로가기</string>

@@ -1,87 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/box_10_ractangle_white"
-    android:paddingVertical="20dp"
-    android:paddingHorizontal="30dp">
-
-    <TextView
-        android:id="@+id/vote_dialog_title_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/vote_dialog_cancel_imageView"
-        app:layout_constraintBottom_toBottomOf="@+id/vote_dialog_cancel_imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_centerHorizontal="true"
-        android:text="@string/voteTitle"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        android:textStyle="bold" />
-
-    <ImageView
-        android:id="@+id/vote_dialog_cancel_imageView"
-        android:layout_width="17sp"
-        android:layout_height="17sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_cancel" />
+    android:paddingHorizontal="20dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="25dp">
 
     <TextView
         android:id="@+id/vote_dialog_store_title_textView"
-        android:layout_marginTop="35dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vote_dialog_title_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textSize="17sp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:gravity="center"
-        android:textSize="20sp"
-        tools:text="\u003C 와우당 \u003E"/>
+        app:layout_constraintBottom_toBottomOf="@+id/vote_dialog_cancel_imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/vote_dialog_cancel_imageView"
+        tools:text="와우당" />
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:id="@+id/vote_dialog_cancel_imageView"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:src="@drawable/ic_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/explain"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vote_dialog_store_title_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="25dp"
         android:gravity="center"
         android:text="@string/voteDetail"
         android:textColor="@color/black"
-        android:textSize="12sp" />
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vote_dialog_store_title_textView" />
+
+    <TextView
+        android:id="@+id/warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="@string/voteWarning"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/explain" />
 
     <RatingBar
         android:id="@+id/rating"
         style="@style/Widget.AppCompat.RatingBar.Indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/explain"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:isIndicator="false"
         android:numStars="5"
         android:progressTint="#EDFFEB3B"
         android:rating="0"
-        android:stepSize="1" />
+        android:stepSize="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/warning" />
 
     <TextView
         android:id="@+id/vote_dialog_complete_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rating"
         android:layout_marginTop="20dp"
         android:text="@string/voteComplete"
         android:textColor="@color/blue"
-        android:textSize="17sp"
-        android:textStyle="bold" />
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rating" />
 </androidx.constraintlayout.widget.ConstraintLayout>

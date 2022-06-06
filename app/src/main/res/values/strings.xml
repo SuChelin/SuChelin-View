@@ -12,6 +12,7 @@
     <string name="back">뒤로가기</string>
     <string name="storeImage">가게 사진</string>
     <string name="voteTitle">맛집 투표</string>
-    <string name="voteDetail">맛있는 맛집을 다른 사람에게 추천해주세요.</string>
+    <string name="voteDetail">맛집을 다른 사람에게 추천해주세요.</string>
+    <string name="voteWarning">투표는 한 번만 가능합니다.</string>
     <string name="voteComplete">투표완료</string>
 </resources>

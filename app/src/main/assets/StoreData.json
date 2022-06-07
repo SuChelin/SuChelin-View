@@ -81,51 +81,163 @@
   },
   {
     "id": 11,
-    "imageUrl": "",
-    "name": "신동랩 수원대점 신동랩 수원대점 신동랩 수원대점 신동랩 수원대점 test",
-    "detail": "",
-    "latitude": 0.0,
-    "longitude": 0.0
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200722_252%2F15953952297941ypjk_JPEG%2FlfybAvjhhvrEba2UXNur5DGl.jpg",
+    "name": "복돼지연탄구이",
+    "detail": "삼겹 한 판",
+    "latitude": 37.2138611,
+    "longitude": 126.978107
   },
   {
     "id": 12,
-    "imageUrl": "",
-    "name": "",
-    "detail": "",
-    "latitude": 0.0,
-    "longitude": 0.0
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190118_137%2F1547811640208noOyb_JPEG%2FTpZql_GzPPegyICAG2GO-mJ4.jpg",
+    "name": "등촌샤브칼국수 와우점",
+    "detail": "샤브칼국수 + 볶음밥",
+    "latitude": 37.2150862,
+    "longitude": 126.976586
   },
   {
     "id": 13,
-    "imageUrl": "",
-    "name": "",
-    "detail": "",
-    "latitude": 0.0,
-    "longitude": 0.0
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20211129_198%2F16381690520810vcY1_JPEG%2F%25C7%25C3%25B7%25B9%25C0%25CC%25BD%25BA%25B7%25CE%25B0%25ED.jpg",
+    "name": "라홍방마라탕 수원대점",
+    "detail": "마라탕",
+    "latitude": 37.2141490,
+    "longitude": 126.975921
   },
   {
     "id": 14,
-    "imageUrl": "",
-    "name": "",
-    "detail": "",
-    "latitude": 0.0,
-    "longitude": 0.0
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190118_163%2F1547816081601eyPDv_JPEG%2F8ZW0aOUVd3kgKKpjLOEJP9eK.jpg",
+    "name": "돈비가",
+    "detail": "돼지 생갈비",
+    "latitude": 37.2141215,
+    "longitude": 126.973927
   },
   {
     "id": 15,
-    "imageUrl": "",
-    "name": "",
-    "detail": "",
-    "latitude": 0.0,
-    "longitude": 0.0
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220216_230%2F1644966265637L8XxY_JPEG%2F1644678722241-1.jpg",
+    "name": "매운언니",
+    "detail": "뭉티기, 소곱창",
+    "latitude": 37.2139061,
+    "longitude": 126.977893
   },
   {
     "id": 16,
-    "imageUrl": "",
-    "name": "",
-    "detail": "",
-    "latitude": 0.0,
-    "longitude": 0.0
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190215_54%2F155019951060542bQD_JPEG%2FXsU6BdzWk9PVHk5d5M3GnLL-.jpg",
+    "name": "밀플랜비 수원대점",
+    "detail": "부리또",
+    "latitude": 37.2139052,
+    "longitude": 126.977887
+  },
+  {
+    "id": 17,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200910_219%2F1599712628541Ea8w1_JPEG%2FA73l9n79Lg2yhhH1a1bFQqdx.jpeg.jpg",
+    "name": "카페 드 다온",
+    "detail": "차",
+    "latitude": 37.2171222,
+    "longitude": 126.974827
+  },
+  {
+    "id": 18,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200716_257%2F1594845222433gYQkB_JPEG%2F9ScJ6OSMhfJt1ydmSMst8dBm.JPG.jpg",
+    "name": "1인자24시감자탕뼈해장국 수원대점",
+    "detail": "뼈해장국",
+    "latitude": 37.2148882,
+    "longitude": 126.978017
+  },
+  {
+    "id": 19,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200601_104%2F15909877491223w8XK_JPEG%2Fv2468i8Wf8MxqGjY69mjwLv0.jpg",
+    "name": "여너여너",
+    "detail": "연어 & 모듬 초밥",
+    "latitude": 37.2153025,
+    "longitude": 126.976766
+  },
+  {
+    "id": 20,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190118_87%2F15478164673496WrLj_JPEG%2FDUgfPk8-GkZViOSj9lEurg55.jpg",
+    "name": "찌개지존 수원대점",
+    "detail": "양푼 통돼지 김치찌개",
+    "latitude": 37.2141580,
+    "longitude": 126.976023
+  },
+  {
+    "id": 21,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200813_224%2F1597319917983khMmV_JPEG%2Fro0LMdMaNUhY5iUdpediB858.jpg",
+    "name": "정가네곱창전골",
+    "detail": "순대국밥 & 곱창전골",
+    "latitude": 37.2147349,
+    "longitude": 126.977419
+  },
+  {
+    "id": 22,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210419_269%2F161880545229211wQW_JPEG%2FAGwzcnc9k_yHFShzQw7cIgRo.jpg",
+    "name": "유쓰동",
+    "detail": "규동 & 치즈믹스동",
+    "latitude": 37.2141497,
+    "longitude": 126.979425
+  },
+  {
+    "id": 23,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=http%3A%2F%2Fimage.nmv.naver.net%2Fblog_2021_11_11_1457%2F63753c9c-42ee-11ec-a74c-48df379ccacc_01.jpg",
+    "name": "와주전집",
+    "detail": "전",
+    "latitude": 37.2135632,
+    "longitude": 126.975347
+  },
+  {
+    "id": 24,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200324_169%2F1585044511447Q9vI0_JPEG%2FxhkZneQArnmgV2alu1se6WVr.jpg",
+    "name": "왕가의 쌈밥",
+    "detail": "쌈밥 정식",
+    "latitude": 37.2143739,
+    "longitude": 126.974569
+  },
+  {
+    "id": 25,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190308_180%2F1552028324577NpHpf_JPEG%2FMwKaxUlWoJLIju2hRM7cfW8j.jpg",
+    "name": "제주도그릴 화성점",
+    "detail": "모듬 흑돼지",
+    "latitude": 37.2147329,
+    "longitude": 126.977409
+  },
+  {
+    "id": 26,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200807_219%2F1596789519161I9HvL_JPEG%2FtVePcBkRWud6PlUmB3Eq8Iau.jpg",
+    "name": "쮸샤쮸샤 수원대점",
+    "detail": "쭈꾸미 샤브샤브 & 철판볶음",
+    "latitude": 126.976597,
+    "longitude": 37.2137887
+  },
+  {
+    "id": 27,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20211027_101%2F1635300079422Kz0QD_JPEG%2FxDx4uj-XVgcpQXW1iKxQuLQY.jpg",
+    "name": "컴포즈커피 화성수원대학교점",
+    "detail": "크로플 & 커피",
+    "latitude": 37.2141308,
+    "longitude": 126.975426
+  },
+  {
+    "id": 28,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20201201_91%2F1606816390076BQy34_JPEG%2FvBqZezFOUPLT3-bWAvoBtlZl.jpg",
+    "name": "SAISA",
+    "detail": "사이사 밀크티",
+    "latitude": 37.2141762,
+    "longitude": 126.976789
+  },
+  {
+    "id": 29,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190512_288%2F15576472729174abz1_JPEG%2FOH7BXAHZC2Us0uQCV2gsIDDf.jpg",
+    "name": "오늘",
+    "detail": "마카롱 & 커피",
+    "latitude": 37.2147349,
+    "longitude": 126.977419
+  },
+  {
+    "id": 30,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20201116_50%2F160551763789574nQU_JPEG%2FfWWcvm7P36jwvI7Bk-6CX4ae.jpg",
+    "name": "포히엔",
+    "detail": "베트남 음식",
+    "latitude": 37.2143929,
+    "longitude": 126.978974
   }
 ]
 

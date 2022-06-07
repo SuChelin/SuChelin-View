@@ -32,11 +32,11 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/store_detail_cardView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="98dp"
+        android:layout_marginTop="90dp"
         android:elevation="10dp"
         app:cardCornerRadius="90dp">
 

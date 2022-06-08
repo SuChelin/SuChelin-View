@@ -17,6 +17,10 @@ import Guide.suchelin.R
 import Guide.suchelin.StoreDetail.StoreDetailActivity
 import Guide.suchelin.config.BaseFragment
 import Guide.suchelin.databinding.FragmentMapBinding
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 class MapsFragment : BaseFragment<FragmentMapBinding>(
     FragmentMapBinding::bind,
@@ -38,6 +42,13 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //배너광고
+        MobileAds.initialize(requireContext()) {}
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
+
+
         mapView = view.findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
 

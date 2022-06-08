@@ -34,13 +34,27 @@
             />
     </LinearLayout>
 
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@id/mapView"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+    </com.google.android.gms.ads.AdView>
+
     <ImageView
         android:id="@+id/mapLocationButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_below="@+id/mapToolbarLinearLayout"
+        android:layout_below="@+id/adView"
         android:layout_alignParentEnd="true"
-        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:src="@drawable/crnavigation"
         app:tint="@color/black" />
 

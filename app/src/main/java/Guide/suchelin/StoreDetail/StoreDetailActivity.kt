@@ -5,14 +5,21 @@ import android.os.Bundle
 import Guide.suchelin.config.BaseActivity
 import Guide.suchelin.databinding.ActivityStoreDetailBinding
 import android.provider.ContactsContract
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 
 class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivityStoreDetailBinding::inflate) {
     private var storeId: Int = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        MobileAds.initialize(this) {}
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
 
         storeId = intent.getIntExtra("StoreName", -1)
 

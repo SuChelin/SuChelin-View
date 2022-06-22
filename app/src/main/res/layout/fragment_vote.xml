@@ -133,7 +133,8 @@
     <androidx.core.widget.NestedScrollView
         app:layout_constraintTop_toBottomOf="@+id/vote_shadow_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_marginTop="110dp"
+        android:layout_height="match_parent">
 
 
         <LinearLayout

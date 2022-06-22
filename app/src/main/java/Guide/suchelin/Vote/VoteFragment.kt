@@ -1,6 +1,7 @@
 package Guide.suchelin.Vote
 
 import Guide.suchelin.DataClass.StoreDataClass
+import Guide.suchelin.DataClass.StoreScore
 import Guide.suchelin.DataControl
 import Guide.suchelin.List.ListFragment
 import android.os.Bundle
@@ -9,7 +10,10 @@ import Guide.suchelin.R
 import Guide.suchelin.config.BaseFragment
 import Guide.suchelin.databinding.FragmentVoteBinding
 import android.util.Log
+import android.view.inputmethod.InputMethod
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -56,7 +60,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         items.sortBy { it.name }
 
         // rvAdatper 설정
-        rvAdapter = VoteRvAdapter(context, items)
+        rvAdapter = VoteRvAdapter(items)
 
         // rvAdatper 설정
         setRvAdapter(items)
@@ -66,13 +70,45 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
 
         // 투표한 가게 필터 부분
         binding.sortSelectVoted.setOnClickListener {
+            rvAdapter = VoteRvAdapter(items)
+            setRvAdapter(items)
             // 필터 바꾸기
             changeFilter(FILTER_VOTED)
 
             // 내용...!
         }
+        //검색
+        binding.voteSearchImageView.setOnClickListener {
+            //검색버튼 누르면 키보드 내려가게
+            var imm:InputMethodManager? = null
+            imm = requireActivity().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+            imm?.hideSoftInputFromWindow(it.windowToken,0)
+
+            val searchText = binding.voteSearchEditTextView.text.toString()
+            val searchItem = mutableListOf<StoreDataClass>()
+            var searchComplete = false
+
+            for(i in items.indices){
+                if(items[i].name.equals(searchText,true)){
+                    searchItem.add(items[i])
+                    rvAdapter = VoteRvAdapter(searchItem)
+
+                    setRvAdapter(searchItem as ArrayList<StoreDataClass>)
+                    searchComplete = true
+                    // rvAdatper 설정
+                    break
+                }
+            }
+            if(searchComplete==false){
+                Toast.makeText(context, "검색결과가 없습니다", Toast.LENGTH_SHORT).show()
+            }
+
+        }
 
         binding.sortNameVote.setOnClickListener {
+            rvAdapter = VoteRvAdapter(items)
+            setRvAdapter(items)
+
             items.sortBy {
                 it.name
             }
@@ -86,6 +122,9 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         }
 
         binding.sortDistanceVote.setOnClickListener {
+            rvAdapter = VoteRvAdapter(items)
+            setRvAdapter(items)
+
             items.sortBy {
                 it.id
             }
@@ -99,6 +138,9 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
             changeFilter(FILTER_NEW)
         }
         binding.sortScoreVote.setOnClickListener {
+            rvAdapter = VoteRvAdapter(items)
+            setRvAdapter(items)
+
             items.apply {
                 sortBy { it.score }
                 reverse()

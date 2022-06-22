@@ -238,6 +238,14 @@
     "detail": "베트남 음식",
     "latitude": 37.2143929,
     "longitude": 126.978974
+  },
+  {
+    "id": 31,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220617_4%2F16554567748903ETI5_JPEG%2F1649035525249.jpg",
+    "name": "스컬 타코",
+    "detail": "타코",
+    "latitude": 37.2154736,
+    "longitude": 126.976563
   }
 ]
 

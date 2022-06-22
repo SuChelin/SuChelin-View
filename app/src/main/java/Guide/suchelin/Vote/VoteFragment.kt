@@ -1,19 +1,15 @@
 package Guide.suchelin.Vote
 
 import Guide.suchelin.DataClass.StoreDataClass
-import Guide.suchelin.DataClass.StoreScore
 import Guide.suchelin.DataControl
-import Guide.suchelin.List.ListFragment
-import android.os.Bundle
-import android.view.View
 import Guide.suchelin.R
 import Guide.suchelin.config.BaseFragment
 import Guide.suchelin.databinding.FragmentVoteBinding
+import android.os.Bundle
 import android.util.Log
-import android.view.inputmethod.InputMethod
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -45,6 +41,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
+
                     Log.d("MainActivity", user!!.uid)
                     //로그인됐으면 uid값 찍힘 !!는 not null임을 명시하는 것.
                 } else {
@@ -74,8 +71,22 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
             setRvAdapter(items)
             // 필터 바꾸기
             changeFilter(FILTER_VOTED)
-
+            val voteItems = mutableListOf<StoreDataClass>()
+            var voteComplete = false
             // 내용...!
+            for(i in items.indices){
+                if((VoteSharedPreference().getVoteStatement(items[i].id.toString(),requireActivity())) > 0){
+                    voteItems.add(items[i])
+                    voteComplete = true
+                }
+            }
+
+            rvAdapter = VoteRvAdapter(voteItems)
+            setRvAdapter(voteItems as ArrayList<StoreDataClass>)
+
+            if(voteComplete==false){
+                Toast.makeText(context, "투표한 가게가 없습니다", Toast.LENGTH_SHORT).show()
+            }
         }
         //검색
         binding.voteSearchImageView.setOnClickListener {

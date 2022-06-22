@@ -87,9 +87,9 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
             val searchText = binding.voteSearchEditTextView.text.toString()
             val searchItem = mutableListOf<StoreDataClass>()
             var searchComplete = false
-
+            //일부만 같으려면 contains, 완전히 같으려면 eqauls나 contentEquals
             for(i in items.indices){
-                if(items[i].name.equals(searchText,true)){
+                if(items[i].name.contains(searchText,true)){
                     searchItem.add(items[i])
                     rvAdapter = VoteRvAdapter(searchItem)
 
@@ -102,7 +102,6 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
             if(searchComplete==false){
                 Toast.makeText(context, "검색결과가 없습니다", Toast.LENGTH_SHORT).show()
             }
-
         }
 
         binding.sortNameVote.setOnClickListener {

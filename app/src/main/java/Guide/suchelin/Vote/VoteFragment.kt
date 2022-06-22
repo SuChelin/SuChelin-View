@@ -133,8 +133,11 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
             rvAdapter = VoteRvAdapter(items)
             setRvAdapter(items)
 
-            items.sortBy {
-                it.id
+            items.apply{
+                sortBy {
+                    it.id
+                }
+                reverse()
             }
 
             rvAdapter.notifyDataSetChanged()

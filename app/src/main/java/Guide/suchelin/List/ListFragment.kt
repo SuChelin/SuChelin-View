@@ -30,6 +30,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
         val items = DataControl().getStoreDataList(requireContext())
         items.sortBy { it.name }
 
+        val allScores = DataControl().scoreFromFirebase()
         val rvAdapter = RvAdapter(context, items)
 
         rvAdapter.itemClick = object : RvAdapter.ItemClick{

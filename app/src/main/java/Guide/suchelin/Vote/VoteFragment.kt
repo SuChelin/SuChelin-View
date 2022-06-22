@@ -91,14 +91,12 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
             for(i in items.indices){
                 if(items[i].name.contains(searchText,true)){
                     searchItem.add(items[i])
-                    rvAdapter = VoteRvAdapter(searchItem)
-
-                    setRvAdapter(searchItem as ArrayList<StoreDataClass>)
                     searchComplete = true
-                    // rvAdatper 설정
-                    break
                 }
             }
+            rvAdapter = VoteRvAdapter(searchItem)
+            setRvAdapter(searchItem as ArrayList<StoreDataClass>)
+
             if(searchComplete==false){
                 Toast.makeText(context, "검색결과가 없습니다", Toast.LENGTH_SHORT).show()
             }

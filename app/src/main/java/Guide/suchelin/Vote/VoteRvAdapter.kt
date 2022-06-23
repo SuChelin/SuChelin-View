@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import Guide.suchelin.R
 import Guide.suchelin.DataClass.StoreDataClass
+import android.opengl.Visibility
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 
-class VoteRvAdapter(val items: MutableList<StoreDataClass>):RecyclerView.Adapter<VoteRvAdapter.ViewHolder>() {
+class VoteRvAdapter(val context: Context?, val items: MutableList<StoreDataClass>):RecyclerView.Adapter<VoteRvAdapter.ViewHolder>() {
     interface ItemClick{
         fun onClick(view :View, position: Int)
     }
@@ -39,7 +41,8 @@ class VoteRvAdapter(val items: MutableList<StoreDataClass>):RecyclerView.Adapter
         val imageViewShop = itemView.findViewById<ImageView>(R.id.vote_item_imageView)
         val textViewTitle = itemView.findViewById<TextView>(R.id.vote_item_store_textView)
         val michelinImage = itemView.findViewById<ImageView>(R.id.vote_item_michelin_imageView)
-
+        val viewVoted = itemView.findViewById<ConstraintLayout>(R.id.vote_item_selected_parent)
+        val viewVotedRating = itemView.findViewById<TextView>(R.id.vote_item_rating_textView)
         fun bindItems(item: StoreDataClass){
             Glide.with(imageViewShop)
                 .load(item.imageUrl)
@@ -47,6 +50,14 @@ class VoteRvAdapter(val items: MutableList<StoreDataClass>):RecyclerView.Adapter
                 .into(imageViewShop)
 
             textViewTitle.text = item.name
+            val voted = VoteSharedPreference().getVoteStatement(item.id.toString(), context!!)
+            if(voted != 0){
+                viewVoted.apply {
+                    visibility = View.VISIBLE
+                    isClickable = false
+                }
+                viewVotedRating.text = "${voted}/5"
+            }
         }
     }
 

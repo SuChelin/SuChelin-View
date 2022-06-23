@@ -57,7 +57,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         items.sortBy { it.name }
 
         // rvAdatper 설정
-        rvAdapter = VoteRvAdapter(items)
+        rvAdapter = VoteRvAdapter(context, items)
 
         // rvAdatper 설정
         setRvAdapter(items)
@@ -67,7 +67,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
 
         // 투표한 가게 필터 부분
         binding.sortSelectVoted.setOnClickListener {
-            rvAdapter = VoteRvAdapter(items)
+            rvAdapter = VoteRvAdapter(context, items)
             setRvAdapter(items)
             // 필터 바꾸기
             changeFilter(FILTER_VOTED)
@@ -81,7 +81,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                 }
             }
 
-            rvAdapter = VoteRvAdapter(voteItems)
+            rvAdapter = VoteRvAdapter(context, voteItems)
             setRvAdapter(voteItems as ArrayList<StoreDataClass>)
 
             if(voteComplete==false){
@@ -105,7 +105,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                     searchComplete = true
                 }
             }
-            rvAdapter = VoteRvAdapter(searchItem)
+            rvAdapter = VoteRvAdapter(context, searchItem)
             setRvAdapter(searchItem as ArrayList<StoreDataClass>)
 
             if(searchComplete==false){
@@ -114,7 +114,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         }
 
         binding.sortNameVote.setOnClickListener {
-            rvAdapter = VoteRvAdapter(items)
+            rvAdapter = VoteRvAdapter(context, items)
             setRvAdapter(items)
 
             items.sortBy {
@@ -130,7 +130,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         }
 
         binding.sortDistanceVote.setOnClickListener {
-            rvAdapter = VoteRvAdapter(items)
+            rvAdapter = VoteRvAdapter(context, items)
             setRvAdapter(items)
 
             items.apply{
@@ -149,7 +149,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
             changeFilter(FILTER_NEW)
         }
         binding.sortScoreVote.setOnClickListener {
-            rvAdapter = VoteRvAdapter(items)
+            rvAdapter = VoteRvAdapter(context, items)
             setRvAdapter(items)
 
             items.apply {
@@ -177,7 +177,8 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                 val storeName = items[position].name
                 if(VoteSharedPreference().getVoteStatement(storeId.toString(), requireActivity()) == 0){
                     // 처음 투표한 가게일 경우
-                    VoteControl(this@VoteFragment, database, storeId, storeName).showDialog()
+                    VoteControl(this@VoteFragment, database, storeId, storeName, rvAdapter).showDialog()
+                    rvAdapter.notifyDataSetChanged()
                 } else {
                     // 이미 투표한 가게일 경우
                     Toast.makeText(this@VoteFragment.requireContext(), "이미 투표한 가게입니다.", Toast.LENGTH_SHORT).show()

@@ -54,7 +54,6 @@ class VoteDialog(val storeTitle: String, val voteControl: VoteControl) : DialogF
             if(ratingValue > 0){
                 voteControl.changeStoreVote(ratingValue)
             }
-
             // 다이얼로그 종료하기
             dismiss()
         }

@@ -8,7 +8,8 @@ class VoteControl(
     val fragment: VoteFragment,
     val database: DatabaseReference,
     val storeId: Int,
-    val storeName: String
+    val storeName: String,
+    val rvAdapter: VoteRvAdapter
 ) {
     // 다이얼로그
     private val voteDialog: VoteDialog = VoteDialog(storeName, this)
@@ -64,6 +65,7 @@ class VoteControl(
     fun changeStoreVote(ratingValue: Int) {
         // 데이터베이스 동기화
         addStoreVoteToDatabase(ratingValue.toLong())
+        rvAdapter.notifyDataSetChanged()
 
         // 파일에 투표값 저장
         saveSharedStoreVote(ratingValue)

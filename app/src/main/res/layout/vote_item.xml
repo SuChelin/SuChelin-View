@@ -49,12 +49,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_centerHorizontal="true"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:src="@drawable/ic_vote_michelin_three"/>
 
         <TextView
-            android:layout_marginTop="5dp"
             android:id="@+id/vote_item_rating_textView"
             app:layout_constraintTop_toBottomOf="@+id/vote_item_michelin_imageView"
             app:layout_constraintBottom_toBottomOf="parent"

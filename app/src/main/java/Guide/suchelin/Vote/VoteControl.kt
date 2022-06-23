@@ -9,16 +9,16 @@ class VoteControl(
     val database: DatabaseReference,
     val storeId: Int,
     val storeName: String
-    ) {
+) {
     // 다이얼로그
     private val voteDialog: VoteDialog = VoteDialog(storeName, this)
-    private var score : Long? = null
+    private var score: Long? = null
 
-    private fun getStoreVoteSource(){
+    private fun getStoreVoteSource() {
         database.child(storeId.toString()).get().addOnSuccessListener {
             Log.i("firebase", "Got value ${it.value}")
             //오류가 계속 나버려서 미리 파이어베이스 db에 다 id - 0 으로 non null 하게 만들기
-            if(score != null){
+            if (score != null) {
                 // 데이터베이스 동기화 전에 addStoreVoteToDatabase 가 실행된 경우
                 addStoreVoteToDatabase(it.value as Long)
             } else {
@@ -39,7 +39,7 @@ class VoteControl(
     }
 
     private fun addStoreVoteToDatabase(addValue: Long) {
-        if(score == null){
+        if (score == null) {
             // 아직 데이터베이스 동기화 안됨
             score = addValue
         } else {

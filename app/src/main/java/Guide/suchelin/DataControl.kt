@@ -1,9 +1,6 @@
 package Guide.suchelin
 
-import Guide.suchelin.DataClass.StoreDataClass
-import Guide.suchelin.DataClass.StoreDataClassMap
-import Guide.suchelin.DataClass.StoreMenuClass
-import Guide.suchelin.DataClass.StoreScore
+import Guide.suchelin.DataClass.*
 import android.content.Context
 import android.util.Log
 import com.google.firebase.database.*
@@ -17,6 +14,13 @@ import java.io.InputStream
 
 class DataControl {
     private lateinit var database: DatabaseReference
+    private val allScores = hashMapOf<String, Long>()
+
+    companion object {
+        private const val FILTER_NAME = 1
+        private const val FILTER_GRADE = 2
+        private const val FILTER_NEW = 3
+    }
 
     // assets 파일 읽어오기
     private fun readFile(fileName: String, context: Context): String? {
@@ -91,6 +95,27 @@ class DataControl {
 
         return storeData
     }
+    //테스트 중
+    fun getStoreDataScoreList(context: Context, score: HashMap<String, Long>): ArrayList<StoreDataScoreClass> {
+        // 식당 데이터
+        val data = readFile("StoreData.json", context)
+        val storeData = ArrayList<StoreDataScoreClass>()
+
+        val jsonArray = JSONTokener(data).nextValue() as JSONArray
+        for (i in 0 until jsonArray.length()) {
+            val id = jsonArray.getJSONObject(i).getInt("id")
+            val imageUrl = jsonArray.getJSONObject(i).getString("imageUrl")
+            val name = jsonArray.getJSONObject(i).getString("name")
+            val detail = jsonArray.getJSONObject(i).getString("detail")
+            /*
+            * id 값으로 점수 값 받아오기. key-value가 id-score로 되게
+            * */
+            val scr = score.getValue(id.toString())
+            storeData.add(StoreDataScoreClass(id, imageUrl, name, detail, scr,))
+        }
+
+        return storeData
+    }
 
     fun getStoreDetail(context: Context, storeId: Int): StoreDataClass? {
         val tmpScore = mutableListOf<StoreScore>()
@@ -115,6 +140,28 @@ class DataControl {
                     jsonArray.getJSONObject(i).getString("name"),
                     jsonArray.getJSONObject(i).getString("detail"),
                     scr
+                )
+            }
+        }
+
+        return null
+    }
+    //테스트중
+    fun getStoreScoreDetail(context: Context, storeId: Int, score: Long): StoreDataScoreClass? {
+        // 식당 데이터
+        val data = readFile("StoreData.json", context)
+
+        val jsonArray = JSONTokener(data).nextValue() as JSONArray
+        for (i in 0 until jsonArray.length()) {
+            val id = jsonArray.getJSONObject(i).getInt("id")
+
+            if (id == storeId) {
+                return StoreDataScoreClass(
+                    id,
+                    jsonArray.getJSONObject(i).getString("imageUrl"),
+                    jsonArray.getJSONObject(i).getString("name"),
+                    jsonArray.getJSONObject(i).getString("detail"),
+                    score
                 )
             }
         }
@@ -153,58 +200,29 @@ class DataControl {
         return storeMenuList
     }
 
-    fun scoreFromFirebase(): MutableList<Long> {
-        val allScores = mutableListOf<Long>()
+    fun scoreFromFirebase(): HashMap<String, Long>{
+
         val database = Firebase.database
         val databaseRef = database.reference
 
-        databaseRef.addValueEventListener(object : ValueEventListener{
+        databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                for(id in snapshot.children){
-                    Log.d("dataRef", id.toString())
-                    allScores.add(id.getValue()!! as Long)
-
+                for (id in snapshot.children) {
+                    allScores.put(id.key!!, id.value!! as Long)
+                    Log.d("score: ", allScores.toString())
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
-                Log.e("Bookmark","DB error")
+                Log.e("dataRef", "DB error")
             }
         })
-        Log.d("dataRef", "${allScores} ")
-//
-//        databaseRef.runTransaction(object : Transaction.Handler {
-//            override fun doTransaction(mutableData: MutableData): Transaction.Result {
-//                //여기서 총 점수집계
-//                //가져와서 allScores에 list로 담아둠.
-//                //index+1이 곧 가게 id이므로 데이터 활용 시 조금 편리할 수 있음.
-//
-//                databaseRef.addValueEventListener(object : ValueEventListener{
-//                        override fun onDataChange(snapshot: DataSnapshot) {
-//                            for(id in snapshot.children){
-//                                Log.d("dataRef", id.toString())
-//                                allScores.add(id.getValue()!! as Long)
-//
-//                            }
-//                        }
-//
-//                        override fun onCancelled(error: DatabaseError) {
-//                            Log.e("Bookmark","DB error")
-//                        }
-//                    })
-//                Log.d("dataRef", "${allScores} ")
-//                return Transaction.success(mutableData)
-//            }
-//
-//            override fun onComplete(
-//                databaseError: DatabaseError?,
-//                committed: Boolean,
-//                currentData: DataSnapshot?
-//            ) {
-//                // Transaction completed
-//                Log.d("Transaction completed", "postTransaction:onComplete:" + databaseError!!)
-//            }
-//        })
+        for (id in 1 until 32) {
+            if (allScores.get(key = id.toString()) == null) {
+                //점수가 없으면 0으로 초기화
+                allScores[id.toString()] = 0
+            }
+        }
+
         return allScores
     }
 }

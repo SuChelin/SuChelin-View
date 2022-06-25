@@ -1,6 +1,7 @@
 package Guide.suchelin
 
 import Guide.suchelin.DataClass.*
+import Guide.suchelin.List.ListFragment
 import android.content.Context
 import android.util.Log
 import com.google.firebase.database.*
@@ -200,7 +201,13 @@ class DataControl {
         return storeMenuList
     }
 
-    fun scoreFromFirebase(): HashMap<String, Long>{
+    fun scoreFromFirebase(fragment: ListFragment) {
+        // 데이터 초기화
+        for (id in 1 until 32) {
+            if (allScores.get(key = id.toString()) == null) {
+                allScores[id.toString()] = 0
+            }
+        }
 
         val database = Firebase.database
         val databaseRef = database.reference
@@ -209,20 +216,15 @@ class DataControl {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (id in snapshot.children) {
                     allScores.put(id.key!!, id.value!! as Long)
-                    Log.d("score: ", allScores.toString())
                 }
+
+                // 리스트 설정
+                Log.d("score: ", allScores.toString())
+                fragment.setListAdapter(allScores = allScores)
             }
             override fun onCancelled(error: DatabaseError) {
                 Log.e("dataRef", "DB error")
             }
         })
-        for (id in 1 until 32) {
-            if (allScores.get(key = id.toString()) == null) {
-                //점수가 없으면 0으로 초기화
-                allScores[id.toString()] = 0
-            }
-        }
-
-        return allScores
     }
 }

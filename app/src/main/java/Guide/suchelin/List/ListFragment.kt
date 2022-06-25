@@ -204,4 +204,9 @@ class ListFragment : BaseFragment<FragmentListBinding>(
 
         scrolledY = 0
     }
+
+    override fun onDestroy() {
+        job?.cancel()
+        super.onDestroy()
+    }
 }

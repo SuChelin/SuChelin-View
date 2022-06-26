@@ -21,6 +21,7 @@ class DataControl {
         private const val FILTER_NAME = 1
         private const val FILTER_GRADE = 2
         private const val FILTER_NEW = 3
+        private const val STORE_JSON_LENGTH = 31
     }
 
     // assets 파일 읽어오기
@@ -203,7 +204,7 @@ class DataControl {
 
     fun scoreFromFirebase(fragment: ListFragment) {
         // 데이터 초기화
-        for (id in 1 until 32) {
+        for (id in 1 until STORE_JSON_LENGTH+1) {
             if (allScores.get(key = id.toString()) == null) {
                 allScores[id.toString()] = 0
             }

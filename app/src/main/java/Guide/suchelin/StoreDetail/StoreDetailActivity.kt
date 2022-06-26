@@ -49,7 +49,7 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivitySto
         //0 이면 별 없음
         Log.d("BackImage",score.toLong().toString())
         michelin = when(score.toInt()){
-            5 -> 3
+            in 5..100 -> 3
             in 3..4 -> 2
             in 1..2 -> 1
             else -> 0

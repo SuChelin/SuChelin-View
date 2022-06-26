@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import Guide.suchelin.R
 
-class RvAdapter(val context: Context?, val items: ArrayList<StoreDataScoreClass>):RecyclerView.Adapter<RvAdapter.ViewHolder>() {
+class RvAdapter(val context: Context?, val items: ArrayList<StoreDataScoreClass>, val topThree: ArrayList<Int>):RecyclerView.Adapter<RvAdapter.ViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.rv_item,parent,false)
 
@@ -48,11 +49,12 @@ class RvAdapter(val context: Context?, val items: ArrayList<StoreDataScoreClass>
                 .centerCrop()
                 .into(imageViewShop)
 
+
             textViewTitle.text = item.name
             textViewDetail.text = item.detail
             // 미슐랭 스타 아이콘 설정
             storeMichelin.visibility =
-                if(item.michelin == null) View.GONE
+                if(item.score.toInt() == 0) View.GONE
                 else {
                     storeMichelin.setImageResource(item.getMichelinImage()!!)
                     View.VISIBLE
@@ -60,11 +62,21 @@ class RvAdapter(val context: Context?, val items: ArrayList<StoreDataScoreClass>
 
             // 랭크 아이콘 설정
             storeRank.visibility =
-                if(item.rank == null) View.GONE
-                else {
-                    storeRank.setImageResource(item.getRankImage()!!)
+                if(item.id in topThree){
+                    storeRank.setImageResource(setRankImage(topThree.indexOf(item.id)+1)!!)
                     View.VISIBLE
                 }
+                else {
+                    View.GONE
+                }
+        }
+    }
+    private fun setRankImage(rankCounter: Int): Int?{
+        return when(rankCounter){
+            1 -> R.drawable.ic_one_rank
+            2 -> R.drawable.ic_two_rank
+            3 -> R.drawable.ic_three_rank
+            else -> null
         }
     }
 }

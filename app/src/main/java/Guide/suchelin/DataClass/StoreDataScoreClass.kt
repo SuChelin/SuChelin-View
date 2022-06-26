@@ -12,10 +12,10 @@ data class StoreDataScoreClass(
     val rank : Int? = 2
 ){
     fun getMichelinImage(): Int? =
-        when(michelin){
-            1 -> R.drawable.ic_michelin_one
-            2 -> R.drawable.ic_michelin_two
-            3 -> R.drawable.ic_michelin_three
+        when(score.toInt()){
+            in 5..100 -> R.drawable.ic_michelin_three
+            in 3..4 -> R.drawable.ic_michelin_two
+            in 1..2 -> R.drawable.ic_michelin_one
             else -> null
         }
 

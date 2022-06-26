@@ -25,7 +25,6 @@ class ListFragment : BaseFragment<FragmentListBinding>(
         private const val FILTER_NAME = 1
         private const val FILTER_GRADE = 2
         private const val FILTER_NEW = 3
-        private const val STORE_JSON_LENGTH = 31
     }
 
     // 그림자 효과
@@ -48,9 +47,18 @@ class ListFragment : BaseFragment<FragmentListBinding>(
         job = CoroutineScope(Dispatchers.Main).launch {
             items = DataControl().getStoreDataScoreList(requireContext(), allScores)
 
+            items.apply {
+                sortBy { it.score }
+                reverse()
+            }
+            val topThreeId = ArrayList<Int>()
+            topThreeId.add(items[0].id)
+            topThreeId.add(items[1].id)
+            topThreeId.add(items[2].id)
+
             items.sortBy { it.name }
 
-            val rvAdapter = RvAdapter(context, items)
+            val rvAdapter = RvAdapter(context, items, topThreeId)
 
             rvAdapter.itemClick = object : RvAdapter.ItemClick {
                 override fun onClick(view: View, position: Int) {
@@ -115,6 +123,8 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                 override fun onClick(view: View, position: Int) {
                     val intent = Intent(context, StoreDetailActivity::class.java)
                     intent.putExtra("StoreName", items[position].id)
+                    intent.putExtra("Score", items[position].score)
+
                     startActivity(intent)
                 }
             }
@@ -139,6 +149,8 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                 override fun onClick(view: View, position: Int) {
                     val intent = Intent(context, StoreDetailActivity::class.java)
                     intent.putExtra("StoreName", items[position].id)
+                    intent.putExtra("Score", items[position].score)
+
                     startActivity(intent)
                 }
             }
@@ -146,6 +158,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
             binding.rv.adapter = rvAdapter
             binding.rv.layoutManager = LinearLayoutManager(context)
         }
+
         binding.listFilterGradeTextView.setOnClickListener {
             // 필터 바꾸기
             changeFilter(FILTER_GRADE)
@@ -158,7 +171,12 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                 reverse()
             }
 
-            val rvAdapter = RvAdapter(context, items)
+            val topThreeId = ArrayList<Int>()
+            topThreeId.add(items[0].id)
+            topThreeId.add(items[1].id)
+            topThreeId.add(items[2].id)
+
+            val rvAdapter = RvAdapter(context, items, topThreeId)
 
             binding.rv.apply {
                 adapter = rvAdapter

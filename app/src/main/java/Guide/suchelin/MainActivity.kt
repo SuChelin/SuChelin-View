@@ -37,13 +37,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
         when(menuItem.itemId){
             R.id.menuList -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, ListFragment()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, ListFragment()).commitAllowingStateLoss()
             }
             R.id.menuMap -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, MapsFragment()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, MapsFragment()).commitAllowingStateLoss()
             }
             else -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, VoteFragment()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, VoteFragment()).commitAllowingStateLoss()
             }
         }
         return true

@@ -2,6 +2,7 @@ package Guide.suchelin.Vote
 
 import Guide.suchelin.DataClass.StoreDataClass
 import Guide.suchelin.DataControl
+import Guide.suchelin.MainActivity
 import Guide.suchelin.R
 import Guide.suchelin.config.BaseFragment
 import Guide.suchelin.databinding.FragmentVoteBinding
@@ -36,19 +37,6 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         super.onViewCreated(view, savedInstanceState)
 
         auth = Firebase.auth
-
-        auth.signInAnonymously()
-            .addOnCompleteListener(requireActivity()) { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-
-                    Log.d("MainActivity", user!!.uid)
-                    //로그인됐으면 uid값 찍힘 !!는 not null임을 명시하는 것.
-                } else {
-                    Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                }
-            }
-
         database = Firebase.database.reference
 
         //고유 uid기반으로 데이터가 들어감

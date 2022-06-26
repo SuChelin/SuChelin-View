@@ -12,6 +12,7 @@ import Guide.suchelin.Map.MapsFragment
 import Guide.suchelin.Vote.VoteFragment
 import Guide.suchelin.config.BaseActivity
 import Guide.suchelin.databinding.ActivityMainBinding
+import android.content.Context
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -24,6 +25,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
         //bottom_navigaion
         val bottomMenu = findViewById<BottomNavigationView>(R.id.bottomTabBar)
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, ListFragment()).commitAllowingStateLoss()
 
         bottomMenu.setOnItemSelectedListener {
             getFragment(it)

@@ -21,7 +21,7 @@ class DataControl {
         private const val FILTER_NAME = 1
         private const val FILTER_GRADE = 2
         private const val FILTER_NEW = 3
-        private const val STORE_JSON_LENGTH = 31
+        const val STORE_JSON_LENGTH = 31
     }
 
     // assets 파일 읽어오기
@@ -202,7 +202,8 @@ class DataControl {
         return storeMenuList
     }
 
-    fun scoreFromFirebase(fragment: ListFragment) {
+    fun scoreFromFirebase(fragment: ListFragment?) {
+        var flag = true
         // 데이터 초기화
         for (id in 1 until STORE_JSON_LENGTH+1) {
             if (allScores.get(key = id.toString()) == null) {
@@ -221,7 +222,10 @@ class DataControl {
 
                 // 리스트 설정
                 Log.d("score: ", allScores.toString())
-                fragment.setListAdapter(allScores = allScores)
+                if(flag){
+                    fragment?.setListAdapter(allScores = allScores)
+                    flag = false
+                }
             }
             override fun onCancelled(error: DatabaseError) {
                 Log.e("dataRef", "DB error")

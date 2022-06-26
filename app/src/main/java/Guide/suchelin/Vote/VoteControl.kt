@@ -3,6 +3,7 @@ package Guide.suchelin.Vote
 import android.content.Context
 import android.util.Log
 import com.google.firebase.database.DatabaseReference
+import kotlinx.coroutines.*
 
 class VoteControl(
     val fragment: VoteFragment,
@@ -14,6 +15,7 @@ class VoteControl(
     // 다이얼로그
     private val voteDialog: VoteDialog = VoteDialog(storeName, this)
     private var score: Long? = null
+    private var jobArray = ArrayList<Job>()
 
     private fun getStoreVoteSource() {
         database.child(storeId.toString()).get().addOnSuccessListener {
@@ -21,7 +23,9 @@ class VoteControl(
             //오류가 계속 나버려서 미리 파이어베이스 db에 다 id - 0 으로 non null 하게 만들기
             if (score != null) {
                 // 데이터베이스 동기화 전에 addStoreVoteToDatabase 가 실행된 경우
-                addStoreVoteToDatabase(it.value as Long)
+                jobArray.add(CoroutineScope(Dispatchers.Default).launch {
+                    addStoreVoteToDatabase(it.value as Long)
+                })
             } else {
                 score = it.value as Long? ?: 0L
             }
@@ -39,7 +43,7 @@ class VoteControl(
         )
     }
 
-    private fun addStoreVoteToDatabase(addValue: Long) {
+    private suspend fun addStoreVoteToDatabase(addValue: Long) {
         if (score == null) {
             // 아직 데이터베이스 동기화 안됨
             score = addValue
@@ -64,7 +68,9 @@ class VoteControl(
     // 투표 다이얼로그에서 투표를 완료했을 경우
     fun changeStoreVote(ratingValue: Int) {
         // 데이터베이스 동기화
-        addStoreVoteToDatabase(ratingValue.toLong())
+        jobArray.add(CoroutineScope(Dispatchers.Default).launch {
+            addStoreVoteToDatabase(ratingValue.toLong())
+        })
         rvAdapter.notifyDataSetChanged()
 
         // 파일에 투표값 저장

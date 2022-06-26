@@ -10,8 +10,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import Guide.suchelin.R
+import android.annotation.SuppressLint
 
-class RvAdapter(val context: Context?, val items: ArrayList<StoreDataScoreClass>, val topThree: ArrayList<Int>):RecyclerView.Adapter<RvAdapter.ViewHolder>() {
+class RvAdapter(val context: Context?, var items: ArrayList<StoreDataScoreClass>, var topThree: ArrayList<Int>):RecyclerView.Adapter<RvAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.rv_item,parent,false)
@@ -78,5 +79,17 @@ class RvAdapter(val context: Context?, val items: ArrayList<StoreDataScoreClass>
             3 -> R.drawable.ic_three_rank
             else -> null
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun refresh(newitems: ArrayList<StoreDataScoreClass>, newTopThree: ArrayList<Int>){
+        items = newitems
+        topThree = newTopThree
+        notifyDataSetChanged()
+    }
+
+    fun refreshItems(newitems: ArrayList<StoreDataScoreClass>) {
+        items = newitems
+        notifyDataSetChanged()
     }
 }

@@ -8,6 +8,8 @@ import Guide.suchelin.config.BaseFragment
 import Guide.suchelin.databinding.FragmentVoteBinding
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
+import android.view.KeyEvent.KEYCODE_ENTER
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -77,6 +79,13 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
             }
         }
         //검색
+        binding.voteSearchEditTextView.setOnKeyListener{ v, keyCode, event ->
+            if(event.action == KeyEvent.ACTION_DOWN && keyCode == KEYCODE_ENTER){
+                //엔터키 누르면 검색되게
+                binding.voteSearchImageView.performClick()
+            }
+            true
+        }
         binding.voteSearchImageView.setOnClickListener {
             //검색버튼 누르면 키보드 내려가게
             var imm:InputMethodManager? = null

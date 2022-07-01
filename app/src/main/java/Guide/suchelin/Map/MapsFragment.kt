@@ -1,6 +1,8 @@
 package Guide.suchelin.Map
 
+import Guide.suchelin.Contact.ContactActivity
 import Guide.suchelin.DataControl
+import Guide.suchelin.MainActivity
 import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
 import android.location.LocationManager
@@ -47,6 +49,12 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
         MobileAds.initialize(requireContext()) {}
         val adRequest = AdRequest.Builder().build()
         binding.adView.loadAd(adRequest)
+
+        //고객센터
+        binding.listIvContact.setOnClickListener {
+            val intent = Intent(context, ContactActivity::class.java)
+            startActivity(intent)
+        }
 
 
         mapView = view.findViewById(R.id.mapView)

@@ -20,18 +20,27 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:layout_alignParentTop="true"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_marginStart="20dp"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:fontFamily="@font/leferipointspecial"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/mapToolbarTitle"
+            android:layout_weight="5"
             android:textColor="@color/black"
             android:textSize="16sp"
             />
+        <ImageView
+            android:layout_gravity="end"
+            android:id="@+id/list_iv_contact"
+            android:padding="12dp"
+            android:layout_weight="1"
+            android:layout_width="?actionBarSize"
+            android:src="@drawable/customerservice"
+            android:layout_height="?actionBarSize"/>
     </LinearLayout>
 
     <com.google.android.gms.ads.AdView

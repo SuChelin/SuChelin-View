@@ -722,6 +722,47 @@
       "menuPrice": "3,000원"
     }
   ]
+},{
+  "id": 23,
+  "menu": [
+    {
+      "menuName": "모듬전",
+      "menuPrice": "15,000원"
+    },
+    {
+      "menuName": "해물파전",
+      "menuPrice": "12,000원"
+    },
+    {
+      "menuName": "고기김치전",
+      "menuPrice": "12,000원"
+    },
+    {
+      "menuName": "녹두전",
+      "menuPrice": "12,000원"
+    },
+    {
+      "menuName": "부추전",
+      "menuPrice": "10,000원"
+    },
+    {
+      "menuName": "감자전",
+      "menuPrice": "10,000원"
+    },
+    {
+      "menuName": "막걸리",
+      "menuPrice": "3,000원"
+    },
+    {
+      "menuName": "알밤, 지평 막걸리",
+      "menuPrice": "4,000원"
+    },
+    {
+      "menuName": "두부김치",
+      "menuPrice": "10,000원"
+    }
+
+  ]
 }, {
   "id": 24,
   "menu": [

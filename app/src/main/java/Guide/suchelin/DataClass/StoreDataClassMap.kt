@@ -9,8 +9,8 @@ data class StoreDataClassMap(
     val detail: String,
     val latitude : Double,
     val longitude : Double,
-    val michelin : Int? = 2,
-    val rank : Int? = 2
+    val michelin : Int? = 1,
+    val rank : Int? = 1
 ) {
     fun getMichelinImage(): Int? =
         when(michelin){

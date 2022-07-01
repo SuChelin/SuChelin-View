@@ -15,20 +15,29 @@
         android:layout_alignParentTop="true"
         android:background="@color/white"
         android:elevation="2dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:fontFamily="@font/leferipointspecial"
-            android:gravity="center"
+            android:gravity="center_vertical"
+            android:layout_weight="5"
             android:paddingHorizontal="20dp"
             android:text="@string/listToolbarTitle"
             android:textColor="@color/black"
             android:textSize="16sp" />
+        <ImageView
+            android:layout_gravity="end"
+            android:id="@+id/list_iv_contact"
+            android:padding="12dp"
+            android:layout_weight="1"
+            android:layout_width="?actionBarSize"
+            android:src="@drawable/customerservice"
+            android:layout_height="?actionBarSize"/>
 
     </LinearLayout>
-
+<!-- 고객센터 아이콘   <a href="https://www.flaticon.com/kr/free-icons/-" title="- 아이콘">- 아이콘  제작자: Freepik - Flaticon</a>-->
     <!-- 내용 -->
     <RelativeLayout
         android:visibility="gone"
@@ -108,11 +117,11 @@
         android:layout_below="@id/listToolbarLinearLayout">
 
         <ProgressBar
-            android:layout_centerInParent="true"
             android:id="@+id/list_loading_progressBar"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center" />
     </RelativeLayout>
 
 </RelativeLayout>

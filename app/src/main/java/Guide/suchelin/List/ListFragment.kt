@@ -1,5 +1,6 @@
 package Guide.suchelin.List
 
+import Guide.suchelin.Contact.ContactActivity
 import Guide.suchelin.DataClass.StoreDataScoreClass
 import Guide.suchelin.DataControl
 import Guide.suchelin.R
@@ -49,6 +50,12 @@ class ListFragment : BaseFragment<FragmentListBinding>(
 
         // 데이터 가져오기 -> adapter, filter 설정
         DataControl().scoreFromFirebase(this)
+
+        //고객센터
+        binding.listIvContact.setOnClickListener {
+            val intent = Intent(context, ContactActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     fun setListAdapter(allScores: HashMap<String, Long>) {

@@ -201,11 +201,11 @@
   },
   {
     "id": 26,
-    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200807_219%2F1596789519161I9HvL_JPEG%2FtVePcBkRWud6PlUmB3Eq8Iau.jpg",
-    "name": "폐기",
-    "detail": "쭈꾸미 샤브샤브 & 철판볶음",
-    "latitude": 37.2137887,
-    "longitude": 126.976597
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220510_33%2F16521648824455PksG_JPEG%2F14.jpg",
+    "name": "무공돈까스 수원대점",
+    "detail": "무공돈까스",
+    "latitude": 37.2143929,
+    "longitude": 126.978974
   },
   {
     "id": 27,
@@ -246,6 +246,78 @@
     "detail": "타코",
     "latitude": 37.2154736,
     "longitude": 126.976563
+  },
+  {
+    "id": 32,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190813_209%2F1565667552709VYVIt_PNG%2FcxpIytXBIIhPfTAhKW9kOmDI.png",
+    "name": "청년다방 수원대점",
+    "detail": "로제 떡볶이",
+    "latitude": 37.2141490,
+    "longitude": 126.975921
+  },
+  {
+    "id": 33,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200729_71%2F1595992063868zzbIH_JPEG%2FK0J0WeoXj5j9rKhUP41yeByv.jpg",
+    "name": "폼프리츠 수원대점",
+    "detail": "맥주 & 감자튀김",
+    "latitude": 37.2138428,
+    "longitude": 126.976913
+  },
+  {
+    "id": 34,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210421_185%2F1618986853567j2MbV_JPEG%2F%25C0%25CC%25BB%25E8%25C5%25E4%25BD%25BA%25C6%25AE_%25BA%25EA%25B7%25A3%25B5%25E5%25B0%25CB%25BB%25F6_%25C0%25CC%25B9%25CC%25C1%25F6_%25281%2529.jpg",
+    "name": "이삭토스트 수원대점",
+    "detail": "콘치즈 토스트",
+    "latitude": 37.2142216,
+    "longitude": 126.978501
+  },
+  {
+    "id": 35,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220213_4%2F1644723595924Xg3Cw_JPEG%2FScreenshot_20220205-152057_Instagram.jpg",
+    "name": "코히맨즈",
+    "detail": "수제 바스크 치즈케이크 & 커피",
+    "latitude": 37.2111765,
+    "longitude": 126.980812
+  },
+  {
+    "id": 36,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220202_139%2F1643808864389b13Lg_JPEG%2FScreenshot_20220202-223333_Instagram.jpg",
+    "name": "마카롱타임",
+    "detail": "수제 마카롱 & 수제 디저트",
+    "latitude": 37.2141757,
+    "longitude": 126.974716
+  },
+  {
+    "id": 37,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA2MDhfMTY2%2FMDAxNjU0NjE3OTU1NTM5.xbi5U3AsXC7K-G0X4tq5-GxkLuF7SPOxiBgIH_9xUXog.q4sj8udJMUD3GZ8QxkUIcyr_newd0rj0LLlmFmn-qvEg.JPEG.501plus%2F20220607%25A3%25DF111712.jpg",
+    "name": "무쇠랑닭갈비",
+    "detail": "닭갈비",
+    "latitude": 37.2135632,
+    "longitude": 126.975347
+  },
+  {
+    "id": 38,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220223_247%2F1645603743601uTJI7_JPEG%2F513AA114-3953-49EA-B1E3-6DA46427AEEF.jpeg",
+    "name": "화이트스노우 봉담수원대점",
+    "detail": "빙수",
+    "latitude": 37.2142123,
+    "longitude": 126.977104
+  },
+  {
+    "id": 39,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190908_160%2F1567930402700I7qkv_JPEG%2FAI6k6otFJ5KsiH7aE0Gr55gH.jpg",
+    "name": "잇츠커피 수원대점",
+    "detail": "아메리카노, 아샷추",
+    "latitude": 37.2142487,
+    "longitude": 126.979211
+  },
+  {
+    "id": 40,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200622_53%2F1592795736603IOX1G_JPEG%2F8AAb-n8mg8iGaa-nZvlcyz1V.jpg",
+    "name": "꼴통이네 밥집(꼴통포차)",
+    "detail": "제육볶음, 김치찌개",
+    "latitude": 37.2167619,
+    "longitude": 126.975571
   }
 ]
 

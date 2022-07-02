@@ -1,5 +1,6 @@
 package Guide.suchelin.config
 
+import Guide.suchelin.MainActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

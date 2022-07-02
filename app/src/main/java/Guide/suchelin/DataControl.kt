@@ -21,7 +21,7 @@ class DataControl {
         private const val FILTER_NAME = 1
         private const val FILTER_GRADE = 2
         private const val FILTER_NEW = 3
-        const val STORE_JSON_LENGTH = 31
+        const val STORE_JSON_LENGTH = 40
     }
 
     // assets 파일 읽어오기
@@ -71,16 +71,11 @@ class DataControl {
 
     fun getStoreDataList(context: Context): ArrayList<StoreDataClass> {
 
-        val tmpScore = mutableListOf<StoreScore>()
-
-        val range = (1..3)
-        for (i in 1..31) {
-            tmpScore.add(StoreScore(i, range.random()))
-        }
-
         // 식당 데이터
         val data = readFile("StoreData.json", context)
         val storeData = ArrayList<StoreDataClass>()
+        //여기서 점수가 필요한가? getStoreDataList -> VoteFragment에서 사용중
+        val scr = 0
 
         val jsonArray = JSONTokener(data).nextValue() as JSONArray
         for (i in 0 until jsonArray.length()) {
@@ -88,16 +83,16 @@ class DataControl {
             val imageUrl = jsonArray.getJSONObject(i).getString("imageUrl")
             val name = jsonArray.getJSONObject(i).getString("name")
             val detail = jsonArray.getJSONObject(i).getString("detail")
+
             /*
             * id 값으로 점수 값 받아오기. key-value가 id-score로 되게
             * */
-            val scr = tmpScore[id - 1].score
             storeData.add(StoreDataClass(id, imageUrl, name, detail, scr, scr))
         }
 
         return storeData
     }
-    //테스트 중
+    //ListFragment에 사용중
     fun getStoreDataScoreList(context: Context, score: HashMap<String, Long>): ArrayList<StoreDataScoreClass> {
         // 식당 데이터
         val data = readFile("StoreData.json", context)
@@ -123,7 +118,7 @@ class DataControl {
         val tmpScore = mutableListOf<StoreScore>()
 
         val range = (1..3)
-        for (i in 1..31) {
+        for (i in 1..STORE_JSON_LENGTH) {
             tmpScore.add(StoreScore(i, range.random()))
         }
 

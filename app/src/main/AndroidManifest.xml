@@ -42,7 +42,7 @@
             android:name=".MainActivity"
             android:exported="true"></activity>
         <activity
-            android:name=".Contact.ContactActivity"
+            android:name=".ContactActivity"
             android:exported="true" />
     </application>
 

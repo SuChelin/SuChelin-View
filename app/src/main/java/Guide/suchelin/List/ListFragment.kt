@@ -1,6 +1,6 @@
 package Guide.suchelin.List
 
-import Guide.suchelin.Contact.ContactActivity
+import Guide.suchelin.ContactActivity
 import Guide.suchelin.DataClass.StoreDataScoreClass
 import Guide.suchelin.DataControl
 import Guide.suchelin.R
@@ -10,7 +10,6 @@ import Guide.suchelin.config.MyApplication
 import Guide.suchelin.databinding.FragmentListBinding
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView

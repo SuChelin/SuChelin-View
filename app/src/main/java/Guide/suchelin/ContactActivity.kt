@@ -1,10 +1,9 @@
-package Guide.suchelin.Contact
+package Guide.suchelin
 
 import Guide.suchelin.config.BaseActivity
 import Guide.suchelin.databinding.ActivityContactBinding
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast

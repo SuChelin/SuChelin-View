@@ -1,8 +1,7 @@
 package Guide.suchelin.Map
 
-import Guide.suchelin.Contact.ContactActivity
+import Guide.suchelin.ContactActivity
 import Guide.suchelin.DataControl
-import Guide.suchelin.MainActivity
 import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
 import android.location.LocationManager
@@ -16,12 +15,9 @@ import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.util.FusedLocationSource
 import Guide.suchelin.R
-import Guide.suchelin.StoreDetail.StoreDetailActivity
 import Guide.suchelin.config.BaseFragment
 import Guide.suchelin.databinding.FragmentMapBinding
 import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize
-import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 
 class MapsFragment : BaseFragment<FragmentMapBinding>(

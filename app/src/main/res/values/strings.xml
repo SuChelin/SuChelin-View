@@ -19,4 +19,5 @@
     <string name="voteDetail">맛집을 다른 사람에게 추천해주세요.</string>
     <string name="voteWarning">투표는 한 번만 가능합니다.</string>
     <string name="voteComplete">투표완료</string>
+    <string name="contactMessage">내용을 입력하세요 \nex)..가게를 추가해주세요. \n..가 맛있어요, 분위기가 좋아요, 가성비가 좋아요\n..에서 ..하는 버그가 있습니다</string>
 </resources>

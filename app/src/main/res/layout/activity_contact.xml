@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Contact.ContactActivity">
+    tools:context=".ContactActivity">
 
     <ImageView
         android:id="@+id/contact_back"
@@ -32,6 +32,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:text="버그 제보"
+                android:fontFamily="@font/leferibaseregular"
                 android:buttonTint="@color/black"
                 android:layout_marginEnd="20dp"
                 android:id="@+id/contact_report"
@@ -39,6 +40,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:text="가게 추가"
+                android:fontFamily="@font/leferibaseregular"
                 android:buttonTint="@color/black"
                 android:id="@+id/contact_new_store"
                 android:layout_height="match_parent"/>
@@ -53,11 +55,12 @@
         android:layout_height="0dp">
         <EditText
             android:id="@+id/contact_et"
+            android:fontFamily="@font/leferibaseregular"
             android:gravity="start|top"
             android:nestedScrollingEnabled="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="내용을 입력하세요"
+            android:hint="@string/contactMessage"
             />
     </FrameLayout>
 
@@ -66,6 +69,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/contact_btn_send"
         android:text="이메일 보내기"
+        android:fontFamily="@font/leferibaseregular"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"

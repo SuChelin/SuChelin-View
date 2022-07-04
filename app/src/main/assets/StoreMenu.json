@@ -91,6 +91,22 @@
     }
   ]
 },{
+  "id": 3,
+  "menu": [
+    {
+      "menuName": "소세지바게트버거",
+      "menuPrice": "4,200원"
+    },
+    {
+      "menuName": "텐더바게트버거",
+      "menuPrice": "4,200원"
+    },
+    {
+      "menuName": "매콤고기바게트버거 ",
+      "menuPrice": "4,200원"
+    }
+  ]
+},{
   "id": 4,
   "menu": [
     {

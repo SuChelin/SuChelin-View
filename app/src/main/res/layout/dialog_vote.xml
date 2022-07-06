@@ -15,21 +15,22 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:gravity="center"
+        android:layout_marginStart="30dp"
+        android:textColor="@color/black"
         android:textSize="17sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/vote_dialog_cancel_imageView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/vote_dialog_cancel_imageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/vote_dialog_cancel_imageView"
         tools:text="와우당" />
 
     <ImageView
-        android:layout_marginTop="20dp"
-        android:padding="10dp"
         android:id="@+id/vote_dialog_cancel_imageView"
         android:layout_width="30sp"
         android:layout_height="30sp"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
         android:src="@drawable/ic_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

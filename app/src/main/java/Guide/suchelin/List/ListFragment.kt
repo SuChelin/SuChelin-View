@@ -8,12 +8,14 @@ import Guide.suchelin.StoreDetail.StoreDetailActivity
 import Guide.suchelin.config.BaseFragment
 import Guide.suchelin.config.MyApplication
 import Guide.suchelin.databinding.FragmentListBinding
+import android.app.AlertDialog
 import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -57,6 +59,11 @@ class ListFragment : BaseFragment<FragmentListBinding>(
         //info
         binding.listIvInfo.setOnClickListener {
             //dialog
+            val mDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_info, null)
+            val mBuilder = AlertDialog.Builder(context)
+                .setView(mDialogView)
+                .setTitle("앱소개")
+            val mAlertDialog = mBuilder.show()
         }
     }
 

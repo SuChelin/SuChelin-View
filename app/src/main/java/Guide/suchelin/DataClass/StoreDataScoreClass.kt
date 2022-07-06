@@ -8,6 +8,8 @@ data class StoreDataScoreClass(
     val name: String,
     val detail: String,
     val score: Long,
+    val latitude : Double,
+    val longitude : Double,
     val michelin : Int? = 2,
     val rank : Int? = 2
 ){

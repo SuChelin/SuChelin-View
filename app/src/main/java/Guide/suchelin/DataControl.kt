@@ -104,11 +104,13 @@ class DataControl {
             val imageUrl = jsonArray.getJSONObject(i).getString("imageUrl")
             val name = jsonArray.getJSONObject(i).getString("name")
             val detail = jsonArray.getJSONObject(i).getString("detail")
+            val latitude = jsonArray.getJSONObject(i).getDouble("latitude")
+            val longitude = jsonArray.getJSONObject(i).getDouble("longitude")
             /*
             * id 값으로 점수 값 받아오기. key-value가 id-score로 되게
             * */
             val scr = score.getValue(id.toString())
-            storeData.add(StoreDataScoreClass(id, imageUrl, name, detail, scr,))
+            storeData.add(StoreDataScoreClass(id = id, imageUrl = imageUrl, name = name, detail = detail, score = scr, latitude = latitude, longitude = longitude))
         }
 
         return storeData
@@ -158,7 +160,9 @@ class DataControl {
                     jsonArray.getJSONObject(i).getString("imageUrl"),
                     jsonArray.getJSONObject(i).getString("name"),
                     jsonArray.getJSONObject(i).getString("detail"),
-                    score
+                    score,
+                    jsonArray.getJSONObject(i).getDouble("latitude"),
+                    jsonArray.getJSONObject(i).getDouble("longitude")
                 )
             }
         }

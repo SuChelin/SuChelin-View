@@ -26,8 +26,8 @@ import com.naver.maps.map.overlay.InfoWindow
 class MapControl {
 
     companion object{
-        private const val MARKER_ICON_HEIGHT = 60
-        private const val MARKER_ICON_WEIGHT = 60
+        const val MARKER_ICON_HEIGHT = 60
+        const val MARKER_ICON_WEIGHT = 60
         private const val currentVisibleItemPx = 70
         private const val pageTranslationX = 150
     }
@@ -173,7 +173,6 @@ class MapControl {
 
         // 마커 infoWindow 표시하기
         setInfoWindow(markerNumber, mSuperDataList!![markerNumber].name)
-
     }
 
     // 마커 infoWindow 표시하기
@@ -211,11 +210,14 @@ class MapControl {
     }
 
     // StoreDetailActivity 로 넘어가기 , MapStoreAdapter 에서 사용
-    fun startStoreDetailActivity(storeId: Int){
+    fun startStoreDetailActivity(storeId: Int, storeName: String, latitude: Double, longitude: Double){
         mFragment?.let {
             it.startActivity(
                 Intent(it.requireContext(), StoreDetailActivity::class.java).apply {
-                    putExtra("StoreName", storeId)
+                    putExtra("StoreId", storeId)
+                    putExtra("StoreName", storeName)
+                    putExtra("latitude", latitude)
+                    putExtra("longitude", longitude)
                 }
             )
         }

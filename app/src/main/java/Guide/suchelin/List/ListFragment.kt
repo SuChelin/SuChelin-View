@@ -106,9 +106,11 @@ class ListFragment : BaseFragment<FragmentListBinding>(
         rvAdapter?.itemClick = object : RvAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
                 val intent = Intent(context, StoreDetailActivity::class.java)
-
-                intent.putExtra("StoreName", items[position].id)
-                intent.putExtra("Score", items[position].score)
+                intent.putExtra("StoreName", items[position].name)
+                intent.putExtra("StoreId", items[position].id)
+                intent.putExtra("score", items[position].score)
+                intent.putExtra("latitude", items[position].latitude)
+                intent.putExtra("longitude", items[position].longitude)
                 startActivity(intent)
             }
         }

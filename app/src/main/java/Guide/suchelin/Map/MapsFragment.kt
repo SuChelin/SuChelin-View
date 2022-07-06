@@ -53,7 +53,7 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
         }
 
 
-        mapView = view.findViewById(R.id.mapView)
+        mapView = binding.mapView
         mapView.onCreate(savedInstanceState)
 
         val mapDataList = DataControl().getStoreDataMap(requireContext())

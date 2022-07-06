@@ -1,10 +1,12 @@
 package Guide.suchelin.StoreDetail
 
 import Guide.suchelin.DataControl
+import Guide.suchelin.MapStore.MapStoreActivity
 import Guide.suchelin.R
 import android.os.Bundle
 import Guide.suchelin.config.BaseActivity
 import Guide.suchelin.databinding.ActivityStoreDetailBinding
+import android.content.Intent
 import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
@@ -16,7 +18,10 @@ import com.google.android.gms.ads.MobileAds
 
 class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivityStoreDetailBinding::inflate) {
     private var storeId: Int = -1
+    private var storeName: String = ""
     private var score: Long = 0
+    private var latitude: Double = 0.0
+    private var longitude: Double = 0.0
     var michelin = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,8 +31,12 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivitySto
         val adRequest = AdRequest.Builder().build()
         binding.adView.loadAd(adRequest)
 
-        storeId = intent.getIntExtra("StoreName", -1)
-        score = intent.getLongExtra("Score",0)
+        storeId = intent.getIntExtra("StoreId", -1)
+        storeName = intent.getStringExtra("StoreName") ?: ""
+        score = intent.getLongExtra("score",0)
+        latitude = intent.getDoubleExtra("latitude", 37.214185)
+        longitude = intent.getDoubleExtra("longitude", 126.978792)
+
         init()
 
         binding.storeDetailBack.setOnClickListener {
@@ -73,6 +82,17 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivitySto
 
         binding.storeDetailMenuRecyclerView.adapter = MenuAdapter(menuData)
         binding.storeDetailMenuRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        // 주소 보기
+        binding.storeDetailAddressTitleTextView.setOnClickListener {
+            Log.d("naverM", "store : ${storeName}, $score $latitude $longitude")
+            startActivity(Intent(this, MapStoreActivity::class.java).apply {
+                putExtra("StoreName", storeName)
+                putExtra("Score", score)
+                putExtra("latitude", latitude)
+                putExtra("longitude", longitude)
+            })
+        }
     }
 
     private fun setMichelinBackgroundImage(michelin: Int): Int?{

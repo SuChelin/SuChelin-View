@@ -59,7 +59,7 @@ class MapStoreAdapter(val storeList: ArrayList<StoreDataClassMap>, val control: 
 
             // 아이템 선택했을 경우 StoreDetail 페이지로 넘어감
             storeParent.setOnClickListener {
-                control.startStoreDetailActivity(storeItem.id)
+                control.startStoreDetailActivity(storeItem.id, storeItem.name, storeItem.latitude, storeItem.longitude)
             }
         }
     }

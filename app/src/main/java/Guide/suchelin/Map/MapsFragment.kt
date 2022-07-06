@@ -2,23 +2,30 @@ package Guide.suchelin.Map
 
 import Guide.suchelin.ContactActivity
 import Guide.suchelin.DataControl
+import Guide.suchelin.R
+import Guide.suchelin.config.BaseFragment
+import Guide.suchelin.config.MyApplication
+import Guide.suchelin.databinding.FragmentMapBinding
 import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.util.FusedLocationSource
-import Guide.suchelin.R
-import Guide.suchelin.config.BaseFragment
-import Guide.suchelin.databinding.FragmentMapBinding
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MapsFragment : BaseFragment<FragmentMapBinding>(
     FragmentMapBinding::bind,
@@ -32,6 +39,11 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
     private lateinit var locationSource: FusedLocationSource
     private var naverMap: NaverMap? = null
     private var mapControl = MapControl()
+
+    // viewPagerFlag
+    private var finishFlag = false
+    private var mapFlag = false
+    private var dataControlFlag = false
 
     // 현재 위치 버튼 사용하기
     private var locationFlag = false
@@ -58,6 +70,9 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
 
         val mapDataList = DataControl().getStoreDataMap(requireContext())
 
+        // dataControl 설정
+        initDataControl()
+
         // 권한 설정하기
         locationSource =
             FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
@@ -75,7 +90,11 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
 
             // 지도 설정
             mapControl.setMapUI(naverMap!!)
-            mapControl.setMarkerAndViewpager(naverMap!!, mapDataList, binding, this)
+            mapControl.setMarker(naverMap!!, mapDataList, binding, this)
+
+            // 지도 viewpager 설정
+            mapFlag = true
+            setViewpager()
 
             // 위치 추적 설정
             binding.mapLocationButton.setOnClickListener {
@@ -96,6 +115,37 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
                     false
                 }
             }
+        }
+    }
+
+    private fun initDataControl() {
+        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            if (MyApplication.dataControl.initFlag()) {
+                dataControlFlag = true
+                // adapter 설정
+                setViewpager()
+            } else {
+                Log.d("dataControl", "mapFragment init 실행됨")
+                if (!finishFlag) initDataControl()
+            }
+        }, 300)
+    }
+
+    // 지도 설정
+    private fun setViewpager() {
+        if (mapFlag && dataControlFlag) {
+            naverMap ?: return
+
+            // 여기 viewpager 설정하는 곳 점수 정보는 아래!!
+            // 점수 정보 : MyApplication.dataControl.allScores
+            Log.d("dataControl", "data = ${MyApplication.dataControl.allScores}")
+
+            mapControl.jobArrayLit.add(
+                CoroutineScope(Dispatchers.Main).launch {
+                    mapControl.setViewpager(naverMap!!, binding)
+                }
+            )
+
         }
     }
 
@@ -143,6 +193,13 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
 
     override fun onDestroyView() {
         super.onDestroyView()
+        mapView.onDestroy()
+    }
+
+    override fun onDestroy() {
+        mapControl.finishJob()
+        finishFlag = true
+        super.onDestroy()
         mapView.onDestroy()
     }
 

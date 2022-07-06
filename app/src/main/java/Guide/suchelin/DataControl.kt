@@ -15,7 +15,8 @@ import java.io.InputStream
 
 class DataControl {
     private lateinit var database: DatabaseReference
-    private val allScores = hashMapOf<String, Long>()
+    val allScores = hashMapOf<String, Long>()
+    private var scoreRequestFlag = false
 
     companion object {
         private const val FILTER_NAME = 1
@@ -23,6 +24,8 @@ class DataControl {
         private const val FILTER_NEW = 3
         const val STORE_JSON_LENGTH = 40
     }
+
+    fun initFlag() : Boolean = scoreRequestFlag
 
     // assets 파일 읽어오기
     private fun readFile(fileName: String, context: Context): String? {
@@ -201,8 +204,8 @@ class DataControl {
         return storeMenuList
     }
 
-    fun scoreFromFirebase(fragment: ListFragment?) {
-        var flag = true
+    fun scoreFromFirebase() {
+        Log.d("dataControl", "dataControl scoreFromFirebase 실행됨")
         // 데이터 초기화
         for (id in 1 until STORE_JSON_LENGTH+1) {
             if (allScores.get(key = id.toString()) == null) {
@@ -219,12 +222,15 @@ class DataControl {
                     allScores.put(id.key!!, id.value!! as Long)
                 }
 
+                Log.d("dataControl: ", allScores.toString())
+
+                scoreRequestFlag = true
                 // 리스트 설정
-                Log.d("score: ", allScores.toString())
+                /*Log.d("score: ", allScores.toString())
                 if(flag){
                     fragment?.setListAdapter(allScores = allScores)
                     flag = false
-                }
+                }*/
             }
             override fun onCancelled(error: DatabaseError) {
                 Log.e("dataRef", "DB error")

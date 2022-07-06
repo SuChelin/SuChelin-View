@@ -11,6 +11,7 @@ import Guide.suchelin.List.ListFragment
 import Guide.suchelin.Map.MapsFragment
 import Guide.suchelin.Vote.VoteFragment
 import Guide.suchelin.config.BaseActivity
+import Guide.suchelin.config.MyApplication
 import Guide.suchelin.databinding.ActivityMainBinding
 import android.content.Context
 import com.google.firebase.auth.FirebaseAuth
@@ -33,6 +34,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         bottomMenu.setOnItemReselectedListener {
             Log.d("Main","Menu Reselected")
         }
+
+        // 데이터베이스 초기화
+        MyApplication.dataControl.scoreFromFirebase()
     }
 
     private fun getFragment(menuItem: MenuItem): Boolean {

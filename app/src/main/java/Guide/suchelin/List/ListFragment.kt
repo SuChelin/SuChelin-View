@@ -8,8 +8,12 @@ import Guide.suchelin.StoreDetail.StoreDetailActivity
 import Guide.suchelin.config.BaseFragment
 import Guide.suchelin.config.MyApplication
 import Guide.suchelin.databinding.FragmentListBinding
+import android.app.Application
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,20 +39,15 @@ class ListFragment : BaseFragment<FragmentListBinding>(
     // job
     private var job : Job? = null
     private var rvAdapter : RvAdapter? = null
+    private var finishFlag = false
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // 로딩중 보여주기
         changeLoadingContent(true)
 
-        // 어댑터 설정
-        setAdapter()
-
-        // 필터 설정
-        setFilter()
-
-        // 데이터 가져오기 -> adapter, filter 설정
-        DataControl().scoreFromFirebase(this)
+        // 초기화
+        init()
 
         //고객센터
         binding.listIvContact.setOnClickListener {
@@ -57,37 +56,27 @@ class ListFragment : BaseFragment<FragmentListBinding>(
         }
     }
 
-    fun setListAdapter(allScores: HashMap<String, Long>) {
-        job = CoroutineScope(Dispatchers.Main).launch {
+    private fun init() {
+        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            if(MyApplication.dataControl.initFlag()){
+                job = CoroutineScope(Dispatchers.Main).launch {
+                    // adapter 설정
+                    setAdapter(MyApplication.dataControl.allScores)
 
-            items = DataControl().getStoreDataScoreList(MyApplication.ApplicationContext(), allScores)
+                    // 필터 설정
+                    setFilter()
 
-            items.apply {
-                sortBy { it.score }
-                reverse()
+                    // loading 없애기
+                    changeLoadingContent(false)
+                }
+            } else {
+                Log.d("dataControl", "init 실행됨")
+                if(!finishFlag) init()
             }
-            val topThreeId = ArrayList<Int>()
-            topThreeId.add(items[0].id)
-            topThreeId.add(items[1].id)
-            topThreeId.add(items[2].id)
-
-            items.sortBy { it.name }
-
-            rvAdapter?.refresh(items, topThreeId)
-
-            // loading 없애기
-            changeLoadingContent(false)
-        }
+        }, 300)
     }
 
-    private fun setAdapter() {
-        val allScores = HashMap<String, Long>()
-        for (id in 1 until DataControl.STORE_JSON_LENGTH +1) {
-            if (allScores.get(key = id.toString()) == null) {
-                allScores[id.toString()] = 0
-            }
-        }
-
+    private fun setAdapter(allScores: HashMap<String, Long>) {
         items = DataControl().getStoreDataScoreList(MyApplication.ApplicationContext(), allScores)
 
         items.apply {
@@ -214,6 +203,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
 
     override fun onDestroy() {
         job?.cancel()
+        finishFlag = true
         super.onDestroy()
     }
 }

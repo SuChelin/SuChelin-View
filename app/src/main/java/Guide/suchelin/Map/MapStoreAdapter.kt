@@ -13,7 +13,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class MapStoreAdapter(val storeList: ArrayList<StoreDataClassMap>, val control: MapControl)
+class MapStoreAdapter(var storeList: ArrayList<StoreDataClassMap>, val control: MapControl)
     : RecyclerView.Adapter<MapStoreAdapter.MapStoreViewHolder>(){
     class MapStoreViewHolder(itemView: View, val control: MapControl) : RecyclerView.ViewHolder(itemView){
         val storeImage = itemView.findViewById<ImageView>(R.id.map_store_imageView)

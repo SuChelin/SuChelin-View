@@ -22,6 +22,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.naver.maps.map.overlay.InfoWindow
+import kotlinx.coroutines.Job
 
 class MapControl {
 
@@ -31,7 +32,7 @@ class MapControl {
         private const val currentVisibleItemPx = 70
         private const val pageTranslationX = 150
     }
-
+    val jobArrayLit = ArrayList<Job>()
     // marker 와 viewpager2의 리스트 연결
     private var markerNumber = 0
     private var viewpagerNumber = 0
@@ -77,7 +78,7 @@ class MapControl {
         )
     }
 
-    fun setMarkerAndViewpager(
+    fun setMarker(
         naverMap: NaverMap,
         superDataList: ArrayList<StoreDataClassMap>,
         binding: FragmentMapBinding,
@@ -124,34 +125,38 @@ class MapControl {
             // info 창 초기 설정
             setInfoWindow(0, "수원대학교 정문")
 
-            // Viewpager2 설정
-            binding.mapViewpager2.adapter = MapStoreAdapter(mSuperDataList, this@MapControl)
-            binding.mapViewpager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-            binding.mapViewpager2.registerOnPageChangeCallback(
-                object : ViewPager2.OnPageChangeCallback() {
-                    override fun onPageSelected(position: Int) {
-                        super.onPageSelected(position)
-                        // 새롭게 페이지 이동했을 경우 marker 와 viewpager 설정
-                        setStoreSelect(position, false, naverMap)
-                    }
-                }
-            )
-
-            // Viewpager2 미리보기
-            binding.mapViewpager2.addItemDecoration(object: RecyclerView.ItemDecoration() {
-                override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-                    outRect.right = currentVisibleItemPx
-                    outRect.left = currentVisibleItemPx
-                }
-            })
-            binding.mapViewpager2.offscreenPageLimit = 1
-
-            binding.mapViewpager2.setPageTransformer { page, position ->
-                page.translationX = -pageTranslationX * ( position)
-            }
         }
 
+        jobArrayLit.add(job)
+    }
 
+    suspend fun setViewpager(naverMap: NaverMap,
+                     binding: FragmentMapBinding) {
+        // Viewpager2 설정
+        binding.mapViewpager2.adapter = MapStoreAdapter(mSuperDataList, this@MapControl)
+        binding.mapViewpager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        binding.mapViewpager2.registerOnPageChangeCallback(
+            object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    // 새롭게 페이지 이동했을 경우 marker 와 viewpager 설정
+                    setStoreSelect(position, false, naverMap)
+                }
+            }
+        )
+
+        // Viewpager2 미리보기
+        binding.mapViewpager2.addItemDecoration(object: RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+                outRect.right = currentVisibleItemPx
+                outRect.left = currentVisibleItemPx
+            }
+        })
+        binding.mapViewpager2.offscreenPageLimit = 1
+
+        binding.mapViewpager2.setPageTransformer { page, position ->
+            page.translationX = -pageTranslationX * ( position)
+        }
     }
 
     // 가게 선택했을 경우
@@ -231,4 +236,11 @@ class MapControl {
 
         naverMap.moveCamera(cameraUpdate)
     }
+
+    fun finishJob() {
+        jobArrayLit.forEach { job ->
+            job?.cancel()
+        }
+    }
 }
+

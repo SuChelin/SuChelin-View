@@ -23,6 +23,7 @@ class SpalshActivity : AppCompatActivity() {
             Log.d("Splash", auth.currentUser!!.uid)
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(Intent(this, MainActivity::class.java))
+                finish()
             }, 400)
         } catch (e: Exception) {
             Log.d("Splash", "need to sign in")
@@ -33,6 +34,7 @@ class SpalshActivity : AppCompatActivity() {
                         val user = auth.currentUser
                         Handler(Looper.getMainLooper()).postDelayed({
                             startActivity(Intent(this, MainActivity::class.java))
+                            finish()
                         }, 400)
 
                     } else {

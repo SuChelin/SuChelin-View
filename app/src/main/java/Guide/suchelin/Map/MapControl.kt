@@ -131,9 +131,10 @@ class MapControl {
     }
 
     suspend fun setViewpager(naverMap: NaverMap,
-                     binding: FragmentMapBinding) {
+                     binding: FragmentMapBinding, allScore: HashMap<String, Long>
+    ) {
         // Viewpager2 설정
-        binding.mapViewpager2.adapter = MapStoreAdapter(mSuperDataList, this@MapControl)
+        binding.mapViewpager2.adapter = MapStoreAdapter(mSuperDataList, allScore, this@MapControl)
         binding.mapViewpager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         binding.mapViewpager2.registerOnPageChangeCallback(
             object : ViewPager2.OnPageChangeCallback() {
@@ -215,7 +216,7 @@ class MapControl {
     }
 
     // StoreDetailActivity 로 넘어가기 , MapStoreAdapter 에서 사용
-    fun startStoreDetailActivity(storeId: Int, storeName: String, latitude: Double, longitude: Double){
+    fun startStoreDetailActivity(storeId: Int, storeName: String, latitude: Double, longitude: Double, score: Long){
         mFragment?.let {
             it.startActivity(
                 Intent(it.requireContext(), StoreDetailActivity::class.java).apply {
@@ -223,6 +224,7 @@ class MapControl {
                     putExtra("StoreName", storeName)
                     putExtra("latitude", latitude)
                     putExtra("longitude", longitude)
+                    putExtra("score", score)
                 }
             )
         }

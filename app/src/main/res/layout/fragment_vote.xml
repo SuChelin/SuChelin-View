@@ -116,6 +116,7 @@
             android:background="@drawable/filter_uncheck_box"
             android:paddingHorizontal="16dp"
             android:layout_marginStart="12dp"
+            android:lines="1"
             android:paddingVertical="4dp"
             android:text="@string/filterVote"
             android:textSize="14sp"

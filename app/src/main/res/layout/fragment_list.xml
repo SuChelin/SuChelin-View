@@ -27,14 +27,24 @@
             android:text="@string/listToolbarTitle"
             android:textColor="@color/black"
             android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/list_iv_info"
+            android:padding="14dp"
+            android:layout_width="?actionBarSize"
+            android:layout_height="?actionBarSize"
+            android:src="@drawable/premiumiconinfo5258991" />
+<!--        <a href="https://www.flaticon.com/kr/free-icons/" title="정보 아이콘">정보 아이콘  제작자: SeyfDesigner - Flaticon</a>-->
         <ImageView
             android:layout_gravity="end"
             android:id="@+id/list_iv_contact"
             android:padding="12dp"
-            android:layout_weight="1"
+            android:layout_weight="0"
             android:layout_width="?actionBarSize"
             android:src="@drawable/customerservice"
             android:layout_height="?actionBarSize"/>
+
+
 
     </LinearLayout>
 <!-- 고객센터 아이콘   <a href="https://www.flaticon.com/kr/free-icons/-" title="- 아이콘">- 아이콘  제작자: Freepik - Flaticon</a>-->

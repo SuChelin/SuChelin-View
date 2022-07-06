@@ -72,6 +72,28 @@ class DataControl {
         return storeDataMap
     }
 
+    fun getStoreDataMapScore(context: Context): ArrayList<StoreDataClassMap> {
+        // 식당 데이터
+        val data = readFile("StoreData.json", context)
+        val storeDataMap = ArrayList<StoreDataClassMap>()
+
+        val jsonArray = JSONTokener(data).nextValue() as JSONArray
+        for (i in 0 until jsonArray.length()) {
+            storeDataMap.add(
+                StoreDataClassMap(
+                    jsonArray.getJSONObject(i).getInt("id"),
+                    jsonArray.getJSONObject(i).getString("imageUrl"),
+                    jsonArray.getJSONObject(i).getString("name"),
+                    jsonArray.getJSONObject(i).getString("detail"),
+                    jsonArray.getJSONObject(i).getDouble("latitude"),
+                    jsonArray.getJSONObject(i).getDouble("longitude")
+                )
+            )
+        }
+
+        return storeDataMap
+    }
+
     fun getStoreDataList(context: Context): ArrayList<StoreDataClass> {
 
         // 식당 데이터

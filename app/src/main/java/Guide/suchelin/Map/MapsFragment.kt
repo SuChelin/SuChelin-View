@@ -142,7 +142,7 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
 
             mapControl.jobArrayLit.add(
                 CoroutineScope(Dispatchers.Main).launch {
-                    mapControl.setViewpager(naverMap!!, binding)
+                    mapControl.setViewpager(naverMap!!, binding, MyApplication.dataControl.allScores)
                 }
             )
 

@@ -54,6 +54,10 @@ class ListFragment : BaseFragment<FragmentListBinding>(
             val intent = Intent(context, ContactActivity::class.java)
             startActivity(intent)
         }
+        //info
+        binding.listIvInfo.setOnClickListener {
+            //dialog
+        }
     }
 
     private fun init() {

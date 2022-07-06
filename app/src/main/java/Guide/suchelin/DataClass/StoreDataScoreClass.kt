@@ -15,9 +15,9 @@ data class StoreDataScoreClass(
 ){
     fun getMichelinImage(): Int? =
         when(score.toInt()){
-            in 5..100 -> R.drawable.ic_michelin_three
-            in 3..4 -> R.drawable.ic_michelin_two
-            in 1..2 -> R.drawable.ic_michelin_one
+            in 10..100 -> R.drawable.ic_michelin_three
+            in 5..9 -> R.drawable.ic_michelin_two
+            in 1..4 -> R.drawable.ic_michelin_one
             else -> null
         }
 

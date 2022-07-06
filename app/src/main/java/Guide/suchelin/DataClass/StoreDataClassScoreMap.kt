@@ -2,7 +2,7 @@ package Guide.suchelin.DataClass
 
 import Guide.suchelin.R
 
-data class StoreDataClassMap(
+data class StoreDataClassScoreMap(
     val id: Int,
     val imageUrl: String,
     val name: String,
@@ -11,12 +11,13 @@ data class StoreDataClassMap(
     val longitude : Double,
     val michelin : Int? = 2,
     val rank : Int? = 2,
+    val score: Long,
 ) {
     fun getMichelinImage(): Int? =
-        when(michelin){
-            1 -> R.drawable.ic_michelin_one
-            2 -> R.drawable.ic_michelin_two
-            3 -> R.drawable.ic_michelin_three
+        when(score.toInt()){
+            in 5..100 -> R.drawable.ic_michelin_three
+            in 3..4 -> R.drawable.ic_michelin_two
+            in 1..2 -> R.drawable.ic_michelin_one
             else -> null
         }
 

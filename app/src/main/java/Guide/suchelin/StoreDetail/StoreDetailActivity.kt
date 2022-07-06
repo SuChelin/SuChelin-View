@@ -58,9 +58,9 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivitySto
         //0 이면 별 없음
         Log.d("BackImage",score.toLong().toString())
         michelin = when(score.toInt()){
-            in 5..100 -> 3
-            in 3..4 -> 2
-            in 1..2 -> 1
+            in 10..100 -> 3
+            in 5..9 -> 2
+            in 1..4 -> 1
             else -> 0
         }
         binding.storeDetailBackgroundImageView.visibility =
@@ -92,6 +92,9 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivitySto
                 putExtra("latitude", latitude)
                 putExtra("longitude", longitude)
             })
+        }
+        binding.marker.setOnClickListener {
+            binding.storeDetailAddressTitleTextView.performClick()
         }
     }
 

@@ -68,7 +68,7 @@ class MapsFragment : BaseFragment<FragmentMapBinding>(
         mapView = binding.mapView
         mapView.onCreate(savedInstanceState)
 
-        val mapDataList = DataControl().getStoreDataMap(requireContext())
+        val mapDataList = MyApplication.dataControl.getStoreDataMap(requireContext())
 
         // dataControl 설정
         initDataControl()

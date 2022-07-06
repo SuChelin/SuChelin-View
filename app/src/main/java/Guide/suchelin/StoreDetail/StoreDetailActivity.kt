@@ -5,6 +5,7 @@ import Guide.suchelin.MapStore.MapStoreActivity
 import Guide.suchelin.R
 import android.os.Bundle
 import Guide.suchelin.config.BaseActivity
+import Guide.suchelin.config.MyApplication
 import Guide.suchelin.databinding.ActivityStoreDetailBinding
 import android.content.Intent
 import android.provider.ContactsContract
@@ -45,7 +46,7 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivitySto
     }
 
     private fun init(){
-        val data = DataControl().getStoreDetail(baseContext, storeId)
+        val data = MyApplication.dataControl.getStoreDetail(baseContext, storeId)
         if(data == null) {
             Toast.makeText(this, "데이터를 불러올 수 없습니다.", Toast.LENGTH_SHORT).show()
             return
@@ -78,7 +79,7 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivitySto
             .into(binding.storeDetailImageView)
 
         // 메뉴 리사이클러뷰 설정
-        val menuData = DataControl().getStoreMenu(this, storeId)
+        val menuData = MyApplication.dataControl.getStoreMenu(this, storeId)
 
         binding.storeDetailMenuRecyclerView.adapter = MenuAdapter(menuData)
         binding.storeDetailMenuRecyclerView.layoutManager = LinearLayoutManager(this)

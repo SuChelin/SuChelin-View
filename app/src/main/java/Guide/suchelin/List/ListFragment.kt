@@ -81,7 +81,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
     }
 
     private fun setAdapter(allScores: HashMap<String, Long>) {
-        items = DataControl().getStoreDataScoreList(MyApplication.ApplicationContext(), allScores)
+        items = MyApplication.dataControl.getStoreDataScoreList(MyApplication.ApplicationContext(), allScores)
 
         items.apply {
             sortBy { it.score }

@@ -5,6 +5,7 @@ import Guide.suchelin.DataControl
 import Guide.suchelin.MainActivity
 import Guide.suchelin.R
 import Guide.suchelin.config.BaseFragment
+import Guide.suchelin.config.MyApplication
 import Guide.suchelin.databinding.FragmentVoteBinding
 import android.os.Bundle
 import android.util.Log
@@ -43,7 +44,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
 
         //고유 uid기반으로 데이터가 들어감
         // val myRef = database.getReference("StoreVote").child(Firebase.auth.currentUser!!.uid)
-        val items = DataControl().getStoreDataList(requireContext())
+        val items = MyApplication.dataControl.getStoreDataList(requireContext())
         items.sortBy { it.name }
 
         // rvAdatper 설정

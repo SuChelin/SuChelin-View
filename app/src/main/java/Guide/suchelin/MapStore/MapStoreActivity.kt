@@ -45,6 +45,10 @@ class MapStoreActivity : BaseActivity<ActivityMapStoreBinding>(
             mapControl.setMapUI(naverMap!!)
 
         }
+
+        binding.storeMapDetailBack.setOnClickListener {
+            finish()
+        }
     }
 
     override fun onStart() {

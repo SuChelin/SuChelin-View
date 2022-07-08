@@ -59,9 +59,9 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivitySto
         //0 이면 별 없음
         Log.d("BackImage",score.toLong().toString())
         michelin = when(score.toInt()){
-            in 10..100 -> 3
-            in 5..9 -> 2
-            in 1..4 -> 1
+            in 200..99999 -> 3
+            in 100..199 -> 2
+            in 50..99 -> 1
             else -> 0
         }
         binding.storeDetailBackgroundImageView.visibility =

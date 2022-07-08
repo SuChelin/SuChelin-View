@@ -71,9 +71,9 @@ class MapStoreAdapter(var storeList: ArrayList<StoreDataClassMap>, val allScore:
 
         private fun setMichelinImage(score: Long): Int?{
             return when(score.toInt()){
-                in 10..100 -> R.drawable.ic_michelin_three
-                in 5..9 -> R.drawable.ic_michelin_two
-                in 1..4 -> R.drawable.ic_michelin_one
+                in 200..99999 -> R.drawable.ic_michelin_three
+                in 100..199 -> R.drawable.ic_michelin_two
+                in 50..99 -> R.drawable.ic_michelin_one
                 else -> null
             }
         }

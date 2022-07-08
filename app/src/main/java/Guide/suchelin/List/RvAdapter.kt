@@ -55,10 +55,11 @@ class RvAdapter(val context: Context?, var items: ArrayList<StoreDataScoreClass>
             textViewDetail.text = item.detail
             // 미슐랭 스타 아이콘 설정
             storeMichelin.visibility =
-                if(item.score.toInt() == 0) View.GONE
-                else {
+                if(item.getMichelinImage() != null){
                     storeMichelin.setImageResource(item.getMichelinImage()!!)
                     View.VISIBLE
+                }else{
+                    View.GONE
                 }
 
             // 랭크 아이콘 설정

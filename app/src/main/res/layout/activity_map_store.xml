@@ -24,8 +24,19 @@
             android:gravity="center_vertical"
             android:paddingHorizontal="20dp"
             android:text="주소 보기"
+            android:layout_weight="5"
             android:textColor="@color/black"
             android:textSize="16sp" />
+
+        <!-- 뒤로가기 -->
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:id="@+id/store_map_detail_back"
+            android:layout_width="25dp"
+            android:layout_weight="1"
+            android:layout_height="25dp"
+            android:contentDescription="@string/back"
+            android:src="@drawable/ic_left_arrow" />
 
     </LinearLayout>
 

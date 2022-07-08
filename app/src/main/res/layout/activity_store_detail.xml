@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/storeDetailBackground"
-    tools:context="Guide.suchelin.StoreDetail.StoreDetailActivity">
+    tools:context=".StoreDetail.StoreDetailActivity">
 
     <!-- 배경 아이콘 -->
     <ImageView
@@ -118,5 +118,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>
+        ads:adUnitId="ca-app-pub-8343957057469177/3870381452" />
 </RelativeLayout>

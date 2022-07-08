@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Guide.suchelin.Map.MapsFragment">
+    tools:context=".Map.MapsFragment">
 
     <com.naver.maps.map.MapView
         android:id="@+id/mapView"
@@ -51,7 +51,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignTop="@id/mapView"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        ads:adUnitId="ca-app-pub-8343957057469177/9214207474">
     </com.google.android.gms.ads.AdView>
 
     <ImageView

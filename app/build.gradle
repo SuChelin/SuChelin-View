@@ -9,7 +9,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "Guide.suchelin"
+        applicationId "com.Guide.suchelin"
         minSdk 21
         targetSdk 31
         versionCode 1
@@ -33,7 +33,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    namespace 'Guide.suchelin'
+    namespace 'com.Guide.suchelin'
 
 }
 

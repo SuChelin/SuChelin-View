@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
-        android:name="Guide.suchelin.Map.MapsFragment"
+        android:name="com.Guide.suchelin.Map.MapsFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/voteFragment"
-        android:name="Guide.suchelin.Vote.VoteFragment"
+        android:name="com.Guide.suchelin.Vote.VoteFragment"
         android:label="fragment_vote"
         tools:layout="@layout/fragment_vote" >
         <action

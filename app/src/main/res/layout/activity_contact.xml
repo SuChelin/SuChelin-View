@@ -32,7 +32,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:text="버그 제보"
-                android:fontFamily="@font/leferibaseregular"
+                android:fontFamily="@font/pretendardregular"
                 android:buttonTint="@color/black"
                 android:layout_marginEnd="20dp"
                 android:id="@+id/contact_report"
@@ -40,7 +40,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:text="가게 추가"
-                android:fontFamily="@font/leferibaseregular"
+                android:fontFamily="@font/pretendardregular"
                 android:buttonTint="@color/black"
                 android:id="@+id/contact_new_store"
                 android:layout_height="match_parent"/>
@@ -55,7 +55,7 @@
         android:layout_height="0dp">
         <EditText
             android:id="@+id/contact_et"
-            android:fontFamily="@font/leferibaseregular"
+            android:fontFamily="@font/pretendardregular"
             android:gravity="start|top"
             android:nestedScrollingEnabled="true"
             android:layout_width="match_parent"

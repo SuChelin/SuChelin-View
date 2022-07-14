@@ -12,15 +12,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:text="간장 게장"
+        android:fontFamily="@font/pretendardregular"
         android:textColor="@color/black"
-        android:textSize="15sp"/>
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/menu_item_price_textView"
         android:layout_marginStart="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendardregular"
         tools:text="13,000원"
         android:textColor="@color/black"
-        android:textSize="15sp"/>
+        android:textSize="16sp"/>
 </LinearLayout>

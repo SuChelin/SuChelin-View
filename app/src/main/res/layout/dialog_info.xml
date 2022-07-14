@@ -7,7 +7,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
         android:padding="20dp"
+        android:lineSpacingExtra="8dp"
         android:layout_width="match_parent"
+        android:fontFamily="@font/pretendardregular"
         android:text="@string/info"
         android:layout_height="match_parent"/>
 

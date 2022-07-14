@@ -51,7 +51,7 @@
             android:layout_centerHorizontal="true"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_vote_michelin_three"/>
+            android:src="@drawable/votedimage"/>
 
         <TextView
             android:id="@+id/vote_item_rating_textView"
@@ -76,8 +76,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="7dp"
         android:gravity="center"
+        android:fontFamily="@font/pretendardbold"
         android:textColor="@color/black"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         tools:ignore="SmallSp"
         tools:text="할리스 수원대점" />

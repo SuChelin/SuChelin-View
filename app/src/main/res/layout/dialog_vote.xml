@@ -19,6 +19,7 @@
         android:textColor="@color/black"
         android:textSize="17sp"
         android:textStyle="bold"
+        android:fontFamily="@font/pretendardbold"
         app:layout_constraintBottom_toBottomOf="@+id/vote_dialog_cancel_imageView"
         app:layout_constraintEnd_toStartOf="@id/vote_dialog_cancel_imageView"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +37,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:fontFamily="@font/pretendardregular"
         android:id="@+id/explain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,6 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
+        android:fontFamily="@font/pretendardbold"
         android:text="@string/voteWarning"
         android:textColor="@color/red"
         android:textStyle="bold"
@@ -84,6 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/voteComplete"
+        android:fontFamily="@font/pretendardbold"
         android:textColor="@color/blue"
         android:textSize="15sp"
         android:textStyle="bold"

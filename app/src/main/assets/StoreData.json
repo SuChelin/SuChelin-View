@@ -318,6 +318,14 @@
     "detail": "제육볶음, 김치찌개",
     "latitude": 37.2167619,
     "longitude": 126.975571
+  },
+  {
+    "id": 41,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAzMDNfMTg0%2FMDAxNjQ2Mjg4MTY0Mjkx.ZxFxEAwKKZ363Sgz3_tbH9wd3AOcwN5RX1f3wgXIPa0g.TUQqxxAGPDYWlOaD2FKrNG1nSK9PDCBiQFVXhbjHmdgg.JPEG.restifm123%2FKakaoTalk_20220302_164037400_01.jpg",
+    "name": "고향한식부페(예담한식부페)",
+    "detail": "한식부페",
+    "latitude": 37.2098300,
+    "longitude": 126.981205
   }
 ]
 

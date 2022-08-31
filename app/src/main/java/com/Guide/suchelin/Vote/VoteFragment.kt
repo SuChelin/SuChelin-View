@@ -93,6 +93,8 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
             val searchText = binding.voteSearchEditTextView.text.toString()
             val searchItem = mutableListOf<StoreDataClass>()
             var searchComplete = false
+            binding.voteSearchEditTextView.text.clear()
+
             //일부만 같으려면 contains, 완전히 같으려면 eqauls나 contentEquals
             for(i in items.indices){
                 if(items[i].name.contains(searchText,true)){

@@ -25,10 +25,9 @@ import com.Guide.suchelin.Vote.VoteRvAdapter
 import com.Guide.suchelin.config.BaseFragment
 import com.Guide.suchelin.config.MyApplication
 import com.Guide.suchelin.databinding.FragmentListBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import kotlinx.coroutines.android.awaitFrame
+import java.lang.Runnable
 
 class ListFragment : BaseFragment<FragmentListBinding>(
     FragmentListBinding::bind,
@@ -39,6 +38,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
         private const val FILTER_GRADE = 2
         private const val FILTER_NEW = 3
     }
+    val topThreeId = ArrayList<Int>()
 
     // 그림자 효과
     private var scrolledY = 0
@@ -56,17 +56,10 @@ class ListFragment : BaseFragment<FragmentListBinding>(
 
         // 초기화
         init()
+
         binding.listSearchImageView.setOnClickListener {
             binding.listDefaultBar.visibility = View.GONE
             binding.listSearchBar.visibility = View.VISIBLE
-
-        }
-
-        binding.listSearchImageViewClicked.setOnClickListener {
-            binding.listDefaultBar.visibility = View.VISIBLE
-            binding.listSearchBar.visibility = View.GONE
-            //여기에 검색기능을 넣으면 된다.
-
 
         }
 
@@ -122,43 +115,18 @@ class ListFragment : BaseFragment<FragmentListBinding>(
             sortBy { it.score }
             reverse()
         }
-        val topThreeId = ArrayList<Int>()
         topThreeId.add(items[0].id)
         topThreeId.add(items[1].id)
         topThreeId.add(items[2].id)
 
         items.sortBy { it.name }
 
-        binding.listSearchImageViewClicked.setOnClickListener {
-            //검색버튼 누르면 키보드 내려가게
-            var imm: InputMethodManager? = null
-            imm = requireActivity().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-            imm?.hideSoftInputFromWindow(it.windowToken,0)
-
-            val searchText = binding.voteSearchEditTextView.text.toString()
-            val searchItem = mutableListOf<StoreDataScoreClass>()
-            var searchComplete = false
-
-            //adapter 설정해야됨
-            //일부만 같으려면 contains, 완전히 같으려면 eqauls나 contentEquals
-            for(i in items.indices){
-                if(items[i].name.contains(searchText,true)){
-                    searchItem.add(items[i])
-                    searchComplete = true
-                }
-            }
-//            rvAdapter = VoteRvAdapter(context, searchItem)
-//            setRvAdapter(searchItem as ArrayList<StoreDataClass>)
-
-            if(searchComplete==false){
-                Toast.makeText(context, "검색결과가 없습니다", Toast.LENGTH_SHORT).show()
-            }
-        }
-
         rvAdapter = RvAdapter(context, items, topThreeId)
 
         rvAdapter?.itemClick = object : RvAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
+                Log.d("ClickedItem","${items[position]}")
+
                 val intent = Intent(context, StoreDetailActivity::class.java)
                 intent.putExtra("StoreName", items[position].name)
                 intent.putExtra("StoreId", items[position].id)
@@ -186,6 +154,65 @@ class ListFragment : BaseFragment<FragmentListBinding>(
                 }
             }
         })
+
+        binding.listSearchImageViewClicked.setOnClickListener {
+            binding.listDefaultBar.visibility = View.VISIBLE
+            binding.listSearchBar.visibility = View.GONE
+            //검색버튼 누르면 키보드 내려가게
+            var imm: InputMethodManager? = null
+            imm = requireActivity().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+            imm?.hideSoftInputFromWindow(it.windowToken,0)
+
+            val searchText = binding.voteSearchEditTextView.text.toString()
+            val searchItem = mutableListOf<StoreDataScoreClass>()
+            binding.voteSearchEditTextView.text.clear()
+            var searchComplete = false
+
+            //adapter 설정해야됨
+            //일부만 같으려면 contains, 완전히 같으려면 eqauls나 contentEquals
+            for(i in items.indices){
+                if(items[i].name.contains(searchText,true)){
+                    searchItem.add(items[i])
+                    searchComplete = true
+                }
+            }
+            Log.d("ListSearch","${searchItem}")
+            //searchitem이 잘 들어오긴함.
+            val searchAdapter = RvAdapter(context, searchItem as ArrayList<StoreDataScoreClass>, topThreeId)
+
+            searchAdapter?.itemClick = object : RvAdapter.ItemClick {
+                override fun onClick(view: View, position: Int) {
+                    Log.d("ClickedItemSearch","${searchItem[position]}")
+                    val intent = Intent(context, StoreDetailActivity::class.java)
+                    intent.putExtra("StoreName", searchItem[position].name)
+                    intent.putExtra("StoreId", searchItem[position].id)
+                    intent.putExtra("score", searchItem[position].score)
+                    intent.putExtra("latitude", searchItem[position].latitude)
+                    intent.putExtra("longitude", searchItem[position].longitude)
+                    CoroutineScope(Dispatchers.Main).launch {
+                        startActivity(intent)
+                        delay(500)
+                        binding.rv.apply {
+                            adapter = rvAdapter
+                            layoutManager = LinearLayoutManager(context)
+                        }
+                    }
+                }
+            }
+
+            binding.rv.apply {
+                adapter = searchAdapter
+                layoutManager = LinearLayoutManager(context)
+            }
+
+
+//            rvAdapter = VoteRvAdapter(context, searchItem)
+//            setRvAdapter(searchItem as ArrayList<StoreDataClass>)
+
+            if(searchComplete==false){
+                Toast.makeText(context, "검색결과가 없습니다", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun changeLoadingContent(flag: Boolean) {

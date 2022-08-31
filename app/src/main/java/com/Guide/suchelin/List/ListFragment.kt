@@ -7,16 +7,21 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.Guide.suchelin.ContactActivity
+import com.Guide.suchelin.DataClass.StoreDataClass
 import com.Guide.suchelin.DataClass.StoreDataScoreClass
 import com.Guide.suchelin.List.RvAdapter
 import com.Guide.suchelin.R
 import com.Guide.suchelin.StoreDetail.StoreDetailActivity
+import com.Guide.suchelin.Vote.VoteRvAdapter
 import com.Guide.suchelin.config.BaseFragment
 import com.Guide.suchelin.config.MyApplication
 import com.Guide.suchelin.databinding.FragmentListBinding
@@ -62,7 +67,17 @@ class ListFragment : BaseFragment<FragmentListBinding>(
             binding.listSearchBar.visibility = View.GONE
             //여기에 검색기능을 넣으면 된다.
 
+
         }
+
+        binding.voteSearchEditTextView.setOnKeyListener{ v, keyCode, event ->
+            if(event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER){
+                //엔터키 누르면 검색되게
+                binding.listSearchImageViewClicked.performClick()
+            }
+            true
+        }
+
 
         //고객센터
         binding.listIvContact.setOnClickListener {
@@ -113,6 +128,32 @@ class ListFragment : BaseFragment<FragmentListBinding>(
         topThreeId.add(items[2].id)
 
         items.sortBy { it.name }
+
+        binding.listSearchImageViewClicked.setOnClickListener {
+            //검색버튼 누르면 키보드 내려가게
+            var imm: InputMethodManager? = null
+            imm = requireActivity().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+            imm?.hideSoftInputFromWindow(it.windowToken,0)
+
+            val searchText = binding.voteSearchEditTextView.text.toString()
+            val searchItem = mutableListOf<StoreDataScoreClass>()
+            var searchComplete = false
+
+            //adapter 설정해야됨
+            //일부만 같으려면 contains, 완전히 같으려면 eqauls나 contentEquals
+            for(i in items.indices){
+                if(items[i].name.contains(searchText,true)){
+                    searchItem.add(items[i])
+                    searchComplete = true
+                }
+            }
+//            rvAdapter = VoteRvAdapter(context, searchItem)
+//            setRvAdapter(searchItem as ArrayList<StoreDataClass>)
+
+            if(searchComplete==false){
+                Toast.makeText(context, "검색결과가 없습니다", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         rvAdapter = RvAdapter(context, items, topThreeId)
 

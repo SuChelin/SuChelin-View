@@ -2,12 +2,14 @@ package Guide.suchelin.List
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.Guide.suchelin.ContactActivity
@@ -49,6 +51,18 @@ class ListFragment : BaseFragment<FragmentListBinding>(
 
         // 초기화
         init()
+        binding.listSearchImageView.setOnClickListener {
+            binding.listDefaultBar.visibility = View.GONE
+            binding.listSearchBar.visibility = View.VISIBLE
+
+        }
+
+        binding.listSearchImageViewClicked.setOnClickListener {
+            binding.listDefaultBar.visibility = View.VISIBLE
+            binding.listSearchBar.visibility = View.GONE
+            //여기에 검색기능을 넣으면 된다.
+
+        }
 
         //고객센터
         binding.listIvContact.setOnClickListener {

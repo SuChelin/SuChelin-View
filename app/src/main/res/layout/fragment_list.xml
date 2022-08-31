@@ -17,37 +17,101 @@
         android:elevation="2dp"
         android:orientation="horizontal">
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textStyle="bold"
             android:fontFamily="@font/pretendardbold"
             android:gravity="center_vertical"
-            android:layout_weight="5"
             android:paddingHorizontal="20dp"
             android:text="@string/listToolbarTitle"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
-        <ImageView
-            android:id="@+id/list_iv_info"
-            android:padding="14dp"
-            android:layout_width="?actionBarSize"
-            android:layout_height="?actionBarSize"
-            android:src="@drawable/premiumiconinfo5258991" />
-<!--        <a href="https://www.flaticon.com/kr/free-icons/" title="정보 아이콘">정보 아이콘  제작자: SeyfDesigner - Flaticon</a>-->
-        <ImageView
-            android:layout_gravity="end"
-            android:id="@+id/list_iv_contact"
-            android:padding="12dp"
-            android:layout_weight="0"
-            android:layout_width="?actionBarSize"
-            android:src="@drawable/customerservice"
-            android:layout_height="?actionBarSize"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:id="@+id/list_default_bar"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            >
+            <ImageView
+                android:id="@+id/list_iv_info"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="?actionBarSize"
+                app:layout_constraintEnd_toStartOf="@+id/list_iv_contact"
+                android:layout_height="?actionBarSize"
+                android:src="@drawable/premiumiconinfo5258991" />
+            <!--        <a href="https://www.flaticon.com/kr/free-icons/" title="정보 아이콘">정보 아이콘  제작자: SeyfDesigner - Flaticon</a>-->
+            <ImageView
+                android:layout_gravity="end"
+                android:id="@+id/list_iv_contact"
+                android:padding="13dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/list_search_imageView"
+                android:layout_width="?actionBarSize"
+                android:src="@drawable/customerservice"
+                android:layout_height="?actionBarSize"/>
+            <ImageView
+                android:id="@+id/list_search_imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:contentDescription="@string/search"
+                android:padding="14dp"
+                android:src="@drawable/ic_search" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+
+        <!-- 검색하기 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:visibility="gone"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="11dp"
+            android:layout_marginEnd="20dp"
+            android:id="@+id/list_search_bar"
+            android:layout_weight="6"
+            android:background="@drawable/search_editbox"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/vote_search_editTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:background="@null"
+                android:hint="@string/voteSearchHint"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingHorizontal="15sp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/textGray"
+                android:textSize="13dp"
+                android:textStyle="bold"
+                tools:ignore="NestedWeights" />
+
+            <ImageView
+                android:id="@+id/list_search_imageView_clicked"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:contentDescription="@string/search"
+                android:padding="10dp"
+                android:src="@drawable/ic_search" />
+        </LinearLayout>
 
     </LinearLayout>
+
 <!-- 고객센터 아이콘   <a href="https://www.flaticon.com/kr/free-icons/-" title="- 아이콘">- 아이콘  제작자: Freepik - Flaticon</a>-->
     <!-- 내용 -->
     <RelativeLayout

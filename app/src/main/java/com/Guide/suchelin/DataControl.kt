@@ -21,7 +21,7 @@ class DataControl {
         private const val FILTER_NAME = 1
         private const val FILTER_GRADE = 2
         private const val FILTER_NEW = 3
-        const val STORE_JSON_LENGTH = 41
+        const val STORE_JSON_LENGTH = 43
     }
 
     fun initFlag() : Boolean = scoreRequestFlag

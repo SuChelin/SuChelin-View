@@ -2268,6 +2268,23 @@
     ]
   },
   {
+    "id": 44,
+    "menu": [
+      {
+        "menuName": "라면",
+        "menuPrice": ""
+      },
+      {
+        "menuName": "컵밥",
+        "menuPrice": ""
+      },
+      {
+        "menuName": "우동",
+        "menuPrice": ""
+      }
+    ]
+  },
+  {
     "id": 42,
     "menu": [
       {
@@ -2281,19 +2298,63 @@
     "menu": [
       {
         "menuName": "아메리카노(HOT/ICE)",
-        "menuPrice": "3000원"
+        "menuPrice": "3,000원"
       },
       {
         "menuName": "카페라떼(HOT/ICE)",
-        "menuPrice": "3500원/3900원"
+        "menuPrice": "3,500원/3,900원"
+      },
+      {
+        "menuName": "바닐라라떼(HOT/ICE)",
+        "menuPrice": "3,900원/4,300원"
+      },
+      {
+        "menuName": "카페모카(HOT/ICE)",
+        "menuPrice": "3,900원/4,300원"
+      },
+      {
+        "menuName": "아인슈페너(HOT only)",
+        "menuPrice": "4,500원"
+      },
+      {
+        "menuName": "카라멜 마끼야또(HOT/ICE)",
+        "menuPrice": "3,900원/4,300원"
+      },
+      {
+        "menuName": "초코라떼(HOT/ICE)",
+        "menuPrice": "3,500원/3,900원"
+      },
+      {
+        "menuName": "쑥라떼(HOT/ICE)",
+        "menuPrice": "3,800원/4,200원"
+      },
+      {
+        "menuName": "민트초코라떼(ICE only)",
+        "menuPrice": "4,200원"
+      },
+      {
+        "menuName": "흑당버블라떼(ICE only)",
+        "menuPrice": "4,200원"
       },
       {
         "menuName": "피자 페스츄리",
-        "menuPrice": "3300원"
+        "menuPrice": "3,300원"
+      },
+      {
+        "menuName": "콘치즈 스콘",
+        "menuPrice": "2,900원"
+      },
+      {
+        "menuName": "베이컨 페스츄리",
+        "menuPrice": "3,500원"
       },
       {
         "menuName": "호두 타르트",
-        "menuPrice": "2700원"
+        "menuPrice": "3,200원"
+      },
+      {
+        "menuName": "에그 타르트",
+        "menuPrice": "3,200원"
       },
       {
         "menuName": "그 밖에도 메뉴가 많습니다",

@@ -342,6 +342,14 @@
     "detail": "커피&베이커리",
     "latitude": 37.2134795,
     "longitude": 126.9757468
+  },
+  {
+    "id": 44,
+    "imageUrl": "https://mblogthumb-phinf.pstatic.net/MjAxNzAzMDlfOTcg/MDAxNDg5MDIyMjgwNDYx.4GZNGNjyUF4cMfDLrkMvb8cEY0d1yNCvAuzPxOZitU0g.ZfD1xEif19D4E1oTDLT3CdiGt-fCd73G9K8NUJRHJTkg.JPEG.usw1982/%EC%A2%85%ED%95%A9%EA%B0%95%EC%9D%98%EB%8F%992.jpg?type=w2",
+    "name": "종합강의동 푸드피아",
+    "detail": "라면, 우동",
+    "latitude": 37.2088509,
+    "longitude": 126.9785717
   }
 ]
 

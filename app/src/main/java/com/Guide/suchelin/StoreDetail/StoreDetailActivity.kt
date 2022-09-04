@@ -1,11 +1,14 @@
 package com.Guide.suchelin.StoreDetail
 
+import android.app.AlertDialog
 import com.Guide.suchelin.MapStore.MapStoreActivity
 import com.Guide.suchelin.R
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.Guide.suchelin.config.BaseActivity
@@ -15,7 +18,8 @@ import com.bumptech.glide.Glide
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 
-class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivityStoreDetailBinding::inflate) {
+class StoreDetailActivity :
+    BaseActivity<ActivityStoreDetailBinding>(ActivityStoreDetailBinding::inflate) {
     private var storeId: Int = -1
     private var storeName: String = ""
     private var score: Long = 0
@@ -32,7 +36,7 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivitySto
 
         storeId = intent.getIntExtra("StoreId", -1)
         storeName = intent.getStringExtra("StoreName") ?: ""
-        score = intent.getLongExtra("score",0)
+        score = intent.getLongExtra("score", 0)
         latitude = intent.getDoubleExtra("latitude", 37.214185)
         longitude = intent.getDoubleExtra("longitude", 126.978792)
 
@@ -43,9 +47,9 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivitySto
         }
     }
 
-    private fun init(){
+    private fun init() {
         val data = MyApplication.dataControl.getStoreDetail(baseContext, storeId)
-        if(data == null) {
+        if (data == null) {
             Toast.makeText(this, "데이터를 불러올 수 없습니다.", Toast.LENGTH_SHORT).show()
             return
         }
@@ -55,18 +59,22 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivitySto
         //5~3이면 별 두개
         //1~2면 별 한개
         //0 이면 별 없음
-        Log.d("BackImage",score.toLong().toString())
-        michelin = when(score.toInt()){
+        Log.d("BackImage", score.toLong().toString())
+        michelin = when (score.toInt()) {
             in 200..99999 -> 3
             in 100..199 -> 2
             in 50..99 -> 1
             else -> 0
         }
         binding.storeDetailBackgroundImageView.visibility =
-            if(michelin == 0) View.GONE
+            if (michelin == 0) View.GONE
             else {
-                Log.d("BackImage",setMichelinBackgroundImage(michelin)!!.toString())
-                binding.storeDetailBackgroundImageView.setImageResource(setMichelinBackgroundImage(michelin)!!)
+                Log.d("BackImage", setMichelinBackgroundImage(michelin)!!.toString())
+                binding.storeDetailBackgroundImageView.setImageResource(
+                    setMichelinBackgroundImage(
+                        michelin
+                    )!!
+                )
                 View.VISIBLE
             }
 
@@ -75,6 +83,24 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivitySto
             .load(data.imageUrl)
             .circleCrop()
             .into(binding.storeDetailImageView)
+
+
+
+        binding.storeDetailImageView.setOnClickListener {
+            val mDialogView = LayoutInflater.from(this).inflate(R.layout.show_image_dialog, null)
+            val mBuilder = AlertDialog.Builder(this)
+                .setView(mDialogView)
+
+            val mAlertDialog = mBuilder.show()
+
+            Glide.with(this)
+                .load(data.imageUrl)
+                .fitCenter()
+                .into(mAlertDialog.findViewById(R.id.show_image))
+            mAlertDialog.findViewById<ImageView>(R.id.show_image)?.setOnClickListener {
+                mAlertDialog.dismiss()
+            }
+        }
 
         // 메뉴 리사이클러뷰 설정
         val menuData = MyApplication.dataControl.getStoreMenu(this, storeId)
@@ -97,8 +123,8 @@ class StoreDetailActivity : BaseActivity<ActivityStoreDetailBinding>(ActivitySto
         }
     }
 
-    private fun setMichelinBackgroundImage(michelin: Int): Int?{
-        return when(michelin){
+    private fun setMichelinBackgroundImage(michelin: Int): Int? {
+        return when (michelin) {
             1 -> R.drawable.ic_michelin_one_background
             2 -> R.drawable.ic_michelin_two_background
             3 -> R.drawable.ic_michelin_three_background

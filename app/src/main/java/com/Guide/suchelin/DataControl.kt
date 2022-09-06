@@ -3,6 +3,7 @@ package com.Guide.suchelin
 import android.content.Context
 import android.util.Log
 import com.Guide.suchelin.DataClass.*
+import com.Guide.suchelin.StoreDetail.ImageMenu
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -21,7 +22,7 @@ class DataControl {
         private const val FILTER_NAME = 1
         private const val FILTER_GRADE = 2
         private const val FILTER_NEW = 3
-        const val STORE_JSON_LENGTH = 44
+        const val STORE_JSON_LENGTH = 51
     }
 
     fun initFlag() : Boolean = scoreRequestFlag
@@ -93,6 +94,21 @@ class DataControl {
         return storeDataMap
     }
 
+    fun getStoreImageMenu(storeId: Int, context: Context): String {
+        // 식당 데이터
+        val data = readFile("StoreImageMenu.json", context)
+        var imageMenu : String?
+
+        val jsonArray = JSONTokener(data).nextValue() as JSONArray
+        for (i in 0 until jsonArray.length()) {
+            if (storeId == jsonArray.getJSONObject(i).getInt("id")){
+                imageMenu = jsonArray.getJSONObject(i).getString("imageUrl")
+                return imageMenu
+            }
+        }
+        return "no"
+    }
+
     fun getStoreDataList(context: Context): ArrayList<StoreDataClass> {
 
         // 식당 데이터
@@ -133,6 +149,8 @@ class DataControl {
             /*
             * id 값으로 점수 값 받아오기. key-value가 id-score로 되게
             * */
+//            Log.d("Store","$name")
+
             val scr = score.getValue(id.toString())
             storeData.add(StoreDataScoreClass(id = id, imageUrl = imageUrl, name = name, detail = detail, score = scr, latitude = latitude, longitude = longitude))
         }

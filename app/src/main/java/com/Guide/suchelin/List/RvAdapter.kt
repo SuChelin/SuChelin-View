@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.Guide.suchelin.R
 import android.annotation.SuppressLint
+import android.util.Log
 
 class RvAdapter(val context: Context?, var items: ArrayList<StoreDataScoreClass>, var topThree: ArrayList<Int>):RecyclerView.Adapter<RvAdapter.ViewHolder>() {
 
@@ -49,7 +50,6 @@ class RvAdapter(val context: Context?, var items: ArrayList<StoreDataScoreClass>
                 .load(item.imageUrl)
                 .centerCrop()
                 .into(imageViewShop)
-
 
             textViewTitle.text = item.name
             textViewDetail.text = item.detail

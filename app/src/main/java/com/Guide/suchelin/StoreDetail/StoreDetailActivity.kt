@@ -1,22 +1,27 @@
 package com.Guide.suchelin.StoreDetail
 
 import android.app.AlertDialog
-import com.Guide.suchelin.MapStore.MapStoreActivity
-import com.Guide.suchelin.R
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.ScaleGestureDetector
+import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.Guide.suchelin.DataControl
+import com.Guide.suchelin.MapStore.MapStoreActivity
+import com.Guide.suchelin.R
 import com.Guide.suchelin.config.BaseActivity
 import com.Guide.suchelin.config.MyApplication
 import com.Guide.suchelin.databinding.ActivityStoreDetailBinding
 import com.bumptech.glide.Glide
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
+
 
 class StoreDetailActivity :
     BaseActivity<ActivityStoreDetailBinding>(ActivityStoreDetailBinding::inflate) {
@@ -52,6 +57,16 @@ class StoreDetailActivity :
         if (data == null) {
             Toast.makeText(this, "데이터를 불러올 수 없습니다.", Toast.LENGTH_SHORT).show()
             return
+        }
+
+        val imageMenu = DataControl().getStoreImageMenu(storeId, this)
+        if (imageMenu != "no") {
+            Glide.with(this)
+                .load(imageMenu)
+                .into(binding.storeDetailImageMenu)
+
+            binding.storeDetailMenuRecyclerView.visibility = View.GONE
+            binding.storeDetailScroll.visibility = View.VISIBLE
         }
         //테스트
         //test
@@ -97,6 +112,7 @@ class StoreDetailActivity :
                 .load(data.imageUrl)
                 .fitCenter()
                 .into(mAlertDialog.findViewById(R.id.show_image))
+
             mAlertDialog.findViewById<ImageView>(R.id.show_image)?.setOnClickListener {
                 mAlertDialog.dismiss()
             }

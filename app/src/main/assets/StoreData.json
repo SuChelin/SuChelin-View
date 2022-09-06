@@ -350,6 +350,62 @@
     "detail": "라면, 우동",
     "latitude": 37.2088509,
     "longitude": 126.9785717
+  },
+  {
+    "id": 45,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20191206_261%2F1575621708912H187O_JPEG%2Fimage.jpg",
+    "name": "번개막창",
+    "detail": "돼지막창, 껍데기",
+    "latitude": 37.2171661,
+    "longitude": 126.9752941
+  },
+  {
+    "id": 46,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEyMTJfMTM0%2FMDAxNjM5MzIwNDA3NDY2.gdyf52BoTLReDV9tmyR8dD_amIPYyMCT45ikejdTW-kg.qm3KjVPV4abwk0eqpUwyfV0okSrhSdXAYKh5tOO-xKMg.JPEG.gabjin87%2FIMG_2856.jpg",
+    "name": "샬레향 수제돈가스&",
+    "detail": "왕돈까스, 빠네크림파스타",
+    "latitude": 37.2148657,
+    "longitude": 126.9779665
+  },
+  {
+    "id": 47,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyMjA2MTNfMjU3%2FMDAxNjU1MDg0NzMzNzIy.NqvrYCIB3Hv3NjEtKo2KIBPMTMUUTjFKo4OUq5DLQFgg.FwmSqwZSAiMeHMGO5QQKYSRVAi82PAhf1MRZ0Raw4Log.JPEG%2Fupload_b2024d0f7a6a34e6575f2c1da1515345.jpeg",
+    "name": "덮밥90도씨 봉담점",
+    "detail": "대패고기덮밥, 제육덮밥",
+    "latitude": 37.2142616,
+    "longitude": 126.9773519
+  },
+  {
+    "id": 48,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190710_215%2F15627458169715Ekm3_JPEG%2F4GzloJl2ZaGizgjNDYYLlVx1.jpeg.jpg",
+    "name": "로충칭마라탕 화성봉담점",
+    "detail": "훠궈 무한리필, 마라탕",
+    "latitude": 37.2147926,
+    "longitude": 126.9729741
+  },
+  {
+    "id": 49,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200204_281%2F1580771323353qdWAQ_JPEG%2FFTHP-YWXeUcln0606fLbD2xw.jpeg.jpg",
+    "name": "보용만두 수원대점",
+    "detail": "만두국, 군만두",
+    "latitude": 37.2155201,
+    "longitude": 126.9765690
+  },
+  {
+    "id": 50,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA1MTBfOCAg%2FMDAxNjUyMTkyOTk5OTA2.WQX0RdmmI04R2yc44owacMo6M7TLdvO_kBTbHgYlfJ4g.JaXJdJbGiv4IQBceiLcQgRlANTReTOu0-fLrpQXZI84g.JPEG.hsbs14th%2F20220510%25A3%25DF181912.jpg",
+    "name": "짱닭치킨 화성수원대점",
+    "detail": "치킨, 떡볶이",
+    "latitude": 37.2140573,
+    "longitude": 126.9796400
+  },
+  {
+    "id": 51,
+    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190118_211%2F15478107055615Aqtz_JPEG%2FlIwTvvAC6ETf-k0u8qe4owjv.jpg",
+    "name": "파스타하임",
+    "detail": "치킨, 떡볶이",
+    "latitude": 37.2144250,
+    "longitude": 126.9747794
   }
 ]
 

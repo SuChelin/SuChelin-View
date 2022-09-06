@@ -232,6 +232,11 @@ class ListFragment : BaseFragment<FragmentListBinding>(
             // 필터 바꾸기
             changeFilter(FILTER_NAME)
 
+            binding.rv.apply {
+                adapter = rvAdapter
+                layoutManager = LinearLayoutManager(context)
+            }
+
             items.sortBy {
                 it.name
             }
@@ -242,6 +247,12 @@ class ListFragment : BaseFragment<FragmentListBinding>(
             // 필터 바꾸기
             changeFilter(FILTER_NEW)
             //신규니까 id가 큰게 나중에 추가된 가게
+
+            binding.rv.apply {
+                adapter = rvAdapter
+                layoutManager = LinearLayoutManager(context)
+            }
+
             items.apply {
                 sortBy {
                     it.id
@@ -256,6 +267,11 @@ class ListFragment : BaseFragment<FragmentListBinding>(
         binding.listFilterGradeTextView.setOnClickListener {
             // 필터 바꾸기
             changeFilter(FILTER_GRADE)
+
+            binding.rv.apply {
+                adapter = rvAdapter
+                layoutManager = LinearLayoutManager(context)
+            }
 
             items.apply {
                 sortBy { it.score }

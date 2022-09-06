@@ -2041,7 +2041,7 @@
     "menu": [
       {
         "menuName": "아메리카노",
-        "menuPrice": "900원"
+        "menuPrice": "900원/ 1500원"
       },
       {
         "menuName": "흑당커피",
@@ -2268,6 +2268,63 @@
     ]
   },
   {
+    "id": 46,
+    "menu": [
+      {
+        "menuName": "왕돈까스",
+        "menuPrice": "7,500원"
+      },
+      {
+        "menuName": "매운 왕돈까스",
+        "menuPrice": "7,500원"
+      },
+      {
+        "menuName": "생선까스",
+        "menuPrice": "7,000원"
+      },
+      {
+        "menuName": "함박스테이크",
+        "menuPrice": "7,000원"
+      },
+      {
+        "menuName": "고구마치즈 돈까스",
+        "menuPrice": "8,000원"
+      },
+      {
+        "menuName": "레몬폰즈 돈까스",
+        "menuPrice": "8,500원"
+      },
+      {
+        "menuName": "치즈 돈까스",
+        "menuPrice": "8,000원"
+      },
+      {
+        "menuName": "빠네크림 파스타",
+        "menuPrice": "9,500원"
+      },
+      {
+        "menuName": "치즈 오븐 스파게티",
+        "menuPrice": "8,000원"
+      },
+      {
+        "menuName": "토마토 스파게티",
+        "menuPrice": "7,000원"
+      },
+      {
+        "menuName": "해물 토마토 스파게티",
+        "menuPrice": "8,000원"
+      },
+      {
+        "menuName": "까르보나라",
+        "menuPrice": "8,000원"
+      },
+      {
+        "menuName": "한우 차돌박이파스타",
+        "menuPrice": "9,000원"
+      }
+    ]
+  },
+  {
     "id": 44,
     "menu": [
       {
@@ -2290,6 +2347,47 @@
       {
         "menuName": "갈매기살 1인분 + 냉면 / (밥+된장찌개)",
         "menuPrice": "7,000원"
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "menu": [
+      {
+        "menuName": "돼지막창 200g",
+        "menuPrice": "11,000원"
+      },
+      {
+        "menuName": "오겹살 200g",
+        "menuPrice": "10,000원"
+      },
+      {
+        "menuName": "주먹고기 200g",
+        "menuPrice": "10,000원"
+      },
+      {
+        "menuName": "갈매기살 200g",
+        "menuPrice": "10,000원"
+      },
+      {
+        "menuName": "왕갈비 200g",
+        "menuPrice": "10,000원"
+      },
+      {
+        "menuName": "소막창 200g",
+        "menuPrice": "16,000원"
+      },
+      {
+        "menuName": "날으는껍데기",
+        "menuPrice": "5,000원"
+      },
+      {
+        "menuName": "번개 칡냉면",
+        "menuPrice": "5,000원"
+      },
+      {
+        "menuName": "계란찜",
+        "menuPrice": "2,000원"
       }
     ]
   },

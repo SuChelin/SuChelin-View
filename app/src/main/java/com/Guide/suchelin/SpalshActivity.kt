@@ -1,6 +1,8 @@
 package com.Guide.suchelin
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -10,6 +12,8 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class SpalshActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -32,23 +36,29 @@ class SpalshActivity : AppCompatActivity() {
                 val current = LocalDateTime.now()
                 val formatter = DateTimeFormatter.ISO_DATE
                 val formatted = current.format(formatter)
-
+//                testcode
+//                val format = "2022-11-02"
                 if (previousDate != formatted) {
                     // 날짜가 바뀐 것임.
                     saveDate(formatted)
                     Log.d("CurrentDate", "$formatted 날짜바뀜")
                     // 랜덤추천 액티비티로 이동시킴
-
+                    startActivity(Intent(this, RandomActivity::class.java))
+                    finish()
                 } else {
                     //이전 날짜가 없다는 의미이므로 지금날짜 저장해줌.
                     if (previousDate.isNullOrEmpty()) {
                         Log.d("CurrentDate", "$formatted 비어있음")
                         saveDate(formatted)
+                        //testcode
+//                        startActivity(Intent(this, RandomActivity::class.java))
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     }
                     else{
                         Log.d("CurrentDate", "$formatted 날짜가 동일")
+                        //testcode
+//                        startActivity(Intent(this, RandomActivity::class.java))
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     }

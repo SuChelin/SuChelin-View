@@ -178,7 +178,7 @@
   {
     "id": 23,
     "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=http%3A%2F%2Fimage.nmv.naver.net%2Fblog_2021_11_11_1457%2F63753c9c-42ee-11ec-a74c-48df379ccacc_01.jpg",
-    "name": "와주전집",
+    "name": "전여친(와주전집자리)",
     "detail": "전",
     "latitude": 37.2134795,
     "longitude": 126.9757468
@@ -406,6 +406,78 @@
     "detail": "치킨, 떡볶이",
     "latitude": 37.2144250,
     "longitude": 126.9747794
+  },
+  {
+    "id": 52,
+    "imageUrl": "",
+    "name": "TOY&CAFE 원앤원",
+    "detail": "커피, 스무디",
+    "latitude": 0.0,
+    "longitude": 0.0
+  },
+  {
+    "id": 53,
+    "imageUrl": "",
+    "name": "완스day",
+    "detail": "완스 브런치, 자몽허니블랙티",
+    "latitude": 0.0,
+    "longitude": 0.0
+  },
+  {
+    "id": 54,
+    "imageUrl": "",
+    "name": "핵밥 화성봉담점",
+    "detail": "고기 듬뿍덮밥, 생연어 덮밥",
+    "latitude": 0.0,
+    "longitude": 0.0
+  },
+  {
+    "id": 55,
+    "imageUrl": "",
+    "name": "브리즈",
+    "detail": "쌀소금빵 & 커피",
+    "latitude": 0.0,
+    "longitude": 0.0
+  },
+  {
+    "id": 56,
+    "imageUrl": "",
+    "name": "광부맥주 화성수원대점 제9광구",
+    "detail": "맥주, 떡볶이, 치킨",
+    "latitude": 0.0,
+    "longitude": 0.0
+  },
+  {
+    "id": 57,
+    "imageUrl": "",
+    "name": "오디오씨",
+    "detail": "에그타르트 스콘, 커피",
+    "latitude": 0.0,
+    "longitude": 0.0
+  },
+  {
+    "id": 58,
+    "imageUrl": "",
+    "name": "태양회관",
+    "detail": "생삼겹살",
+    "latitude": 0.0,
+    "longitude": 0.0
+  },
+  {
+    "id": 59,
+    "imageUrl": "",
+    "name": "역전할머니맥주 화성 수원대점",
+    "detail": "파인샤베트, 오징어입",
+    "latitude": 0.0,
+    "longitude": 0.0
+  },
+  {
+    "id": 60,
+    "imageUrl": "",
+    "name": "한솥도시락 수원대점",
+    "detail": "치킨마요",
+    "latitude": 0.0,
+    "longitude": 0.0
   }
 ]
 

@@ -33,6 +33,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(
     FragmentListBinding::bind,
     R.layout.fragment_list
 ) {
+
     companion object {
         private const val FILTER_NAME = 1
         private const val FILTER_GRADE = 2
@@ -50,6 +51,9 @@ class ListFragment : BaseFragment<FragmentListBinding>(
     private var finishFlag = false
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //그날 처음 앱을 키면 랜덤 추천해줌 -> 팝업으로 처리
+
+
 
         // 로딩중 보여주기
         changeLoadingContent(true)
@@ -87,6 +91,21 @@ class ListFragment : BaseFragment<FragmentListBinding>(
             val mAlertDialog = mBuilder.show()
         }
     }
+
+    // private fun saveDate(date: String) {
+    //     mPreferences = getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE);
+    //     val preferencesEditor: SharedPreferences.Editor = mPreferences.edit()
+    //     preferencesEditor.putString("date", date)
+    //     Log.d("sharedPref", preferencesEditor.putString("date", date).toString())
+    //     //commit은 sync, apply는 async 적으로 동작함
+    //     preferencesEditor.apply()
+    // }
+
+    // private fun getDate(): String? {
+    //     mPreferences = getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE);
+    //     Log.d("sharedPref", mPreferences.getString("date","").toString())
+    //     return mPreferences.getString("date", "")
+    // }
 
     private fun init() {
         Handler(Looper.getMainLooper()).postDelayed(Runnable {

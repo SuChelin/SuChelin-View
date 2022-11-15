@@ -61,12 +61,21 @@ class StoreDetailActivity :
 
         val imageMenu = DataControl().getStoreImageMenu(storeId, this)
         if (imageMenu != "no") {
-            Glide.with(this)
-                .load(imageMenu)
-                .into(binding.storeDetailImageMenu)
+            if (imageMenu == "toycafe") {
+                binding.storeDetailImageMenu.apply {
+                    setImageResource(R.drawable.toycafe)
+                }
+                binding.storeDetailMenuRecyclerView.visibility = View.GONE
+                binding.storeDetailScroll.visibility = View.VISIBLE
+            } else {
+                Glide.with(this)
+                    .load(imageMenu)
+                    .placeholder(R.drawable.ic_michelin_three_background)
+                    .into(binding.storeDetailImageMenu)
 
-            binding.storeDetailMenuRecyclerView.visibility = View.GONE
-            binding.storeDetailScroll.visibility = View.VISIBLE
+                binding.storeDetailMenuRecyclerView.visibility = View.GONE
+                binding.storeDetailScroll.visibility = View.VISIBLE
+            }
         }
         //테스트
         //test

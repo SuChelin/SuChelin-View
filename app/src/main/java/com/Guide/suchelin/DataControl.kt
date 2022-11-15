@@ -25,7 +25,7 @@ class DataControl {
         const val STORE_JSON_LENGTH = 60
     }
 
-    fun initFlag() : Boolean = scoreRequestFlag
+    fun initFlag(): Boolean = scoreRequestFlag
 
     // assets 파일 읽어오기
     private fun readFile(fileName: String, context: Context): String? {
@@ -97,12 +97,15 @@ class DataControl {
     fun getStoreImageMenu(storeId: Int, context: Context): String {
         // 식당 데이터
         val data = readFile("StoreImageMenu.json", context)
-        var imageMenu : String?
+        var imageMenu: String?
 
         val jsonArray = JSONTokener(data).nextValue() as JSONArray
         for (i in 0 until jsonArray.length()) {
-            if (storeId == jsonArray.getJSONObject(i).getInt("id")){
+            if (storeId == jsonArray.getJSONObject(i).getInt("id")) {
                 imageMenu = jsonArray.getJSONObject(i).getString("imageUrl")
+                if (storeId == 52) {
+                    return "toycafe"
+                }
                 return imageMenu
             }
         }
@@ -132,8 +135,12 @@ class DataControl {
 
         return storeData
     }
+
     //ListFragment에 사용중
-    fun getStoreDataScoreList(context: Context, score: HashMap<String, Long>): ArrayList<StoreDataScoreClass> {
+    fun getStoreDataScoreList(
+        context: Context,
+        score: HashMap<String, Long>
+    ): ArrayList<StoreDataScoreClass> {
         // 식당 데이터
         val data = readFile("StoreData.json", context)
         val storeData = ArrayList<StoreDataScoreClass>()
@@ -152,7 +159,17 @@ class DataControl {
 //            Log.d("Store","$name")
 
             val scr = score.getValue(id.toString())
-            storeData.add(StoreDataScoreClass(id = id, imageUrl = imageUrl, name = name, detail = detail, score = scr, latitude = latitude, longitude = longitude))
+            storeData.add(
+                StoreDataScoreClass(
+                    id = id,
+                    imageUrl = imageUrl,
+                    name = name,
+                    detail = detail,
+                    score = scr,
+                    latitude = latitude,
+                    longitude = longitude
+                )
+            )
         }
 
         return storeData
@@ -187,6 +204,7 @@ class DataControl {
 
         return null
     }
+
     //테스트중
     fun getStoreScoreDetail(context: Context, storeId: Int, score: Long): StoreDataScoreClass? {
         // 식당 데이터
@@ -246,7 +264,7 @@ class DataControl {
     fun scoreFromFirebase() {
         Log.d("dataControl", "dataControl scoreFromFirebase 실행됨")
         // 데이터 초기화
-        for (id in 1 until STORE_JSON_LENGTH +1) {
+        for (id in 1 until STORE_JSON_LENGTH + 1) {
             if (allScores.get(key = id.toString()) == null) {
                 allScores[id.toString()] = 0
             }
@@ -271,6 +289,7 @@ class DataControl {
                     flag = false
                 }*/
             }
+
             override fun onCancelled(error: DatabaseError) {
                 Log.e("dataRef", "DB error")
             }

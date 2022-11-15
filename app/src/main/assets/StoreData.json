@@ -225,7 +225,7 @@
   },
   {
     "id": 29,
-    "imageUrl": "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190512_288%2F15576472729174abz1_JPEG%2FOH7BXAHZC2Us0uQCV2gsIDDf.jpg",
+    "imageUrl": "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTA2MDJfMzUg%2FMDAxNTU5NDg2MDYwNzcy.PVlbJnCSUV693aQtfhe3_KE702SSJpPMzeXKtcxvpgMg._j1nWm5VC1jyhHLy5YeqePTda-nPdXOKG6XSCAQo8ikg.JPEG.sp1ns2rv2r%2F20190602_193917.jpg",
     "name": "오늘",
     "detail": "마카롱 & 커피",
     "latitude": 37.2148100,
@@ -409,75 +409,75 @@
   },
   {
     "id": 52,
-    "imageUrl": "",
+    "imageUrl": "https://ldb-phinf.pstatic.net/20200929_283/1601340432719a3kcq_JPEG/Zm8a5CBd5uXmKx1Ne3KbkNNy.jpg",
     "name": "TOY&CAFE 원앤원",
     "detail": "커피, 스무디",
-    "latitude": 0.0,
-    "longitude": 0.0
+    "latitude": 37.2159116,
+    "longitude": 126.9828562
   },
   {
     "id": 53,
-    "imageUrl": "",
+    "imageUrl": "https://ldb-phinf.pstatic.net/20201211_123/16076857347568bRIx_PNG/4TgYnTOZiXfkUcN5VYjYHraT.png",
     "name": "완스day",
     "detail": "완스 브런치, 자몽허니블랙티",
-    "latitude": 0.0,
-    "longitude": 0.0
+    "latitude": 37.2147926,
+    "longitude": 126.9729741
   },
   {
     "id": 54,
-    "imageUrl": "",
+    "imageUrl": "https://ldb-phinf.pstatic.net/20221014_170/16657105478744nvrD_PNG/03.png",
     "name": "핵밥 화성봉담점",
     "detail": "고기 듬뿍덮밥, 생연어 덮밥",
-    "latitude": 0.0,
-    "longitude": 0.0
+    "latitude": 37.2146007,
+    "longitude": 126.9742106
   },
   {
     "id": 55,
-    "imageUrl": "",
+    "imageUrl": "https://ldb-phinf.pstatic.net/20210614_248/1623647579548WkJrH_JPEG/3uR6he09aRHknOhaxj02cIjL.jpeg.jpg",
     "name": "브리즈",
     "detail": "쌀소금빵 & 커피",
-    "latitude": 0.0,
-    "longitude": 0.0
+    "latitude": 37.2154532,
+    "longitude": 126.9741219
   },
   {
     "id": 56,
-    "imageUrl": "",
+    "imageUrl": "https://ldb-phinf.pstatic.net/20220615_10/1655261058390P2po0_JPEG/KakaoTalk_20220614_204544434_08.jpg",
     "name": "광부맥주 화성수원대점 제9광구",
     "detail": "맥주, 떡볶이, 치킨",
-    "latitude": 0.0,
-    "longitude": 0.0
+    "latitude": 37.2148657,
+    "longitude": 126.9779665
   },
   {
     "id": 57,
-    "imageUrl": "",
+    "imageUrl": "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTExMDdfMTgy%2FMDAxNjM2Mjc5OTA3NjA4.hc9YgM2RTjzUyQd6UT2IW7tZhIEUm3nE6J5fb0qrHaog._U6gA58Jx7CGnUOtAdUAPoRmVpCzkU83vpieR4ARIi4g.JPEG.wlswjd031%2F20211105_165330.jpg",
     "name": "오디오씨",
     "detail": "에그타르트 스콘, 커피",
-    "latitude": 0.0,
-    "longitude": 0.0
+    "latitude": 37.2145953,
+    "longitude": 126.9777067
   },
   {
     "id": 58,
-    "imageUrl": "",
+    "imageUrl": "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA2MjdfMyAg%2FMDAxNTkzMjY2NDQyNzQw.Viam1xYGnks3P77CEH676nEn0N1Iomk0azioYjDk57Yg.R4Ghb8WEww4llTdDV_stuXN1WjQe1lrXdJ7Au_C6-R0g.JPEG.ihj772%2F1593266442256.jpg",
     "name": "태양회관",
     "detail": "생삼겹살",
-    "latitude": 0.0,
-    "longitude": 0.0
+    "latitude": 37.2134795,
+    "longitude": 126.9757468
   },
   {
     "id": 59,
-    "imageUrl": "",
+    "imageUrl": "https://ldb-phinf.pstatic.net/20191016_69/1571215135579sfvpP_JPEG/dHtJkS7AqdVTzk2nI74SPqBk.jpg",
     "name": "역전할머니맥주 화성 수원대점",
     "detail": "파인샤베트, 오징어입",
-    "latitude": 0.0,
-    "longitude": 0.0
+    "latitude": 37.2141682,
+    "longitude": 126.9766722
   },
   {
     "id": 60,
-    "imageUrl": "",
-    "name": "한솥도시락 수원대점",
-    "detail": "치킨마요",
-    "latitude": 0.0,
-    "longitude": 0.0
+    "imageUrl": "https://ldb-phinf.pstatic.net/20180529_44/15275551066368kqYM_JPEG/NqNFhF7pfENUJEDjZ2UQhze-.jpg",
+    "name": "명랑핫도그 수원대점",
+    "detail": "통모짜 핫도그, 크림치즈 핫도그",
+    "latitude": 37.2142275,
+    "longitude": 126.9785260
   }
 ]
 

@@ -8,3 +8,5 @@
 * [ ] 부분 컴포즈 도입
 * [ ] UI 수정
 
+https://github.com/kimmandoo/SuChelinV2 로 이사중
+
